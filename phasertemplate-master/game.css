@@ -1,3 +1,51 @@
-h1 {
+@font-face {
+  font-family: Rye-Regular;
+  src : url(./Font/Rye-Regular.ttf) format('truetype'); 
+  font-weight: bold; 
+  font-style: normal;
+}
+*{
+  margin: 0;
+  border: 0;
+  padding: 0;
+  max-height: 1000000px;
+}
+body {
+  background-color: #aabbcc;
+  color:black;
+
+}
+a:hover { text-decoration: underline; }
+#Web{
+overflow: hidden;
+position: relative;
+}
+.container{
+  background-size: auto auto;
+}
+#githubLink{
+  background: url(./WebImag/strip.png) repeat-x;
+  height: 66px;
+  padding: 16px;
   text-align: center;
+
+}
+#githubLink a{
+
+  text-decoration: none;
+  font-size: 20px;
+  color: black;
+  text-shadow: 0px 2px 0px white ;
+
+}
+#githubLink a:hover{
+  text-decoration: underline;
+}
+
+#header{
+  margin: 0px auto;
+  max-width: 1280px;
+  padding: 0 0 56px;
+  position :relative;
+  display:block;
 }
