@@ -6,20 +6,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=2.0" />
     <link rel="stylesheet" href="game.css" />
     <script src="//cdn.jsdelivr.net/npm/phaser@3.24.1/dist/phaser.js"></script>
-
+    <script src= "web.js"></script>
     <title> Monjas2 </title>
   </head>
 
   <body>
     <div id = "Web">
-      <div class ="container">
         <div id = "githubLink">
           <a href="https://github.com/albemu07/Farsantes">
             Jugar a <strong>Monja 2</strong>
              y descubrir más informaciones en nuestro github
            </a>
         </div>
-      </div>
+        <div id= "navbar">
+          <ul >
+            <li><button onclick="introtext()" >Intro</button></li>
+            <li><button onclick="historiatext()">Historia</button></li>
+            <li><button>Controles</button></li>
+            <li><button>Video</button></li>
+            <li><button>Créditos</button></li>
+          </ul>
+        </div>
+        
+        <div id = "textContainer">
+          <p>
+            Monjas 2 se basa en la obra de teatro Marquesa Rosalinda de Ramón María del Valle-Inclán. 
+          <br>La marquesa tiene una aventura con el arlequín 
+            de un grupo de farsantes que se hospeda en las 
+            tierras de su marido. Celoso, el marqués planea 
+            contratar unos matones para deshacerse de él. 
+            <br>La marquesa y el arlequín colaborarán para 
+            escapar de sus tierras antes de que esto ocurra. 
+            <br>¿Conseguirán escapar?
+          </p> 
+
+        </div>
+    </div>
     <script type="module">
       import Game from "./game.js";
 

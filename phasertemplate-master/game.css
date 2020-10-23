@@ -8,20 +8,20 @@
   margin: 0;
   border: 0;
   padding: 0;
-  max-height: 1000000px;
+  background-size:auto auto;
 }
 body {
   background-color: #aabbcc;
   color:black;
 
 }
+
 a:hover { text-decoration: underline; }
 #Web{
-overflow: hidden;
-position: relative;
+padding: 0px;
 }
 .container{
-  background-size: auto auto;
+  
 }
 #githubLink{
   background: url(./WebImag/strip.png) repeat-x;
@@ -42,10 +42,50 @@ position: relative;
   text-decoration: underline;
 }
 
-#header{
-  margin: 0px auto;
-  max-width: 1280px;
-  padding: 0 0 56px;
-  position :relative;
-  display:block;
+#navbar{
+  padding: 0px;
+  display: inline;
+  width: 100%;
+
 }
+#navbar li{
+  list-style-type: none;
+  float: left;
+  width: 20%;
+  text-align: center;
+  background-color: rgb(0, 0, 78);
+  height: 60px; 
+}
+#navbar li button{
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  background-color:darkblue;
+  color: white;
+  width: 80%;
+  text-align: center;
+  display: inline-block;
+  height: 50px;
+  border-radius: 20px;
+  margin-top: 5px;
+  
+}
+#navbar li button:hover{
+  background-color: #0d366b;
+  padding-bottom: 5px;
+}
+#navbar li button:active{
+  text-decoration:underline;
+  color: wheat;
+}
+#textContainer{
+  clear: both;
+  background-color:rgba(0, 0, 78, 0.548);
+  height: auto;
+  font-size: 20px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  color:rgba(173, 252, 255, 0.719);
+  text-align: center;
+  padding: 15px;
+}
+
