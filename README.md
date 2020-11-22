@@ -1,7 +1,24 @@
-# Plantilla para juegos en Phaser
+# Escape From Marquis' Manor
 
-Plantilla básica para juegos en Phaser. Hace falta un servidor web para que se ejecute. Por ejemplo:
+####Equipo de desarrollo: Los Farsantes
+-Alberto Muñoz Fernández
+-Oscar García Castro
+-Liyuan Li
+-Javier Lagares Navas
 
-```bash
-npx http-server
-```
+#####Enlace al repositorio
+https://github.com/albemu07/albemu07.github.io
+
+#####Enlace al juego
+https://albemu07.github.io/
+
+#####Enlace al GDD
+
+#####Captura del juego
+
+#####Enlace a nuestro pivotal tracker
+
+
+
+
+
