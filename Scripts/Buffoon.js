@@ -1,10 +1,13 @@
-export default class Player extends Phaser.GameObjects.Sprite {
+export default class Buffoon extends Phaser.GameObjects.Sprite {
     constructor(scene, x, y,sprite) {
       super(scene, x, y, sprite);
       this.scene.add.existing(this);
       this.scene.physics.add.existing(this);
       this.speed=300;
       this.cursors = this.scene.input.keyboard.createCursorKeys();
+      this.body.setSize(40,45,true)
+      this.setScale(4);
+      this.body.setCollideWorldBounds();
     }
     
     preUpdate(time,delta) {
@@ -32,10 +35,10 @@ export default class Player extends Phaser.GameObjects.Sprite {
     }
 
     if(this.body.velocity.x===0 && this.body.velocity.y===0){
-        this.anims.play('IdleBuffoon',true);
+        this.anims.play('IdleBuffoonAnim',true);
     }
     else{
-        this.anims.play('RunBuffoon',true);
+        this.anims.play('RunBuffoonAnim',true);
     }
     }
   }

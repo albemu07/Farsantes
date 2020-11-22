@@ -17,6 +17,7 @@
           <ul>
           <li><a href="#game">Jugar</a></li>
           <li><a href="#Controls">Controles</a></li>
+          <li><a href="#History">Historia</a></li>
           <li><a href="#Team">Equipo</a></li>
           <li><a href="https://github.com/albemu07/albemu07.github.io" target="blank">Github</a></li>
         </ul>
@@ -27,7 +28,7 @@
       <div id="GameContainer"></div>
     </section>
       <section id="Controls"></section>
-    </section>
+      <section id="History"></section>
       <section id="Team">
       <table id="Teammates">
         <tr>
@@ -65,7 +66,7 @@
         scene: [Game],
         physics: {
           default: "arcade",
-          arcade: { gravity: { y:0 }, debug: false },
+          arcade: { gravity: { y:0 }, debug: true },
         },
       };
       new Phaser.Game(config);

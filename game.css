@@ -98,6 +98,11 @@ section{
   background-color: #4c425a;
 }
 
+#History{
+  background-color: #5a4243;
+
+}
+
 #Teammates{
   border: 0px solid black;
   table-layout: fixed;
