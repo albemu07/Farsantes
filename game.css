@@ -92,7 +92,19 @@ section{
 #game{
   background-color: #42455a;
 }
+#TitleName{
+  text-align: center;
+  font-size: 10vh;
+  color: whitesmoke;
+  text-shadow: thistle;
+  padding-top: 5vh;
+  padding-bottom: 2vh;
 
+}
+#Content{
+  display: inline-flex;
+  
+}
 #Controls{
   background-color: #52425a;
 }
@@ -109,20 +121,8 @@ section{
   background-color: #695233;
 
 }
-#HistoriaTitle{
-  text-align: center;
-  font-size: 10vh;
-  color: whitesmoke;
-  text-shadow: thistle;
-  margin: 0;
-  padding-top: 5vh;
-  padding-bottom: 2vh;
 
-}
-#HistoriaContent{
-  display: inline-flex;
-  
-}
+
 
 #Teammates{
   border: 0px solid black;
