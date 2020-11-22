@@ -1,91 +1,129 @@
-@font-face {
-  font-family: Rye-Regular;
-  src : url(./Font/Rye-Regular.ttf) format('truetype'); 
-  font-weight: bold; 
-  font-style: normal;
+h1 {
+  text-align: left;
+  font-family: monospace;
+  font-weight: 500;
+  font-size: 4vh;
+  text-transform: uppercase;
 }
-*{
+
+h2{
+  text-align: left;
+  font-family: sans-serif;
+  font-weight: 300;
+  font-size: 3vh;
+}
+
+
+header{
+  padding-bottom: 5vh;
+}
+body{
+  margin:0;
+  background-color: #42455a ;
+  font-family: sans-serif;
+  font-weight:600 ;
+}
+
+nav{
+  width: 100vw;
+  text-align: center;
+  background: #55d6aa;
+}
+
+.navbar{
+  position: fixed;
+}
+
+nav ul{
   margin: 0;
-  border: 0;
   padding: 0;
-  background-size:auto auto;
-}
-body {
-  background-color: #aabbcc;
-  color:black;
-
+  list-style: none;
 }
 
-a:hover { text-decoration: underline; }
-#Web{
-padding: 0px;
-}
-.container{
-  
-}
-#githubLink{
-  background: url(./WebImag/strip.png) repeat-x;
-  height: 66px;
-  padding: 16px;
-  text-align: center;
-
-}
-#githubLink a{
-
-  text-decoration: none;
-  font-size: 20px;
-  color: black;
-  text-shadow: 0px 2px 0px white ;
-
-}
-#githubLink a:hover{
-  text-decoration: underline;
-}
-
-#navbar{
-  padding: 0px;
-  display: inline;
-  width: 100%;
-
-}
-#navbar li{
-  list-style-type: none;
-  float: left;
-  width: 20%;
-  text-align: center;
-  background-color: rgb(0, 0, 78);
-  height: 60px; 
-}
-#navbar li button{
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 20px;
-  background-color:darkblue;
-  color: white;
-  width: 80%;
-  text-align: center;
+nav li{
   display: inline-block;
-  height: 50px;
-  border-radius: 20px;
-  margin-top: 5px;
-  
-}
-#navbar li button:hover{
-  background-color: #0d366b;
-  padding-bottom: 5px;
-}
-#navbar li button:active{
-  text-decoration:underline;
-  color: wheat;
-}
-#textContainer{
-  clear: both;
-  background-color:rgba(0, 0, 78, 0.548);
-  height: auto;
-  font-size: 20px;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
-  color:rgba(173, 252, 255, 0.719);
-  text-align: center;
-  padding: 15px;
+  margin-left: 2vw;
+  margin-right: 2vw;
+  padding-top: 2vh;
+  padding-bottom: 0.5vh;
+  position: relative;
 }
 
+nav a{
+  color: #42455a;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 3vh;
+}
+
+nav a:hover{
+  color: #000;
+}
+
+nav a::before{
+  content: '';
+  display: block;
+  height: 0.5vh;
+  width: 100vw;
+  background-color: #42455a;
+
+  position: absolute;
+  top: 0;
+  width: 0;
+  transition: all ease-in-out 300ms;
+}
+
+nav a:hover::before{
+  width: 100%;
+}
+
+section{
+  width: 100vw;
+  height: 95vh;
+}
+
+#game{
+  background-color: #42455a;
+}
+
+#Controls{
+  background-color: #52425a;
+}
+
+#History{
+  background-color: #425a47;
+}
+
+#Team{
+  background-color: #4c425a;
+}
+
+#Teammates{
+  border: 0px solid black;
+  table-layout: fixed;
+  width: 100vw;
+  height: 95vh;
+}
+
+th,
+td {
+  border: 1px solid black;
+  overflow: hidden;
+}
+tr{
+  border: 0px solid black;
+  overflow: hidden;
+}
+
+td img{
+  display: block;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#GameContainer{
+ margin: auto;
+ padding-top: 12vh;
+ height: 60vh;
+}

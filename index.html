@@ -10,45 +10,51 @@
     <title> Monjas2 </title>
   </head>
 
+ 
   <body>
-    <div id = "Web">
-        <div id = "githubLink">
-          <a href="https://github.com/albemu07/Farsantes">
-            Jugar a <strong>Monja 2</strong>
-             y descubrir más informaciones en nuestro github
-           </a>
-        </div>
-        <div id= "navbar">
-          <ul >
-            <li><button onclick="introtext()" >Intro</button></li>
-            <li><button onclick="historiatext()">Historia</button></li>
-            <li><button>Controles</button></li>
-            <li><button>Video</button></li>
-            <li><button>Créditos</button></li>
-          </ul>
-        </div>
-        
-        <div id = "textContainer">
-          <p>
-            Monjas 2 se basa en la obra de teatro Marquesa Rosalinda de Ramón María del Valle-Inclán. 
-          <br>La marquesa tiene una aventura con el arlequín 
-            de un grupo de farsantes que se hospeda en las 
-            tierras de su marido. Celoso, el marqués planea 
-            contratar unos matones para deshacerse de él. 
-            <br>La marquesa y el arlequín colaborarán para 
-            escapar de sus tierras antes de que esto ocurra. 
-            <br>¿Conseguirán escapar?
-          </p> 
+    
+    <header>
+        <nav class="navbar">
+          <ul>
+          <li><a href="#game">Jugar</a></li>
+          <li><a href="#Controls">Controles</a></li>
+          <li><a href="#Team">Equipo</a></li>
+          <li><a href="https://github.com/albemu07/albemu07.github.io" target="blank">Github</a></li>
+        </ul>
+        </nav>
+    </header>
+    
+    <section id="game">
+      <div id="GameContainer"></div>
+    </section>
+      <section id="Controls"></section>
+    </section>
+      <section id="Team">
+      <table id="Teammates">
+        <tr>
+          <td><img src="Webpage/foto.png"></td>
+          <td valign="top"><h1>Alberto Muñoz Fernández</h1> <h2>"The Opposite of Microsoft Office is Macrohard Onfire"</h2></td>
+          <td><img src="Webpage/foto.png"></td>
+          <td valign="top"><h1>Liyuan Li</h1> <h2>"The Opposite of Microsoft Office is Macrohard Onfire"</h2></td>
+        </tr>
+        <tr>
+          <td><img src="Webpage/foto.png"></td>
+          <td valign="top"><h1>Óscar García Castro</h1> <h2>"The Opposite of Microsoft Office is Macrohard Onfire"</h2></td>
+          <td><img src="Webpage/javier2.png"></td>
+           <td valign="top"><h1>Javier Lagares</h1> <h2>"The Opposite of Microsoft Office is Macrohard Onfire"</h2></td>
+        </tr>
+      </table>
+    </section>
 
-        </div>
-    </div>
+
     <script type="module">
-      import Game from "./game.js";
+       import Game from './game.js'
 
       var config = {
         type: Phaser.AUTO,
-        width: 1400,
-        height: 800,
+        width: 800,
+        height: 600,
+        parent:'GameContainer',
         pixelArt: true,
         input: {
           gamepad: true,
@@ -60,7 +66,7 @@
         scene: [Game],
         physics: {
           default: "arcade",
-          arcade: { gravity: { y: 400 }, debug: false },
+          arcade: { gravity: { y:0 }, debug: false },
         },
       };
       new Phaser.Game(config);
