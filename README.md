@@ -13,10 +13,12 @@ https://github.com/albemu07/albemu07.github.io
 https://albemu07.github.io/
 
 ##### Enlace al GDD
+https://docs.google.com/document/d/1RmMKBz1fUMJ_iEVslGu1ZNnBAJrUocOo_-JvglrTGD0/edit?usp=sharing
 
 ##### Captura del juego
 
 ##### Enlace a nuestro pivotal tracker
+https://www.pivotaltracker.com/n/projects/2470813
 
 
 
