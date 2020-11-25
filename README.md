@@ -164,7 +164,7 @@ Arlequín es encarcelado, ya que una dama le acusa de haberle robado sus anillos
 ![UML](Webpage/UML.png)
 
 # Captura del juego
-![Captura](Webpage/Captura.png)
+![Captura](Webpage/Captura.PNG)
 
 # Enlace a nuestro pivotal tracker
 https://www.pivotaltracker.com/n/projects/2470813
