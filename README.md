@@ -12,6 +12,9 @@ https://github.com/albemu07/albemu07.github.io
 ##### Enlace al juego
 https://albemu07.github.io/
 
+##### Enlace a nuestro pivotal tracker
+https://www.pivotaltracker.com/n/projects/2470813
+
 # GDD
 
 ## **Escape From Marquis&#39; Manor**
@@ -163,9 +166,6 @@ Arlequín es encarcelado, ya que una dama le acusa de haberle robado sus anillos
 ## Diagrama UML
 ![UML](Webpage/UML.png)
 
-# Captura del juego
+## Captura del juego
 ![Captura](Webpage/Captura.PNG)
-
-# Enlace a nuestro pivotal tracker
-https://www.pivotaltracker.com/n/projects/2470813
 
