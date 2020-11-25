@@ -45,7 +45,7 @@ Un jugador controla a Arlequín y otro a la Marquesa; la Marquesa no podrá lleg
 
 Además, habrá zonas opcionales que los jugadores pueden evitar que contendrán coleccionables. Puede ocurrir que, por falta de coordinación entre ambos, un guardia encuentre a Arlequín y se reinicie la partida.
 
-1. **Menús y modos de juego**
+2. **Menús y modos de juego**
 
 **Opciones del menú de inicio:**
 
@@ -63,14 +63,14 @@ Además, habrá zonas opcionales que los jugadores pueden evitar que contendrán
 
 -Atrás
 
-  1. **Interfaz y control**
+  2.1. **Interfaz y control**
 
 - **Marquesa:** Movimiento WASD o Gamepad 1, tecla Espacio para interactuar con objetos y distraer enemigos (sólo la marquesa).
 - **Arlequín:** Movimiento con flechas de dirección o Gamepad 2, tecla Intro para interactuar con objetos y distraer enemigos (sólo la marquesa).
 
-1. **Jugabilidad**
+3. **Jugabilidad**
 
-  1. **Mecánica**
+  3.1. **Mecánica**
 
 **JUGADORES**
 
@@ -90,7 +90,7 @@ Además, habrá zonas opcionales que los jugadores pueden evitar que contendrán
 
 - **Movimiento:** Algunos de ellos seguirán una ruta predefinida, cambiando su área de visión a medida que se mueven. (Si la implementación es muy compleja consideraremos implementar únicamente enemigos estáticos)
 
-  1. **Dinámica**
+  3.2. **Dinámica**
 
 La dinámica del juego consistirá en llegar al final del nivel cooperando entre ambos jugadores/personajes para abrirse camino.
 
@@ -104,7 +104,7 @@ Los jugadores deberán ir decidiendo cómo avanzarán a través del nivel de man
 
 La mayoría de obstáculos deberán ser superados haciendo de cajas, plataformas y palancas que permitan acceder a nuevas zonas.
 
-  1. **Estética**
+  3.3. **Estética**
 
 Los niveles se basarán en 3 distintos escenarios de la obra; aunque el contexto histórico interno de la obra no sea medieval, elegiremos dicho estilo por la familiaridad que tenemos con él, por la facilidad para encontrar recursos y porque no se detalla ningún avance cultural o tecnológico que choque frontalmente con el contexto real de la obra.
 
@@ -120,9 +120,9 @@ El mismo jardín del caso anterior, sin embargo, se usará una paleta de colores
 
 El monasterio tendrá un ambiente frío, y tendrá elementos típicos del interior de una iglesia simple, con un suelo de baldosas con bancos, velas, etc. Para reflejar el encierro de la marquesa también se verán barrotes en ventanas y puertas bloqueadas.
 
-1. **Contenido**
+4. **Contenido**
 
-  1. **Historia**
+  4.1. **Historia**
 
 Arlequín, que viaja en un grupo de farsantes para en las tierras de un marqués, el cual les ofrece alojamiento temporal a cambio de que hagan interpretaciones en sus tierras.
 
@@ -132,7 +132,7 @@ El marqués se entera de su relación, lo que le provoca un ataque de celos y de
 
 Arlequín es encarcelado, ya que una dama le acusa de haberle robado sus anillos y la Marquesa es encerrada en un convento. Sin embargo, Arlequín se las apaña para escapar de la cárcel y trata de rescatar a la marquesa.
 
-  1. **Personajes**
+  4.2. **Personajes**
 
 **PERSONAJES JUGABLES:**
 
@@ -146,7 +146,7 @@ Arlequín es encarcelado, ya que una dama le acusa de haberle robado sus anillos
 
 **Monjas:** Viven en el convento donde está encerrada la marquesa. Debido a que el sustento del convento depende plenamente del marqués, siguen sus órdenes de mantener a la marquesa dentro del convento tras su encierro.
 
-  1. **Objetos**
+  4.3. **Objetos**
 
 **OBJETOS DE TERRENO**
 
