@@ -12,15 +12,13 @@ https://github.com/albemu07/albemu07.github.io
 ##### Enlace al juego
 https://albemu07.github.io/
 
-##### GDD
+# GDD
 
-_ **Escape From Marquis&#39; Manor** _
+## **Escape From Marquis&#39; Manor**
 
 **Documento de diseño de videojuego**
 
-_Los Farsantes_
-
-[_https://github.com/albemu07/albemu07.github.io_](https://github.com/albemu07/albemu07.github.io)
+Equipo: _Los Farsantes_
 
 Versión 1.0 - 16 de octubre de 2020
 
@@ -31,21 +29,21 @@ Versión 1.0 - 16 de octubre de 2020
  Todos los públicos | **Plataformas:** Internet |
 | **Características:** Vista cenital, sigilo | **Arquitectura:** [https://lucid.app/lucidchart/31d52306-a374-46da-83ad-e7ff23a8ec8b/edit](https://lucid.app/lucidchart/31d52306-a374-46da-83ad-e7ff23a8ec8b/edit) |
 
-**Descripción**
+## **Descripción**
 
 &quot;Escape from Marquis&#39; Manor&quot; se basa en la obra de teatro &quot;La Marquesa Rosalinda&quot; de Ramón María del Valle-Inclán. La marquesa tiene una aventura con Arlequín de un grupo de farsantes que se hospeda en las tierras de su marido. Celoso, el marqués planea contratar unos matones para deshacerse de él.Marquesa y Arlequín colaborarán para escapar de sus tierras antes de que esto ocurra. ¿Lo conseguirán?
 
-1. **Aspectos generales**
+#### **Aspectos generales**
 
 Los jugadores controlan a Arlequín y a la Marquesa, intentando escapar de las laberínticas tierras del marqués y sus vigilantes. En ellas tendrán que interactuar con diferentes mecanismos y objetos para abrirse paso y llegar hasta el final. Los niveles se desarrollarán por los distintos parajes de la obra compuestos por puzzles que desafiarán a los jugadores y les obligarán a cooperar para avanzar. La recolección de ciertos objetos especiales otorgará un bonus en la puntuación que obtenga el jugador.
 
-  1. **Relato breve y parcial de una partida típica**
+#### **Relato breve y parcial de una partida típica**
 
 Un jugador controla a Arlequín y otro a la Marquesa; la Marquesa no podrá llegar a la salida debido a que el camino principal está compuesto por terreno fangoso, y arlequín no podrá avanzar porque la guardia de palacio le busca. La marquesa podrá ayudarle distrayendo a un guardia unos segundos para permitir el paso a Arlequín, que, desde la zona vigilada, abrirá un camino alternativo para la Marquesa que permita a ambos avanzar.
 
 Además, habrá zonas opcionales que los jugadores pueden evitar que contendrán coleccionables. Puede ocurrir que, por falta de coordinación entre ambos, un guardia encuentre a Arlequín y se reinicie la partida.
 
-2. **Menús y modos de juego**
+## **Menús y modos de juego**
 
 **Opciones del menú de inicio:**
 
@@ -63,14 +61,14 @@ Además, habrá zonas opcionales que los jugadores pueden evitar que contendrán
 
 -Atrás
 
-  2.1. **Interfaz y control**
+## **Interfaz y control**
 
 - **Marquesa:** Movimiento WASD o Gamepad 1, tecla Espacio para interactuar con objetos y distraer enemigos (sólo la marquesa).
 - **Arlequín:** Movimiento con flechas de dirección o Gamepad 2, tecla Intro para interactuar con objetos y distraer enemigos (sólo la marquesa).
 
-3. **Jugabilidad**
+## **Jugabilidad**
 
-  3.1. **Mecánica**
+#### **Mecánica**
 
 **JUGADORES**
 
@@ -90,7 +88,7 @@ Además, habrá zonas opcionales que los jugadores pueden evitar que contendrán
 
 - **Movimiento:** Algunos de ellos seguirán una ruta predefinida, cambiando su área de visión a medida que se mueven. (Si la implementación es muy compleja consideraremos implementar únicamente enemigos estáticos)
 
-  3.2. **Dinámica**
+#### **Dinámica**
 
 La dinámica del juego consistirá en llegar al final del nivel cooperando entre ambos jugadores/personajes para abrirse camino.
 
@@ -104,7 +102,7 @@ Los jugadores deberán ir decidiendo cómo avanzarán a través del nivel de man
 
 La mayoría de obstáculos deberán ser superados haciendo de cajas, plataformas y palancas que permitan acceder a nuevas zonas.
 
-  3.3. **Estética**
+#### **Estética**
 
 Los niveles se basarán en 3 distintos escenarios de la obra; aunque el contexto histórico interno de la obra no sea medieval, elegiremos dicho estilo por la familiaridad que tenemos con él, por la facilidad para encontrar recursos y porque no se detalla ningún avance cultural o tecnológico que choque frontalmente con el contexto real de la obra.
 
@@ -120,9 +118,9 @@ El mismo jardín del caso anterior, sin embargo, se usará una paleta de colores
 
 El monasterio tendrá un ambiente frío, y tendrá elementos típicos del interior de una iglesia simple, con un suelo de baldosas con bancos, velas, etc. Para reflejar el encierro de la marquesa también se verán barrotes en ventanas y puertas bloqueadas.
 
-4. **Contenido**
+## **Contenido**
 
-  4.1. **Historia**
+#### **Historia**
 
 Arlequín, que viaja en un grupo de farsantes para en las tierras de un marqués, el cual les ofrece alojamiento temporal a cambio de que hagan interpretaciones en sus tierras.
 
@@ -132,7 +130,7 @@ El marqués se entera de su relación, lo que le provoca un ataque de celos y de
 
 Arlequín es encarcelado, ya que una dama le acusa de haberle robado sus anillos y la Marquesa es encerrada en un convento. Sin embargo, Arlequín se las apaña para escapar de la cárcel y trata de rescatar a la marquesa.
 
-  4.2. **Personajes**
+#### **Personajes**
 
 **PERSONAJES JUGABLES:**
 
@@ -146,7 +144,7 @@ Arlequín es encarcelado, ya que una dama le acusa de haberle robado sus anillos
 
 **Monjas:** Viven en el convento donde está encerrada la marquesa. Debido a que el sustento del convento depende plenamente del marqués, siguen sus órdenes de mantener a la marquesa dentro del convento tras su encierro.
 
-  4.3. **Objetos**
+#### **Objetos**
 
 **OBJETOS DE TERRENO**
 
@@ -162,12 +160,12 @@ Arlequín es encarcelado, ya que una dama le acusa de haberle robado sus anillos
 
 - Anillos: Elementos secretos repartidos por los niveles que arlequín podrá ir recogiendo y que darán un bonus de puntuación al usuario.
 
-##### Captura del juego
+## Diagrama UML
+![UML](Webpage/UML.png)
 
-##### Enlace a nuestro pivotal tracker
+# Captura del juego
+![Captura](Webpage/Captura.png)
+
+# Enlace a nuestro pivotal tracker
 https://www.pivotaltracker.com/n/projects/2470813
-
-
-
-
 
