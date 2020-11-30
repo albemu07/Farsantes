@@ -41,4 +41,9 @@ export default class Buffoon extends Phaser.GameObjects.Sprite {
         this.anims.play('RunBuffoonAnim',true);
     }
     }
+
+    respawn()
+    {
+       this.x = 500;
+    }
   }
