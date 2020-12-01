@@ -1,7 +1,7 @@
 import Player from './Player.js';
 export default class Buffoon extends Player {
     constructor(scene, x, y,sprite) {
-      super(scene, x, y, sprite, 4, 40, 45);
+      super(scene, x, y, sprite, 3, 40, 45);
       this.cursors = this.scene.input.keyboard.createCursorKeys();
     }
     
