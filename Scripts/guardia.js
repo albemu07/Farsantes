@@ -14,12 +14,12 @@ export default class Guardia extends Enemigo
         this.horizontal =horizontal;
         if (this.horizontal)
         {
-            this.vision.x+= 70;
-            this.vision.y +=30;
+            this.vision.x= 70;
+            this.vision.y =30;
         }
         else{
-            this.vision.x+=30;
-            this.vision.y+=70;
+            this.vision.x=30;
+            this.vision.y=70;
         }
  
     }
