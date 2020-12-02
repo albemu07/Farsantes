@@ -13,8 +13,12 @@ export default class Game extends Phaser.Scene {
     this.load.spritesheet('IdleCountess','./Assets/Countess/Idle.png',{frameWidth:320,frameHeight:320});
     this.load.spritesheet('RunCountess','./Assets/Countess/Run.png',{frameWidth:320,frameHeight:320});
 
-    this.load.spritesheet('IdleCharacter1','./Assets/SpriteSheet/Characters1.png',{frameWidth:59,frameHeight:65.5});
-    this.load.image('vista','./Assets/SpriteSheet/deteccion.jpg')
+    this.load.image('guardiaL','./Assets/SpriteSheet/guardiaLeft.png');
+    this.load.image('guardiaR','./Assets/SpriteSheet/guardiaRight.png');
+    this.load.image('guardiaF','./Assets/SpriteSheet/guardiaFront.png');
+    this.load.image('guardiaB','./Assets/SpriteSheet/guardiaBack.png');
+
+    this.load.image('vista','./Assets/SpriteSheet/deteccion.png') ;
   
   }
 
@@ -50,19 +54,13 @@ export default class Game extends Phaser.Scene {
       repeat: -1
     });
 
-    this.anims.create({
-      key:'IdleCharacter1',
-      frames: this.anims.generateFrameNumbers('IdleCountess'),
-      frameRate:4,
-      repeat: -1
-    });
 
     var PlayerBuffoon=new Buffoon(this,200,200,'IdleBuffoon');
     var PlayerCountess=new Countess(this,400,400,'IdleCountess');
-    var EnemigoGuardia = new Guardia(this,100,100, 100,500, false,'IdleCharacter1');
-  
-    this.physics.add.collider(PlayerBuffoon,EnemigoGuardia,this.ArlGuardia,null,this);
-
+    var Guardia1V = new Guardia(this,100,100, 100,500, false,'guardiaL');
+    var Guardia2H = new Guardia(this,200,100, 400,100, true,'guardiaR');
+    this.physics.add.collider(PlayerBuffoon,Guardia1V,this.ArlGuardia,null,this);
+    //this.physics.add.collider(PlayerBuffoon,Guardia2H,this.ArlGuardia,null,this);
   }
 
   preUpdate(time,delta){

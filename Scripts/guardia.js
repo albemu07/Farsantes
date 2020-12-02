@@ -10,10 +10,17 @@ export default class Guardia extends Enemigo
         this.Pos2Y =y2;
         this.PosX = (this.Pos1X+this.Pos2X)/2;
         this.PosY = (this.Pos1Y+this.Pos2Y)/2;
-        this.velocidad = 40;
-
+        this.velocidad = 100;
         this.horizontal =horizontal;
-    
+        if (this.horizontal)
+        {
+            this.vision.x+= 70;
+            this.vision.y +=30;
+        }
+        else{
+            this.vision.x+=30;
+            this.vision.y+=70;
+        }
  
     }
     preUpdate()
@@ -23,11 +30,11 @@ export default class Guardia extends Enemigo
         if (this.horizontal)
         {
             this.vision.setAngle(-90);
+            
             this.moveH();
         }
         else 
         {
-            this.vision.setAngle(180);
             this.moveV();
         }
         
@@ -35,41 +42,43 @@ export default class Guardia extends Enemigo
 
     moveH()
     {
-        if(this.x <= this.Pos1X)
+        if(this.x-10 <= this.Pos1X)
             {
                 this.PosX = this.Pos2X
                 this.PosY = this.Pos2Y 
+                this.object.setTexture('guardiaR');
+                this.vision.flipY= true;
                 this.vision.x = 60;
-                 this.object.flipX=true;
-                 this.vision.flipY= false;
                 
             }
-            if(this.x >= this.Pos2X)
+            if(this.x+10 >= this.Pos2X)
             {
                 this.PosX = this.Pos1X
                 this.PosY = this.Pos1Y 
-                this.vision.x = -20;
-                this.object.flipX=false;
-                this.vision.flipY= true;
+                this.object.setTexture('guardiaL');
+                this.vision.flipY= false;
+                this.vision.x = 0;
                 
             }
     }
     moveV()
     {
-        if(this.y <= this.Pos1Y)
+        if(this.y-10 <= this.Pos1Y)
             {
                 this.PosX = this.Pos2X
                 this.PosY = this.Pos2Y 
-                this.vision.x = 60;
-                 this.vision.flipY= false;
+                this.object.setTexture('guardiaF');
+                this.vision.flipY= true;
+                this.vision.y =60;
                 
             }
-            if(this.y>= this.Pos2Y)
+            if(this.y+10>= this.Pos2Y)
             {
                 this.PosX = this.Pos1X
                 this.PosY = this.Pos1Y 
-                this.vision.y = -20;
-                this.vision.flipY= true;
+                this.object.setTexture('guardiaB');
+                this.vision.flipY= false;
+                this.vision.y = 0;
                 
             }
     }

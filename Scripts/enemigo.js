@@ -11,7 +11,7 @@ export default class Enemigo extends Phaser.GameObjects.Container
        
         
         this.vision = new Vision (scene,0,0,'vista');
-        this.object = new Object(scene,0,0,sprite);
+        this.object = new Object(scene,31,31,sprite);
         this.add(this.object);
         this.add(this.vision);
         this.escena = scene;
