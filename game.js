@@ -1,6 +1,6 @@
 import Buffoon from './Scripts/Buffoon.js';
 import Countess from './Scripts/Countess.js';
-import Player from './Scripts/Player.js';
+import Player from './Scripts/Player.js'; //creo que no hace falta
 export default class Game extends Phaser.Scene {
   constructor(Zone,NextZone,CountessPositionX,CountessPositionY,BuffoonPositionX,BuffoonPositionY) {
     super({ key: Zone });
@@ -8,7 +8,7 @@ export default class Game extends Phaser.Scene {
     this.CountessX=CountessPositionX;
     this.CountessY=CountessPositionY;
     this.BuffoonX=BuffoonPositionX;
-    this.BuffoonY=BuffoonPositionY;
+    this.BuffoonY=BuffoonPositionY;  
   }
 
 
@@ -17,6 +17,7 @@ export default class Game extends Phaser.Scene {
     this.load.spritesheet('RunBuffoon','./Assets/Buffoon/Run.png',{frameWidth:150,frameHeight:150});
     this.load.spritesheet('IdleCountess','./Assets/Countess/Idle.png',{frameWidth:320,frameHeight:320});
     this.load.spritesheet('RunCountess','./Assets/Countess/Run.png',{frameWidth:320,frameHeight:320});
+    this.load.image('BoxSprite', './Assets/Box/Box.png');
     this.load.image('Trigger','./Assets/Mechanisms/NextZoneTrigger.png');
   }
 
@@ -52,37 +53,37 @@ export default class Game extends Phaser.Scene {
       repeat: -1
     });
 
-    //Crear zona (en este caso es un sprite, por claridad)
-    this.EndTrigger= this.physics.add.sprite(700,300,'Trigger')
+ //Crear zona (en este caso es un sprite, por claridad)
+ this.EndTrigger= this.physics.add.sprite(700,300,'Trigger')
 
-    //Texto encima del trigger
-    this.EndTriggerText=this.add.text(650,150,'POR AQUÍ')
+ //Texto encima del trigger
+ this.EndTriggerText=this.add.text(650,150,'POR AQUÍ')
 
-    //Crear Jugadores
-    this.PlayerBuffoon=new Buffoon(this,this.BuffoonX,this.BuffoonY,'IdleBuffoon');
-    this.PlayerCountess=new Countess(this,this.CountessX,this.CountessY,'IdleCountess');
-    
-  }
-
-  update(time,delta){
-    //Comprobación del overlapping entre trigger y jugadores
-    this.checkEndOverlap()
-  }
-
-  checkEndOverlap(){
-    //Si ambos jugadores entran en el trigger, se pasa de escena
-    if(this.physics.overlap(this.PlayerBuffoon, this.EndTrigger) && this.physics.overlap(this.PlayerCountess, this.EndTrigger)){
-      console.log('Siguiente escena')
-      this.scene.start(this.NextZone)
-    }
-    //Si solo uno de ellos entra, "llama" al otro haciendo visible un texto
-    else if(this.physics.overlap(this.PlayerBuffoon, this.EndTrigger) ^ this.physics.overlap(this.PlayerCountess, this.EndTrigger)){
-      console.log('Un jugador colisionando')
-      this.EndTriggerText.visible=true;
-    }
-    //Si no hay ninguno dentro, simplemente el texto se oculta
-    else{
-      this.EndTriggerText.visible=false;
-    }
-  }
+ //Crear Jugadores
+ this.PlayerBuffoon=new Buffoon(this,this.BuffoonX,this.BuffoonY,'IdleBuffoon');
+ this.PlayerCountess=new Countess(this,this.CountessX,this.CountessY,'IdleCountess');
+ 
 }
+
+update(time,delta){
+ //Comprobación del overlapping entre trigger y jugadores
+ this.checkEndOverlap()
+}
+
+checkEndOverlap(){
+ //Si ambos jugadores entran en el trigger, se pasa de escena
+ if(this.physics.overlap(this.PlayerBuffoon, this.EndTrigger) && this.physics.overlap(this.PlayerCountess, this.EndTrigger)){
+   console.log('Siguiente escena')
+   this.scene.start(this.NextZone)
+ }
+ //Si solo uno de ellos entra, "llama" al otro haciendo visible un texto
+ else if(this.physics.overlap(this.PlayerBuffoon, this.EndTrigger) ^ this.physics.overlap(this.PlayerCountess, this.EndTrigger)){
+   console.log('Un jugador colisionando')
+   this.EndTriggerText.visible=true;
+ }
+ //Si no hay ninguno dentro, simplemente el texto se oculta
+ else{
+   this.EndTriggerText.visible=false;
+ }
+}
+}    
