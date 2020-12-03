@@ -2,6 +2,7 @@ import Buffoon from './Scripts/Buffoon.js';
 import Countess from './Scripts/Countess.js';
 import Player from './Scripts/Player.js'; //creo que no hace falta
 import Lever from './Scripts/Lever.js';
+import Box from './Scripts/Box.js';
 export default class Game extends Phaser.Scene {
   constructor(Zone,NextZone,CountessPositionX,CountessPositionY,BuffoonPositionX,BuffoonPositionY) {
     super({ key: Zone });
@@ -65,7 +66,7 @@ export default class Game extends Phaser.Scene {
       frameRate:6,
       repeat: 0
     });
-
+    
     this.anims.create({
       key:'DesactivateLever',
       frames: this.anims.generateFrameNumbers('Lever2'),
@@ -100,13 +101,22 @@ export default class Game extends Phaser.Scene {
     this.physics.add.overlap(this.PlayerBuffoon, this.lever, (o1, o2) => {
       this.lever.interaction();
     });
-    this.physics.add.collider(this.PlayerBuffoon, this.lever.door);     
-  }
+    this.physics.add.collider(this.PlayerBuffoon, this.lever.door);  
+    
+    //Crea una caja
+    this.Box = new Box(this, 300, 300, 'BoxSprite');
 
+    this.physics.add.collider(this.PlayerBuffoon, this.Box , (o1, o2) => {
+    o2.moveAlong(o1.getVelocityX(), o1.getVelocityY());
+    });
+    this.physics.add.collider(this.PlayerCountess, this.Box , (o1, o2) => {
+    o2.moveAlong(o1.getVelocityX(), o1.getVelocityY());
+    });
+  }
   update(time,delta){
   //Comprobación del overlapping entre trigger y jugadores
   this.physics.overlap(this.PlayerBuffoon, this.lever);  
-  this.checkEndOverlap()
+  this.checkEndOverlap();
   }
 
   checkEndOverlap(){
@@ -115,14 +125,14 @@ export default class Game extends Phaser.Scene {
       console.log('Siguiente escena')
       this.scene.start(this.NextZone)
     }
-    //Si solo uno de ellos entra, "llama" al otro haciendo visible un texto
-    else if(this.physics.overlap(this.PlayerBuffoon, this.EndTrigger) ^ this.physics.overlap(this.PlayerCountess, this.EndTrigger)){
-      console.log('Un jugador colisionando')
-      this.EndTriggerText.visible=true;
-    }
-    //Si no hay ninguno dentro, simplemente el texto se oculta
-    else{
-      this.EndTriggerText.visible=false;
-    }
-  }
+ //Si solo uno de ellos entra, "llama" al otro haciendo visible un texto
+ else if(this.physics.overlap(this.PlayerBuffoon, this.EndTrigger) ^ this.physics.overlap(this.PlayerCountess, this.EndTrigger)){
+   console.log('Un jugador colisionando')
+   this.EndTriggerText.visible=true;
+ }
+ //Si no hay ninguno dentro, simplemente el texto se oculta
+ else{
+   this.EndTriggerText.visible=false;
+ }
 }
+}    

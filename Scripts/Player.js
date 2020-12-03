@@ -9,6 +9,14 @@ export default class Player extends Phaser.GameObjects.Sprite {
       this.body.setCollideWorldBounds();
     }
 
+    getVelocityY(){
+      return this.body.velocity.y;
+    }
+    
+    getVelocityX(){
+      return this.body.velocity.x;
+    }
+
     preUpdate(time, delta, cursors, animIdle, animRun){
       super.preUpdate(time,delta);
       if (cursors.up.isDown) {
