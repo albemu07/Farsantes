@@ -86,49 +86,43 @@ export default class Game extends Phaser.Scene {
       frameRate:3,
       repeat: 0
     });
+    //Crear zona (en este caso es un sprite, por claridad)
+    this.EndTrigger= this.physics.add.sprite(700,300,'Trigger')
 
-    var PlayerBuffoon=new Buffoon(this,200,200,'IdleBuffoon');
-    var PlayerCountess=new Countess(this,400,400,'IdleCountess');
+    //Texto encima del trigger
+    this.EndTriggerText=this.add.text(650,150,'POR AQUÍ')
 
-    var lever=new Lever(this, 600, 200, false);
+    //Crear Jugadores
+    this.PlayerBuffoon=new Buffoon(this,this.BuffoonX,this.BuffoonY,'IdleBuffoon');
+    this.PlayerCountess=new Countess(this,this.CountessX,this.CountessY,'IdleCountess');
+    this.lever=new Lever(this, 600, 200, false);
 
-    this.physics.add.overlap(PlayerBuffoon, lever, (o1, o2) => {
-      lever.interaction();
+    this.physics.add.overlap(this.PlayerBuffoon, this.lever, (o1, o2) => {
+      this.lever.interaction();
     });
-    this.physics.add.collider(PlayerBuffoon, lever.door);   
-  
- //Crear zona (en este caso es un sprite, por claridad)
- this.EndTrigger= this.physics.add.sprite(700,300,'Trigger')
+    this.physics.add.collider(this.PlayerBuffoon, this.lever.door);     
+  }
 
- //Texto encima del trigger
- this.EndTriggerText=this.add.text(650,150,'POR AQUÍ')
+  update(time,delta){
+  //Comprobación del overlapping entre trigger y jugadores
+  this.physics.overlap(this.PlayerBuffoon, this.lever);  
+  this.checkEndOverlap()
+  }
 
- //Crear Jugadores
- this.PlayerBuffoon=new Buffoon(this,this.BuffoonX,this.BuffoonY,'IdleBuffoon');
- this.PlayerCountess=new Countess(this,this.CountessX,this.CountessY,'IdleCountess');
+  checkEndOverlap(){
+  //Si ambos jugadores entran en el trigger, se pasa de escena
+    if(this.physics.overlap(this.PlayerBuffoon, this.EndTrigger) && this.physics.overlap(this.PlayerCountess, this.EndTrigger)){
+      console.log('Siguiente escena')
+      this.scene.start(this.NextZone)
+    }
+    //Si solo uno de ellos entra, "llama" al otro haciendo visible un texto
+    else if(this.physics.overlap(this.PlayerBuffoon, this.EndTrigger) ^ this.physics.overlap(this.PlayerCountess, this.EndTrigger)){
+      console.log('Un jugador colisionando')
+      this.EndTriggerText.visible=true;
+    }
+    //Si no hay ninguno dentro, simplemente el texto se oculta
+    else{
+      this.EndTriggerText.visible=false;
+    }
+  }
 }
-
-
-update(time,delta){
- //Comprobación del overlapping entre trigger y jugadores
- this.physics.overlap(this.PlayerBuffoon, this.lever);  
- this.checkEndOverlap()
-}
-
-checkEndOverlap(){
- //Si ambos jugadores entran en el trigger, se pasa de escena
- if(this.physics.overlap(this.PlayerBuffoon, this.EndTrigger) && this.physics.overlap(this.PlayerCountess, this.EndTrigger)){
-   console.log('Siguiente escena')
-   this.scene.start(this.NextZone)
- }
- //Si solo uno de ellos entra, "llama" al otro haciendo visible un texto
- else if(this.physics.overlap(this.PlayerBuffoon, this.EndTrigger) ^ this.physics.overlap(this.PlayerCountess, this.EndTrigger)){
-   console.log('Un jugador colisionando')
-   this.EndTriggerText.visible=true;
- }
- //Si no hay ninguno dentro, simplemente el texto se oculta
- else{
-   this.EndTriggerText.visible=false;
- }
-}
-}   
