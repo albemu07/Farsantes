@@ -1,13 +1,8 @@
-import Door from './Door.js';
+import Door from './door.js';
 
 export default class Lever extends Phaser.GameObjects.Sprite {
     constructor(scene, x, y, activated){
-        if(activated){
-            super(scene, x, y, "LeverOpen");
-        }
-        else{
-            super(scene, x, y, "LeverClose");            
-        }
+        super(scene, x, y, activated ? "LeverOpen" : "LeverClose");
         this.door=new Door(scene, this.x+100, this.y, activated);
         this.on=activated;
         this.scene.add.existing(this);

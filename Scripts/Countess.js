@@ -1,4 +1,4 @@
-import Player from './Player.js';
+import Player from './player.js';
 export default class Countess extends Player {
     constructor(scene, x, y, sprite) {
       super(scene, x, y, sprite, 0.4, 320, 320);
