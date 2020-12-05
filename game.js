@@ -1,8 +1,10 @@
 import Buffoon from './Scripts/Buffoon.js';
 import Countess from './Scripts/Countess.js';
+import Guardia from './Scripts/guardia.js';
 import Player from './Scripts/Player.js'; //creo que no hace falta
 import Lever from './Scripts/Lever.js';
 import Box from './Scripts/Box.js';
+
 export default class Game extends Phaser.Scene {
   constructor(Zone,NextZone,CountessPositionX,CountessPositionY,BuffoonPositionX,BuffoonPositionY) {
     super({ key: Zone });
@@ -19,6 +21,12 @@ export default class Game extends Phaser.Scene {
     this.load.spritesheet('RunBuffoon','./Assets/Buffoon/Run.png',{frameWidth:150,frameHeight:150});
     this.load.spritesheet('IdleCountess','./Assets/Countess/Idle.png',{frameWidth:320,frameHeight:320});
     this.load.spritesheet('RunCountess','./Assets/Countess/Run.png',{frameWidth:320,frameHeight:320});
+    this.load.image('guardiaL','./Assets/SpriteSheet/guardiaLeft.png');
+    this.load.image('guardiaR','./Assets/SpriteSheet/guardiaRight.png');
+    this.load.image('guardiaF','./Assets/SpriteSheet/guardiaFront.png');
+    this.load.image('guardiaB','./Assets/SpriteSheet/guardiaBack.png');
+
+    this.load.image('vista','./Assets/SpriteSheet/deteccion.png') ;
     this.load.image('BoxSprite', './Assets/Box/Box.png');
     this.load.image('Trigger','./Assets/Mechanisms/NextZoneTrigger.png');
     this.load.spritesheet('Lever1','./Assets/Lever/Lever1.png',{frameWidth:352,frameHeight:208});
@@ -59,6 +67,27 @@ export default class Game extends Phaser.Scene {
       frameRate:6,
       repeat: -1
     });
+
+
+    //var PlayerBuffoon=new Buffoon(this,200,200,'IdleBuffoon');
+    //var PlayerCountess=new Countess(this,400,400,'IdleCountess');
+    this.guardiasVision = this.physics.add.group();
+    var Guardia1V = new Guardia(this,100,100, 100,500, false,'guardiaL');
+    var Guardia2H = new Guardia(this,200,100, 400,100, true,'guardiaR');
+    this.guardiasVision.add(Guardia1V.vision);
+    this.guardiasVision.add(Guardia2H.vision);
+    this.physics.add.overlap(PlayerBuffoon,this.guardiasVision,this.ArlGuardia,null,this);
+  
+  
+  }
+
+  preUpdate(time,delta){
+  }
+
+  ArlGuardia(object1,object2)
+  {
+    console.log("Encontrado a Arlequin");
+    object1.respawn();
 
     this.anims.create({
       key:'ActivateLever',
@@ -117,6 +146,7 @@ export default class Game extends Phaser.Scene {
   //Comprobación del overlapping entre trigger y jugadores
   this.physics.overlap(this.PlayerBuffoon, this.lever);  
   this.checkEndOverlap();
+
   }
 
   checkEndOverlap(){
