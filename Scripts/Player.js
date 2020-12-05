@@ -1,5 +1,5 @@
 export default class Player extends Phaser.GameObjects.Sprite {
-    constructor(scene, x, y,sprite, scale, colliderX, colliderY) {
+    constructor(scene, x, y,sprite, scale, colliderX, colliderY, animIdle, animRun) {
       super(scene, x, y, sprite);
       this.scene.add.existing(this);
       this.scene.physics.add.existing(this);
@@ -7,6 +7,8 @@ export default class Player extends Phaser.GameObjects.Sprite {
       this.body.setSize(colliderX,colliderY,true)
       this.setScale(scale);
       this.body.setCollideWorldBounds();
+      this.animIdle = animIdle;
+      this.animRun = animRun;
     }
 
     getVelocityY(){
@@ -17,23 +19,23 @@ export default class Player extends Phaser.GameObjects.Sprite {
       return this.body.velocity.x;
     }
 
-    preUpdate(time, delta, cursors, animIdle, animRun){
+    preUpdate(time, delta){
       super.preUpdate(time,delta);
-      if (cursors.up.isDown) {
+      if (this.cursors.up.isDown) {
         this.body.setVelocityY(-this.speed);
       }
-    else if (cursors.down.isDown) {
+    else if (this.cursors.down.isDown) {
         this.body.setVelocityY(this.speed);
       }
     else{
           this.body.setVelocityY(0);
       }
-    if (cursors.left.isDown) {
+    if (this.cursors.left.isDown) {
         this.body.setVelocityX(-this.speed);
         this.flipX=true;
         
       }
-    else if (cursors.right.isDown) {
+    else if (this.cursors.right.isDown) {
         this.body.setVelocityX(this.speed);
         this.flipX=false;
       }
