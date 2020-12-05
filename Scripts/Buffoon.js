@@ -6,7 +6,7 @@ export default class Buffoon extends Phaser.GameObjects.Sprite {
       this.speed=300;
       this.cursors = this.scene.input.keyboard.createCursorKeys();
       this.body.setSize(40,45,true)
-      this.setScale(4);
+      this.setScale(2);
       this.body.setCollideWorldBounds();
     }
     
@@ -44,6 +44,7 @@ export default class Buffoon extends Phaser.GameObjects.Sprite {
 
     respawn()
     {
-       this.x = 500;
+       this.x = 0;
+       this.y =0;
     }
   }

@@ -10,7 +10,8 @@ export default class Guardia extends Enemigo
         this.Pos2Y =y2;
         this.PosX = (this.Pos1X+this.Pos2X)/2;
         this.PosY = (this.Pos1Y+this.Pos2Y)/2;
-        this.velocidad = 100;
+        this.velocidad = 60;
+        this.distraida =false;
         this.horizontal =horizontal;
         if (this.horizontal)
         {
@@ -25,21 +26,39 @@ export default class Guardia extends Enemigo
     }
     preUpdate()
     {
-        this.scene.physics.moveTo(this, this.PosX,this.PosY, this.velocidad)
 
+        this.scene.physics.moveTo(this, this.PosX,this.PosY, this.velocidad);
+            
         if (this.horizontal)
         {
             this.vision.setAngle(-90);
             
             this.moveH();
-        }
+        }  
         else 
         {
             this.moveV();
         }
+        if (!this.distraida)
+        {
+            this.velocidad =60;
+        }
+        else 
+        {
+            this.vision.visible =false;
+            this.velocidad=0;
+        }
+        
+        
+
         
     }
 
+    distract(active)
+    {
+        this.distraida =active;
+
+    }
     moveH()
     {
         if(this.x-10 <= this.Pos1X)
@@ -69,8 +88,7 @@ export default class Guardia extends Enemigo
                 this.PosY = this.Pos2Y 
                 this.object.setTexture('guardiaF');
                 this.vision.flipY= true;
-                this.vision.y =60;
-                
+                this.vision.y =60;              
             }
             if(this.y+10>= this.Pos2Y)
             {
@@ -78,8 +96,7 @@ export default class Guardia extends Enemigo
                 this.PosY = this.Pos1Y 
                 this.object.setTexture('guardiaB');
                 this.vision.flipY= false;
-                this.vision.y = 0;
-                
+                this.vision.y = 0;               
             }
     }
 

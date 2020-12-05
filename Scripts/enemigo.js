@@ -8,6 +8,7 @@ export default class Enemigo extends Phaser.GameObjects.Container
         super(scene,x,y);
         scene.add.existing(this);
         scene.physics.world.enable(this);
+        
        
         
         this.vision = new Vision (scene,0,0,'vista');
@@ -15,7 +16,7 @@ export default class Enemigo extends Phaser.GameObjects.Container
         this.add(this.object);
         this.add(this.vision);
         this.escena = scene;
-        
     }
+
     
 }

@@ -11,7 +11,7 @@ export default class Countess extends Phaser.GameObjects.Sprite {
         right: Phaser.Input.Keyboard.KeyCodes.D
       });
       this.body.setSize(320,320,true);
-      this.setScale(0.6)
+      this.setScale(0.3);
       this.body.setCollideWorldBounds();
     }
     

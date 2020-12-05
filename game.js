@@ -57,15 +57,17 @@ export default class Game extends Phaser.Scene {
 
     var PlayerBuffoon=new Buffoon(this,200,200,'IdleBuffoon');
     var PlayerCountess=new Countess(this,400,400,'IdleCountess');
+    this.guardiasVision = this.physics.add.group();
     var Guardia1V = new Guardia(this,100,100, 100,500, false,'guardiaL');
     var Guardia2H = new Guardia(this,200,100, 400,100, true,'guardiaR');
-    this.physics.add.collider(PlayerBuffoon,Guardia1V,this.ArlGuardia,null,this);
-    //this.physics.add.collider(PlayerBuffoon,Guardia2H,this.ArlGuardia,null,this);
+    this.guardiasVision.add(Guardia1V.vision);
+    this.guardiasVision.add(Guardia2H.vision);
+    this.physics.add.overlap(PlayerBuffoon,this.guardiasVision,this.ArlGuardia,null,this);
+  
+  
   }
 
   preUpdate(time,delta){
-
-    
   }
 
   ArlGuardia(object1,object2)
