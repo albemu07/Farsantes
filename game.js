@@ -138,6 +138,7 @@ export default class Game extends Phaser.Scene {
     //Comprobación del overlapping entre trigger y jugadores
     this.physics.overlap(this.playerBuffoon, this.lever);  
     this.checkEndOverlap();
+    this.moveBox();
   }
 
   arlGuardia(object1,object2)
@@ -146,16 +147,24 @@ export default class Game extends Phaser.Scene {
     object1.respawn();
   }
 
+  moveBox(){
+    if (this.playerBuffoon.grabDown()){
+      this.box.moveAlong(this.playerBuffoon.body.velocity, this.playerBuffoon.getCenterX(), this.playerBuffoon.getCenterY());
+    }
+    else if (this.playerCountess.grabDown()){
+      this.box.moveAlong(this.playerCountess.body.velocity, this.playerCountess.getCenterX(), this.playerCountess.getCenterY());
+    }
+  }
 
   checkEndOverlap(){
   //Si ambos jugadores entran en el trigger, se pasa de escena
     if(this.physics.overlap(this.playerBuffoon, this.endTrigger) && this.physics.overlap(this.playerCountess, this.endTrigger)){
-      console.log('Siguiente escena')
-      this.scene.start(this.NextZone)
+      console.log('Siguiente escena');
+      this.scene.start(this.NextZone);
     }
  //Si solo uno de ellos entra, "llama" al otro haciendo visible un texto
  else if(this.physics.overlap(this.playerBuffoon, this.endTrigger) || this.physics.overlap(this.playerCountess, this.endTrigger)){
-   console.log('Un jugador colisionando')
+   console.log('Un jugador colisionando');
    this.endTriggerText.visible=true;
  }
  //Si no hay ninguno dentro, simplemente el texto se oculta

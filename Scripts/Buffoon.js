@@ -7,7 +7,7 @@ export default class Buffoon extends Player {
         down: Phaser.Input.Keyboard.KeyCodes.DOWN,
         left: Phaser.Input.Keyboard.KeyCodes.LEFT,
         right: Phaser.Input.Keyboard.KeyCodes.RIGHT,
-        grab: Phaser.Input.Keyboard.KeyCodes.M
+        grab: Phaser.Input.Keyboard.KeyCodes.C
       });
     }
 

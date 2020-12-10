@@ -7,7 +7,7 @@ export default class Box extends Phaser.GameObjects.Sprite{
         this.setScale(0.20);
         this.body.setCollideWorldBounds();
         this.body.setImmovable(true);
-        this.radio = 1.5;
+        this.radio = 55;
         this.cursors = this.scene.input.keyboard.addKeys({
             grab: Phaser.Input.Keyboard.KeyCodes.C,
             grabb: Phaser.Input.Keyboard.KeyCodes.M
@@ -19,19 +19,18 @@ export default class Box extends Phaser.GameObjects.Sprite{
         
     }
 
-    moveBox(playerPos){
-        
-    }
-
-    moveAlong(veloX, veloY){
-        if (this.cursors.grab.isDown || this.cursors.grabb.isDown){
-            this.body.setVelocityX(veloX);
-            this.body.setVelocityY(veloY);
+    moveAlong(playerVelocity, playerPosX, playerPosY){
+        this.posX=this.x + ((500*0.20)/2);
+        this.posY=this.y + ((500*0.20)/2);
+        this.mod = Math.sqrt(Math.pow(this.posX, 2)+Math.pow(this.posY, 2));
+        this.playerMod = Math.sqrt(Math.pow(playerPosX, 2)+Math.pow(playerPosY, 2));
+        if(Math.abs(this.mod - this.playerMod) < this.radio){
+            this.body.setVelocityX(playerVelocity.x);
+            this.body.setVelocityY(playerVelocity.y);
         }
         else{
-            this.body.setVelocityY(0);
             this.body.setVelocityX(0);
-            // console.log('caca');
-        } 
+            this.body.setVelocityY(0);
+        }
     }
 }
