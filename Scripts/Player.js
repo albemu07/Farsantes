@@ -5,6 +5,9 @@ export default class Player extends Objeto {
       this.speed=300;      
       this.animIdle = animIdle;
       this.animRun = animRun;
+      this.colliderX = colliderX;
+      this.colliderY = colliderY;
+      this.scale = scale;
     }
 
     getVelocityY(){
@@ -13,6 +16,23 @@ export default class Player extends Objeto {
     
     getVelocityX(){
       return this.body.velocity.x;
+    }
+
+    grabDown(){
+      if (this.cursors.grab.isDown){
+        return true;
+      }
+      else return false;
+    }
+
+    getCenterX(){
+      this.posX=this.x + ((this.colliderX*this.scale)/2);
+      return this.posX;
+    }
+
+    getCenterY(){
+      this.posY=this.y + ((this.colliderY*this.scale)/2);
+      return this.posY;
     }
 
     preUpdate(time, delta){
