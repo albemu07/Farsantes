@@ -121,6 +121,9 @@ export default class Game extends Phaser.Scene {
        this.physics.add.overlap(this.playerBuffoon, this.lever, (o1, o2) => {
          this.lever.interaction();
        });
+       this.physics.add.overlap(this.playerCountess, this.lever, (o1, o2) => {
+        this.lever.interaction();
+      });
        this.physics.add.collider(this.playerBuffoon, this.lever.door);  
 
        this.physics.add.collider(this.playerBuffoon, this.box , (o1, o2) => {
