@@ -1,12 +1,7 @@
-export default class Box extends Phaser.GameObjects.Sprite{
+import Objeto from './objeto.js'; 
+export default class Box extends Objeto{
     constructor(scene, x, y,sprite){
-        super(scene, x, y, sprite);
-        this.scene.add.existing(this);
-        this.scene.physics.add.existing(this);
-        this.body.setSize(500,500,true);
-        this.setScale(0.20);
-        this.body.setCollideWorldBounds();
-        this.body.setImmovable(true);
+        super(scene, x, y, sprite, 500, 500, 0.20, true);        
         this.radio = 1.5;
         this.cursors = this.scene.input.keyboard.addKeys({
             grab: Phaser.Input.Keyboard.KeyCodes.C,

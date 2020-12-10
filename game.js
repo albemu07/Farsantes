@@ -100,11 +100,11 @@ export default class Game extends Phaser.Scene {
     this.box = new Box(this, 300, 300, 'BoxSprite');
     this.playerBuffoon=new Buffoon(this,this.buffoonX,this.buffoonY,'IdleBuffoon');
     this.playerCountess=new Countess(this,this.countessX,this.countessY,'IdleCountess');
-    this.guardiasVision = this.physics.add.group();
+    /*this.guardiasVision = this.physics.add.group();
     var guardia1V = new Guardia(this,100,100, 100,500, false,'guardiaL');
     var guardia2H = new Guardia(this,200,100, 400,100, true,'guardiaR');
     this.guardiasVision.add(guardia1V.vision);
-    this.guardiasVision.add(guardia2H.vision);
+    this.guardiasVision.add(guardia2H.vision);*/
 
     this.physics.add.overlap(this.playerBuffoon,this.guardiasVision,this.arlGuardia,null,this);
 
