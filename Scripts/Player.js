@@ -1,12 +1,8 @@
-export default class Player extends Phaser.GameObjects.Sprite {
+import Objeto from './objeto.js';
+export default class Player extends Objeto {
     constructor(scene, x, y,sprite, scale, colliderX, colliderY, animIdle, animRun) {
-      super(scene, x, y, sprite);
-      this.scene.add.existing(this);
-      this.scene.physics.add.existing(this);
-      this.speed=300;
-      this.body.setSize(colliderX,colliderY,true)
-      this.setScale(scale);
-      this.body.setCollideWorldBounds();
+      super(scene, x, y, sprite, colliderX, colliderY, scale, false);
+      this.speed=300;      
       this.animIdle = animIdle;
       this.animRun = animRun;
     }

@@ -1,14 +1,10 @@
 import Door from './door.js';
-
-export default class Lever extends Phaser.GameObjects.Sprite {
+import Objeto from './objeto.js';
+export default class Lever extends Objeto {
     constructor(scene, x, y, activated){
-        super(scene, x, y, activated ? "LeverOpen" : "LeverClose");
+        super(scene, x, y, activated ? "LeverOpen" : "LeverClose", 200, 200, 0.3, false);
         this.door=new Door(scene, this.x+100, this.y, activated);
-        this.on=activated;
-        this.scene.add.existing(this);
-        this.scene.physics.add.existing(this);
-        this.body.setSize(200,200,true);
-        this.setScale(0.3);
+        this.on=activated;        
         this.cursorsLever = this.scene.input.keyboard.addKeys({
             action: Phaser.Input.Keyboard.KeyCodes.Z
         });

@@ -1,21 +1,15 @@
-export default class Door extends Phaser.GameObjects.Sprite {
+import Objeto from './objeto.js';
+export default class Door extends Objeto {
     constructor(scene, x, y, activated){
-        if(activated){
-            super(scene, x, y, "DoorOpen");
-        }
-        else{
-            super(scene, x, y, "DoorClose");
-            this.scene.physics.add.existing(this);
-            this.body.setSize(1000,1000,true);
-        }
-        this.open=activated;
-        this.scene.add.existing(this);
-        this.body.setImmovable(true);
-        this.setScale(0.1);    
+        super(scene, x, y, activated ? "DoorOpen" : "DoorClose", 1000, 1000, 0.1, true);
+        this.body.enable=activated;
+        this.open=activated;         
     }
+
     preUpdate(time, delta){
-        super.preUpdate(time,delta);       
+              
     }
+
     abrir(){
         this.body.enable=false;
         this.anims.play('OpenDoor',true);
