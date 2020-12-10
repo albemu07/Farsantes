@@ -20,29 +20,32 @@ export default class Player extends Objeto {
       if (this.cursors.up.isDown) {
         this.body.setVelocityY(-this.speed);
       }
-    else if (this.cursors.down.isDown) {
+      else if (this.cursors.down.isDown) {
         this.body.setVelocityY(this.speed);
       }
-    else{
+      else{
           this.body.setVelocityY(0);
       }
-    if (this.cursors.left.isDown) {
+      if (this.cursors.left.isDown) {
         this.body.setVelocityX(-this.speed);
         this.flipX=true;
         
       }
-    else if (this.cursors.right.isDown) {
+      else if (this.cursors.right.isDown) {
         this.body.setVelocityX(this.speed);
         this.flipX=false;
       }
-    else{
+      else{
         this.body.setVelocityX(0);
       }  
-    if(this.body.velocity.x===0 && this.body.velocity.y===0){
+      if(this.body.velocity.x===0 && this.body.velocity.y===0){
         this.anims.play(this.animIdle,true);
-    }
-    else{
+      }
+      else{
         this.anims.play(this.animRun,true);
-    }
+      }
+      if (this.cursors.grab.isDown){
+        
+      }
     }
   }

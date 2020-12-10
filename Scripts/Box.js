@@ -7,6 +7,7 @@ export default class Box extends Phaser.GameObjects.Sprite{
         this.setScale(0.20);
         this.body.setCollideWorldBounds();
         this.body.setImmovable(true);
+        this.radio = 1.5;
         this.cursors = this.scene.input.keyboard.addKeys({
             grab: Phaser.Input.Keyboard.KeyCodes.C,
             grabb: Phaser.Input.Keyboard.KeyCodes.M
@@ -15,6 +16,10 @@ export default class Box extends Phaser.GameObjects.Sprite{
 
     preUpdate(time, delta){
         super.preUpdate(time,delta);
+        
+    }
+
+    moveBox(playerPos){
         
     }
 
