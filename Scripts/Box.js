@@ -27,7 +27,7 @@ export default class Box extends Objeto{
             // this.body.setVelocityY(playerVelocity.y);
         }
         else{
-            this.body.velocity = this.myVelo;
+            // this.body.velocity = this.myVelo;
         }
     }
 

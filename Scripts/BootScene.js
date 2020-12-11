@@ -13,6 +13,7 @@ export default class Boot extends Phaser.Scene{
         this.load.image('guardiaR','./Assets/SpriteSheet/guardiaRight.png');
         this.load.image('guardiaF','./Assets/SpriteSheet/guardiaFront.png');
         this.load.image('guardiaB','./Assets/SpriteSheet/guardiaBack.png');
+        this.load.image('ring', '/Assets/ring/ring.png');
     
         this.load.image('vista','./Assets/SpriteSheet/deteccion.png') ;
         this.load.image('BoxSprite', './Assets/Box/box.png');

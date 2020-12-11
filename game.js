@@ -4,6 +4,7 @@ import Guardia from './Scripts/guardia.js';
 import Player from './Scripts/player.js'; //creo que no hace falta
 import Lever from './Scripts/lever.js';
 import Box from './Scripts/box.js';
+import Ring from './Scripts/ring.js';
 
 export default class Game extends Phaser.Scene {
   constructor(zone,nextZone,countessPositionX,countessPositionY,buffoonPositionX,buffoonPositionY) {
@@ -80,7 +81,9 @@ export default class Game extends Phaser.Scene {
     });
 
     //Crea una caja
+    this.score = 0;
     this.box = new Box(this, 300, 300, 'BoxSprite');
+    this.ring = new Ring(this, 50, 50, 'ring');
     this.playerBuffoon=new Buffoon(this,this.buffoonX,this.buffoonY,'IdleBuffoon');
     this.playerCountess=new Countess(this,this.countessX,this.countessY,'IdleCountess');
     /*this.guardiasVision = this.physics.add.group();
@@ -115,6 +118,14 @@ export default class Game extends Phaser.Scene {
        this.physics.add.collider(this.playerCountess, this.box , (o1, o2) => {
       //  o2.moveAlong(o1.getVelocityX(), o1.getVelocityY());
        }); 
+       this.physics.add.overlap(this.playerBuffoon, this.ring, (o1, o2) => {
+        this.score += o2.taken();
+        this.ring.destroy();
+      });
+      this.physics.add.overlap(this.playerCountess, this.ring, (o1, o2) => {
+        this.score += o2.taken();
+        this.ring.destroy();
+      });
   }
 
   preUpdate(time,delta){
