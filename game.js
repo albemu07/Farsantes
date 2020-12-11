@@ -20,32 +20,8 @@ export default class Game extends Phaser.Scene {
 
 
   preload() {
-<<<<<<< Updated upstream
 
-=======
-    this.load.spritesheet('IdleBuffoon','./Assets/Buffoon/idle.png',{frameWidth:150,frameHeight:150});
-    this.load.spritesheet('RunBuffoon','./Assets/Buffoon/run.png',{frameWidth:150,frameHeight:150});
-    this.load.spritesheet('IdleCountess','./Assets/Countess/idle.png',{frameWidth:320,frameHeight:320});
-    this.load.spritesheet('RunCountess','./Assets/Countess/run.png',{frameWidth:320,frameHeight:320});
-    this.load.image('guardiaL','./Assets/Guard/guardiaLeft.png');
-    this.load.image('guardiaR','./Assets/Guard/guardiaRight.png');
-    this.load.image('guardiaF','./Assets/Guard/guardiaFront.png');
-    this.load.image('guardiaB','./Assets/Guard/guardiaBack.png');
-    this.load.image('monjeL','./Assets/Nun/monjeLeft.png');
-    this.load.image('monjeR','./Assets/Nun/monjeRight.png');
-    this.load.image('monjeF','./Assets/Nun/monjeFront.png');
-    this.load.image('monjeB','./Assets/Nun/monjeBack.png');
 
-    this.load.image('vista','./Assets/SpriteSheet/deteccion.png') ;
-    this.load.image('BoxSprite', './Assets/Box/box.png');
-    this.load.image('Trigger','./Assets/Mechanisms/nextZoneTrigger.png');
-    this.load.spritesheet('Lever1','./Assets/Lever/lever1.png',{frameWidth:352,frameHeight:208});
-    this.load.spritesheet('Lever2','./Assets/Lever/lever2.png',{frameWidth:352,frameHeight:208});
-    this.load.image('LeverOpen','./Assets/Lever/lever_Open.png');
-    this.load.image('LeverClose','./Assets/Lever/lever_Close.png');
-    this.load.spritesheet('DoorOpen','./Assets/Door/door_Open.png',{frameWidth:920,frameHeight:1127});
-    this.load.spritesheet('DoorClose','./Assets/Door/door_Close.png',{frameWidth:820,frameHeight:1035});
->>>>>>> Stashed changes
   }
 
   create() {
@@ -138,7 +114,7 @@ export default class Game extends Phaser.Scene {
       });
       this.physics.add.collider(this.playerBuffoon, this.lever.door); 
 
-<<<<<<< Updated upstream
+
        this.physics.add.collider(this.playerBuffoon, this.box , (o1, o2) => {
       //  o2.moveAlong(o1.getVelocityX(), o1.getVelocityY());
        });
@@ -153,7 +129,7 @@ export default class Game extends Phaser.Scene {
         this.score += o2.taken();
         this.ring.destroy();
       });
-=======
+
       this.physics.add.collider(this.playerBuffoon, this.box , (o1, o2) => {
        o2.moveAlong(o1.getVelocityX(), o1.getVelocityY());
        });
@@ -163,7 +139,7 @@ export default class Game extends Phaser.Scene {
       this.physics.add.overlap(this.playerBuffoon,this.vigilance,(o1,o2)=>{this.checkCollision(o1,o2);
       this.physics.add.overlap(this.playerCountess,this.vigilance,(o1,o2)=>{this.checkCollision(o1,o2);})
       })
->>>>>>> Stashed changes
+
   }
 
   preUpdate(time,delta){

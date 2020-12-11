@@ -9,10 +9,14 @@ export default class Boot extends Phaser.Scene{
         this.load.spritesheet('RunBuffoon','./Assets/Buffoon/run.png',{frameWidth:150,frameHeight:150});
         this.load.spritesheet('IdleCountess','./Assets/Countess/idle.png',{frameWidth:320,frameHeight:320});
         this.load.spritesheet('RunCountess','./Assets/Countess/run.png',{frameWidth:320,frameHeight:320});
-        this.load.image('guardiaL','./Assets/SpriteSheet/guardiaLeft.png');
-        this.load.image('guardiaR','./Assets/SpriteSheet/guardiaRight.png');
-        this.load.image('guardiaF','./Assets/SpriteSheet/guardiaFront.png');
-        this.load.image('guardiaB','./Assets/SpriteSheet/guardiaBack.png');
+        this.load.image('guardiaL','./Assets/Guard/guardiaLeft.png');
+        this.load.image('guardiaR','./Assets/Guard/guardiaRight.png');
+        this.load.image('guardiaF','./Assets/Guard/guardiaFront.png');
+        this.load.image('guardiaB','./Assets/Guard/guardiaBack.png');
+        this.load.image('monjeL','./Assets/Nun/monjeLeft.png');
+        this.load.image('monjeR','./Assets/Nun/monjeRight.png');
+        this.load.image('monjeF','./Assets/Nun/monjeFront.png');
+        this.load.image('monjeB','./Assets/Nun/monjeBack.png');
         this.load.image('ring', '/Assets/ring/ring.png');
     
         this.load.image('vista','./Assets/SpriteSheet/deteccion.png') ;
