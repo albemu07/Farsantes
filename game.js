@@ -1,10 +1,12 @@
 import Buffoon from './Scripts/buffoon.js';
 import Countess from './Scripts/countess.js';
 import Guardia from './Scripts/guardia.js';
+import Monje from './Scripts/monje.js';
 import Player from './Scripts/player.js'; //creo que no hace falta
 import Lever from './Scripts/lever.js';
 import Box from './Scripts/box.js';
 import Ring from './Scripts/ring.js';
+
 
 export default class Game extends Phaser.Scene {
   constructor(zone,nextZone,countessPositionX,countessPositionY,buffoonPositionX,buffoonPositionY) {
@@ -18,7 +20,32 @@ export default class Game extends Phaser.Scene {
 
 
   preload() {
+<<<<<<< Updated upstream
 
+=======
+    this.load.spritesheet('IdleBuffoon','./Assets/Buffoon/idle.png',{frameWidth:150,frameHeight:150});
+    this.load.spritesheet('RunBuffoon','./Assets/Buffoon/run.png',{frameWidth:150,frameHeight:150});
+    this.load.spritesheet('IdleCountess','./Assets/Countess/idle.png',{frameWidth:320,frameHeight:320});
+    this.load.spritesheet('RunCountess','./Assets/Countess/run.png',{frameWidth:320,frameHeight:320});
+    this.load.image('guardiaL','./Assets/Guard/guardiaLeft.png');
+    this.load.image('guardiaR','./Assets/Guard/guardiaRight.png');
+    this.load.image('guardiaF','./Assets/Guard/guardiaFront.png');
+    this.load.image('guardiaB','./Assets/Guard/guardiaBack.png');
+    this.load.image('monjeL','./Assets/Nun/monjeLeft.png');
+    this.load.image('monjeR','./Assets/Nun/monjeRight.png');
+    this.load.image('monjeF','./Assets/Nun/monjeFront.png');
+    this.load.image('monjeB','./Assets/Nun/monjeBack.png');
+
+    this.load.image('vista','./Assets/SpriteSheet/deteccion.png') ;
+    this.load.image('BoxSprite', './Assets/Box/box.png');
+    this.load.image('Trigger','./Assets/Mechanisms/nextZoneTrigger.png');
+    this.load.spritesheet('Lever1','./Assets/Lever/lever1.png',{frameWidth:352,frameHeight:208});
+    this.load.spritesheet('Lever2','./Assets/Lever/lever2.png',{frameWidth:352,frameHeight:208});
+    this.load.image('LeverOpen','./Assets/Lever/lever_Open.png');
+    this.load.image('LeverClose','./Assets/Lever/lever_Close.png');
+    this.load.spritesheet('DoorOpen','./Assets/Door/door_Open.png',{frameWidth:920,frameHeight:1127});
+    this.load.spritesheet('DoorClose','./Assets/Door/door_Close.png',{frameWidth:820,frameHeight:1035});
+>>>>>>> Stashed changes
   }
 
   create() {
@@ -86,13 +113,12 @@ export default class Game extends Phaser.Scene {
     this.ring = new Ring(this, 50, 50, 'ring');
     this.playerBuffoon=new Buffoon(this,this.buffoonX,this.buffoonY,'IdleBuffoon');
     this.playerCountess=new Countess(this,this.countessX,this.countessY,'IdleCountess');
-    /*this.guardiasVision = this.physics.add.group();
-    var guardia1V = new Guardia(this,100,100, 100,500, false,'guardiaL');
-    var guardia2H = new Guardia(this,200,100, 400,100, true,'guardiaR');
-    this.guardiasVision.add(guardia1V.vision);
-    this.guardiasVision.add(guardia2H.vision);*/
+    this.vigilance = this.physics.add.group();
+    this.vigilance.add(new Guardia(this,150,100, 150,500, false,true,'guardiaL'));
+    this.vigilance.add(new Guardia(this,200,100, 400,100, true,true,'guardiaR'));
+    this.vigilance.add(new Monje(this,250,50, 250,500, false,false,'monjeL'));
+    this.vigilance.add(new Monje(this,100,200, 300,200, true,false,'monjeR'));
 
-    this.physics.add.overlap(this.playerBuffoon,this.guardiasVision,this.arlGuardia,null,this);
 
        //Crear zona (en este caso es un sprite, por claridad)
        this.endTrigger= this.physics.add.sprite(700,300,'Trigger')
@@ -110,8 +136,9 @@ export default class Game extends Phaser.Scene {
        this.physics.add.overlap(this.playerCountess, this.lever, (o1, o2) => {
         this.lever.interaction();
       });
-       this.physics.add.collider(this.playerBuffoon, this.lever.door);  
+      this.physics.add.collider(this.playerBuffoon, this.lever.door); 
 
+<<<<<<< Updated upstream
        this.physics.add.collider(this.playerBuffoon, this.box , (o1, o2) => {
       //  o2.moveAlong(o1.getVelocityX(), o1.getVelocityY());
        });
@@ -126,6 +153,17 @@ export default class Game extends Phaser.Scene {
         this.score += o2.taken();
         this.ring.destroy();
       });
+=======
+      this.physics.add.collider(this.playerBuffoon, this.box , (o1, o2) => {
+       o2.moveAlong(o1.getVelocityX(), o1.getVelocityY());
+       });
+      this.physics.add.collider(this.playerCountess, this.box , (o1, o2) => {
+       o2.moveAlong(o1.getVelocityX(), o1.getVelocityY());
+       }); 
+      this.physics.add.overlap(this.playerBuffoon,this.vigilance,(o1,o2)=>{this.checkCollision(o1,o2);
+      this.physics.add.overlap(this.playerCountess,this.vigilance,(o1,o2)=>{this.checkCollision(o1,o2);})
+      })
+>>>>>>> Stashed changes
   }
 
   preUpdate(time,delta){
@@ -136,12 +174,69 @@ export default class Game extends Phaser.Scene {
     this.physics.overlap(this.playerBuffoon, this.lever);  
     this.checkEndOverlap();
     this.moveBox();
+    
+  }
+  activeVision()
+  {
+    var enemigo = this.vigilance.getChildren();
+    var num = enemigo.length;
+    for (var i = 0; i < num; i++) {
+      if (enemigo[i].tipo)
+      enemigo[i].distraida =false;
+    }
+  }
+  checkCollision(o1,o2){
+
+    console.log("chequeo colisiones");
+    if (o1===this.playerBuffoon)
+    {
+      if (this.physics.overlap(o1,o2.vision))
+      {
+        this.arlGuardia(o1,o2);
+        this.activeVision();
+      }
+
+    }
+    else if (o1 ===this.playerCountess && o2.tipo)
+    {
+      this.marGuardia(o1,o2);
+    }
+    else if (o1 ===this.playerCountess && !o2.tipo)
+    {
+      if (this.physics.overlap(o1,o2.vision))
+      {
+        this.marMonje(o1,o2);
+        this.activeVision();
+      }
+      
+    }
   }
 
-  arlGuardia(object1,object2)
+  marGuardia(o1,o2)
+  {
+    if (o1.grabDown())
+    {
+      console.log("Distrayendo guardia");
+      o2.distraida =true;
+    }
+    else {
+      console.log("Dejo de distraer");
+      o2.distraida =false;
+    }
+  }
+
+  marMonje(o1,o2)
+  {
+    console.log("Encontrado a la Marquesa");
+    this.playerCountess.respawn();
+    this.playerBuffoon.respawn();
+  }
+  arlGuardia(o1,o2)
   {
     console.log("Encontrado a Arlequin");
-    object1.respawn();
+    this.playerCountess.respawn();
+    this.playerBuffoon.respawn();
+    
   }
 
   moveBox(){

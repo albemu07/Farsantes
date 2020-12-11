@@ -12,4 +12,10 @@ export default class Countess extends Player {
         grab: Phaser.Input.Keyboard.KeyCodes.M
       });
     }
+
+    respawn()
+    {
+       this.x = 50;
+       this.y =50;
+    }
   }

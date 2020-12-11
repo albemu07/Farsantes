@@ -5,8 +5,7 @@ export default class Guardia extends Enemigo
     {
         super(scene, x, y,x2,y2,horizontal,type, sprite);
 
-        this.velocidad = 60;
-        this.distraida =false;
+        this.velocidad = 50;
  
     }
     preUpdate()
@@ -18,25 +17,9 @@ export default class Guardia extends Enemigo
             this.moveH();
         }  
         else 
-        {            
+        {
             this.moveV();
         }
-
-        if (!this.distraida)
-        {
-            this.vision.visible =true;
-            this.velocidad =60;
-        }
-        else 
-        {
-            this.vision.visible =false;
-            this.velocidad=0;
-        }
-    }
-    distract(active)
-    {
-        this.distraida =active;
-
     }
    
 
