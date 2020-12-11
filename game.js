@@ -4,8 +4,8 @@ import Guardia from './Scripts/guardia.js';
 import Monje from './Scripts/monje.js';
 import Player from './Scripts/player.js'; //creo que no hace falta
 import Lever from './Scripts/lever.js';
-import Box from './Scripts/box.js';
 import Ring from './Scripts/ring.js';
+import Caja from './Scripts/caja.js';
 
 
 export default class Game extends Phaser.Scene {
@@ -28,15 +28,15 @@ export default class Game extends Phaser.Scene {
 
     //Crea una caja
     this.score = 0;
-    this.box = new Box(this, 300, 300, 'BoxSprite');
+    this.caja = new Caja(this, 300, 300, 'BoxSprite');
     this.ring = new Ring(this, 50, 50, 'ring');
     this.playerBuffoon=new Buffoon(this,this.buffoonX,this.buffoonY,'IdleBuffoon');
     this.playerCountess=new Countess(this,this.countessX,this.countessY,'IdleCountess');
-    this.vigilance = this.physics.add.group();
-    this.vigilance.add(new Guardia(this,150,100, 150,500, false,true,'guardiaL'));
-    this.vigilance.add(new Guardia(this,200,100, 400,100, true,true,'guardiaR'));
-    this.vigilance.add(new Monje(this,250,50, 250,500, false,false,'monjeL'));
-    this.vigilance.add(new Monje(this,100,200, 300,200, true,false,'monjeR'));
+    // this.vigilance = this.physics.add.group();
+    // this.vigilance.add(new Guardia(this,150,100, 150,500, false,true,'guardiaL'));
+    // this.vigilance.add(new Guardia(this,200,100, 400,100, true,true,'guardiaR'));
+    // this.vigilance.add(new Monje(this,250,50, 250,500, false,false,'monjeL'));
+    // this.vigilance.add(new Monje(this,100,200, 300,200, true,false,'monjeR'));
 
 
        //Crear zona (en este caso es un sprite, por claridad)
@@ -57,14 +57,7 @@ export default class Game extends Phaser.Scene {
       });
       this.physics.add.collider(this.playerBuffoon, this.lever.door); 
 
-
-       this.physics.add.collider(this.playerBuffoon, this.box , (o1, o2) => {
-      //  o2.moveAlong(o1.getVelocityX(), o1.getVelocityY());
-       });
-       this.physics.add.collider(this.playerCountess, this.box , (o1, o2) => {
-      //  o2.moveAlong(o1.getVelocityX(), o1.getVelocityY());
-       }); 
-       this.physics.add.overlap(this.playerBuffoon, this.ring, (o1, o2) => {
+      this.physics.add.overlap(this.playerBuffoon, this.ring, (o1, o2) => {
         this.score += o2.taken();
         this.ring.destroy();
       });
@@ -73,12 +66,14 @@ export default class Game extends Phaser.Scene {
         this.ring.destroy();
       });
 
-      this.physics.add.collider(this.playerBuffoon, this.box , (o1, o2) => {
-       o2.moveAlong(o1.getVelocityX(), o1.getVelocityY());
-       });
-      this.physics.add.collider(this.playerCountess, this.box , (o1, o2) => {
-       o2.moveAlong(o1.getVelocityX(), o1.getVelocityY());
-       }); 
+      this.physics.add.collider(this.playerBuffoon, this.caja.box);
+      this.physics.add.collider(this.playerCountess, this.caja.box);
+      this.physics.add.overlap(this.playerCountess, this.caja.object, (o1, o2) => {
+        this.moveBox(o1);
+      });
+      this.physics.add.overlap(this.playerBuffoon, this.caja.object, (o2, o1) => {
+        this.moveBox(o2);
+      });
       this.physics.add.overlap(this.playerBuffoon,this.vigilance,(o1,o2)=>{this.checkCollision(o1,o2);
       this.physics.add.overlap(this.playerCountess,this.vigilance,(o1,o2)=>{this.checkCollision(o1,o2);})
       })
@@ -92,7 +87,6 @@ export default class Game extends Phaser.Scene {
     //Comprobación del overlapping entre trigger y jugadores
     this.physics.overlap(this.playerBuffoon, this.lever);  
     this.checkEndOverlap();
-    this.moveBox();
     
   }
   activeVision()
@@ -158,14 +152,11 @@ export default class Game extends Phaser.Scene {
     
   }
 
-  moveBox(){
-    if (this.playerBuffoon.grabDown()){
-      this.box.moveAlong(this.playerBuffoon.body.velocity, this.playerBuffoon.getCenterX(), this.playerBuffoon.getCenterY());
+  moveBox(player){
+    if (player.grabDown()){
+      player.speedChange(this.caja.moveAlong(player));
     }
-    else if (this.playerCountess.grabDown()){
-      this.box.moveAlong(this.playerCountess.body.velocity, this.playerCountess.getCenterX(), this.playerCountess.getCenterY());
-    }
-    else this.box.stopMove();
+    else player.speedChange(this.caja.stopMove());
   }
 
   checkEndOverlap(){

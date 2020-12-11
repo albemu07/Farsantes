@@ -2,7 +2,9 @@ import Objeto from './objeto.js';
 export default class Player extends Objeto {
     constructor(scene, x, y,sprite, scale, colliderX, colliderY, animIdle, animRun) {
       super(scene, x, y, sprite, colliderX, colliderY, scale, false);
-      this.speed=300;      
+      this.speedPlayer=300;     
+      this.speedCaja=150;
+      this.speed= this.speedPlayer
       this.animIdle = animIdle;
       this.animRun = animRun;
       this.colliderX = colliderX;
@@ -18,21 +20,17 @@ export default class Player extends Objeto {
       return this.body.velocity.x;
     }
 
+    speedChange(caja){
+      if (caja)
+        this.speed = this.speedCaja;
+      else this.speed = this.speedPlayer;
+    }
+
     grabDown(){
       if (this.cursors.grab.isDown){
         return true;
       }
       else return false;
-    }
-
-    getCenterX(){
-      this.posX=this.x + ((this.colliderX*this.scale)/2);
-      return this.posX;
-    }
-
-    getCenterY(){
-      this.posY=this.y + ((this.colliderY*this.scale)/2);
-      return this.posY;
     }
 
     preUpdate(time, delta){
@@ -63,9 +61,6 @@ export default class Player extends Objeto {
       }
       else{
         this.anims.play(this.animRun,true);
-      }
-      if (this.cursors.grab.isDown){
-        
       }
     }
   }
