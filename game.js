@@ -110,10 +110,10 @@ export default class Game extends Phaser.Scene {
        this.physics.add.collider(this.playerBuffoon, this.lever.door);  
 
        this.physics.add.collider(this.playerBuffoon, this.box , (o1, o2) => {
-       o2.moveAlong(o1.getVelocityX(), o1.getVelocityY());
+      //  o2.moveAlong(o1.getVelocityX(), o1.getVelocityY());
        });
        this.physics.add.collider(this.playerCountess, this.box , (o1, o2) => {
-       o2.moveAlong(o1.getVelocityX(), o1.getVelocityY());
+      //  o2.moveAlong(o1.getVelocityX(), o1.getVelocityY());
        }); 
   }
 
@@ -140,6 +140,7 @@ export default class Game extends Phaser.Scene {
     else if (this.playerCountess.grabDown()){
       this.box.moveAlong(this.playerCountess.body.velocity, this.playerCountess.getCenterX(), this.playerCountess.getCenterY());
     }
+    else this.box.stopMove();
   }
 
   checkEndOverlap(){

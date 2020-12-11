@@ -3,10 +3,11 @@ export default class Box extends Objeto{
     constructor(scene, x, y,sprite){
         super(scene, x, y, sprite, 500, 500, 0.20, true); 
         this.radio = 55;
-        this.cursors = this.scene.input.keyboard.addKeys({
-            grab: Phaser.Input.Keyboard.KeyCodes.C,
-            grabb: Phaser.Input.Keyboard.KeyCodes.M
-        });
+        this.myVelo = this.body.velocity;
+        // this.cursors = this.scene.input.keyboard.addKeys({
+        //     grab: Phaser.Input.Keyboard.KeyCodes.C,
+        //     grabb: Phaser.Input.Keyboard.KeyCodes.M
+        // });
     }
 
     preUpdate(time, delta){
@@ -20,12 +21,18 @@ export default class Box extends Objeto{
         this.mod = Math.sqrt(Math.pow(this.posX, 2)+Math.pow(this.posY, 2));
         this.playerMod = Math.sqrt(Math.pow(playerPosX, 2)+Math.pow(playerPosY, 2));
         if(Math.abs(this.mod - this.playerMod) < this.radio){
-            this.body.setVelocityX(playerVelocity.x);
-            this.body.setVelocityY(playerVelocity.y);
+            this.body.velocity = playerVelocity;
+            // this.body.setVelocity() = playerVelocity;
+            // this.body.setVelocityX(playerVelocity.x);
+            // this.body.setVelocityY(playerVelocity.y);
         }
         else{
-            this.body.setVelocityX(0);
-            this.body.setVelocityY(0);
+            this.body.velocity = this.myVelo;
         }
+    }
+
+    stopMove(){
+        if (this.body.velocity != this.myVelo)
+        this.body.velocity = this.myVelo;
     }
 }
