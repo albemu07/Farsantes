@@ -67,7 +67,11 @@
 
 
     <script type="module">
+       import Boot from './Scripts/BootScene.js'
+       import Menu from './Scripts/MenuScene.js'
+       import Settings from './Scripts/SettingsScene.js'
        import Game from './game.js'
+
        import Zone1 from './Scripts/zone1.js'
        import Zone2 from './Scripts/zone2.js'
 
@@ -84,7 +88,7 @@
           mode: Phaser.Scale.FIT,
           autoCenter: Phaser.Scale.CENTER_BOTH,
         },
-        scene: [Zone1,Zone2],
+        scene: [Boot,Menu,Settings,Zone1,Zone2],
         physics: {
           default: "arcade",
           arcade: { gravity: { y:0 }, debug: true },

@@ -17,24 +17,7 @@ export default class Game extends Phaser.Scene {
 
 
   preload() {
-    this.load.spritesheet('IdleBuffoon','./Assets/Buffoon/idle.png',{frameWidth:150,frameHeight:150});
-    this.load.spritesheet('RunBuffoon','./Assets/Buffoon/run.png',{frameWidth:150,frameHeight:150});
-    this.load.spritesheet('IdleCountess','./Assets/Countess/idle.png',{frameWidth:320,frameHeight:320});
-    this.load.spritesheet('RunCountess','./Assets/Countess/run.png',{frameWidth:320,frameHeight:320});
-    this.load.image('guardiaL','./Assets/SpriteSheet/guardiaLeft.png');
-    this.load.image('guardiaR','./Assets/SpriteSheet/guardiaRight.png');
-    this.load.image('guardiaF','./Assets/SpriteSheet/guardiaFront.png');
-    this.load.image('guardiaB','./Assets/SpriteSheet/guardiaBack.png');
 
-    this.load.image('vista','./Assets/SpriteSheet/deteccion.png') ;
-    this.load.image('BoxSprite', './Assets/Box/box.png');
-    this.load.image('Trigger','./Assets/Mechanisms/nextZoneTrigger.png');
-    this.load.spritesheet('Lever1','./Assets/Lever/lever1.png',{frameWidth:352,frameHeight:208});
-    this.load.spritesheet('Lever2','./Assets/Lever/lever2.png',{frameWidth:352,frameHeight:208});
-    this.load.image('LeverOpen','./Assets/Lever/lever_Open.png');
-    this.load.image('LeverClose','./Assets/Lever/lever_Close.png');
-    this.load.spritesheet('DoorOpen','./Assets/Door/door_Open.png',{frameWidth:920,frameHeight:1127});
-    this.load.spritesheet('DoorClose','./Assets/Door/door_Close.png',{frameWidth:820,frameHeight:1035});
   }
 
   create() {
@@ -163,16 +146,16 @@ export default class Game extends Phaser.Scene {
   //Si ambos jugadores entran en el trigger, se pasa de escena
     if(this.physics.overlap(this.playerBuffoon, this.endTrigger) && this.physics.overlap(this.playerCountess, this.endTrigger)){
       console.log('Siguiente escena');
-      this.scene.start(this.NextZone);
+      this.scene.start(this.nextZone);
     }
  //Si solo uno de ellos entra, "llama" al otro haciendo visible un texto
- else if(this.physics.overlap(this.playerBuffoon, this.endTrigger) || this.physics.overlap(this.playerCountess, this.endTrigger)){
-   console.log('Un jugador colisionando');
-   this.endTriggerText.visible=true;
- }
+    else if(this.physics.overlap(this.playerBuffoon, this.endTrigger) || this.physics.overlap(this.playerCountess, this.endTrigger)){
+       console.log('Un jugador colisionando');
+       this.endTriggerText.visible=true;
+    }
  //Si no hay ninguno dentro, simplemente el texto se oculta
- else{
-   this.endTriggerText.visible=false;
-  }
+   else{
+      this.endTriggerText.visible=false;
+    }
   }
 }   
