@@ -12,9 +12,9 @@ export default class Caja extends Phaser.GameObjects.Container
         this.radio = 120;
         this.myVelo = this.body.velocity;
         this.escena = scene;
-
-        this.box = new Objeto(scene,0, 0,sprite, 500, 500, 0.2, true);
-        this.object = new Objeto(scene,0, 0,sprite, 650, 650, 0.2, true);
+        this.setScale(0.4);
+        this.box = new Objeto(scene,32, 32,sprite, 500, 500, 0.1, true);
+        this.object = new Objeto(scene,32,32,sprite, 650, 650, 0.1, true);
         this.add(this.object);
         this.add(this.box);
     }

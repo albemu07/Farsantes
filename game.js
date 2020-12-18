@@ -36,11 +36,12 @@ export default class Game extends Phaser.Scene {
     const tileset1 = this.map.addTilesetImage('TileSet', 'map');
     const tileset2 = this.map.addTilesetImage('TileSetBien', 'map2');
 
-    this.ground = this.map.createStaticLayer('Suelo', tileset1);
-    this.mud = this.map.createStaticLayer('Barro', tileset2);
-    this.fences = this.map.createStaticLayer('vallas', tileset1);
-    this.mapObstacles = this.map.createStaticLayer('Cosas encima', tileset1);
+    this.ground = this.map.createStaticLayer('Ground', tileset1);
+    this.mud = this.map.createStaticLayer('Mud', tileset2);
+    // this.fences = this.map.createStaticLayer('vallas', tileset1);
+    this.walls = this.map.createStaticLayer('Walls', tileset1);
    
+    this.map.setCollisionBetween(46, 90);
     //otrascosas
 
 
@@ -87,6 +88,11 @@ export default class Game extends Phaser.Scene {
 
       this.physics.add.collider(this.playerBuffoon, this.caja.box);
       this.physics.add.collider(this.playerCountess, this.caja.box);
+      
+      this.physics.add.collider(this.playerBuffoon, this.walls);
+      this.physics.add.collider(this.playerCountess, this.walls);
+      this.physics.add.collider(this.playerCountess, this.mud);
+
       this.physics.add.overlap(this.playerCountess, this.caja.object, (o1, o2) => {
         this.moveBox(o1);      });
       this.physics.add.overlap(this.playerBuffoon, this.caja.object, (o2, o1) => {
