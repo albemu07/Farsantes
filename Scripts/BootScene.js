@@ -19,6 +19,8 @@ export default class Boot extends Phaser.Scene{
         this.load.image('monjeB','./Assets/Nun/monjeBack.png');
         this.load.image('dialogo','./Assets/Guard/dialogo.png')
         this.load.image('ring', '/Assets/ring/ring.png');
+        this.load.image('map', './Assets/Tile/SpriteSet.png');
+        this.load.image('map2', './Assets/Tile/SpriteSetBien.png');
     
         this.load.image('vista','./Assets/SpriteSheet/deteccion.png') ;
         this.load.image('BoxSprite', './Assets/Box/box.png');
@@ -29,6 +31,7 @@ export default class Boot extends Phaser.Scene{
         this.load.image('LeverClose','./Assets/Lever/Lever_Close.png');
         this.load.spritesheet('DoorOpen','./Assets/Door/door_Open.png',{frameWidth:920,frameHeight:1127});
         this.load.spritesheet('DoorClose','./Assets/Door/door_Close.png',{frameWidth:820,frameHeight:1035});
+        this.load.tilemapTiledJSON('tilemap', './Assets/Tile/nivelPrueba.json');
 
 
         //Assets del menú

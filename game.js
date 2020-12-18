@@ -7,13 +7,14 @@ import Caja from './Scripts/caja.js';
 
 
 export default class Game extends Phaser.Scene {
-  constructor(zone,nextZone,countessPositionX,countessPositionY,buffoonPositionX,buffoonPositionY) {
+  constructor(zone,nextZone,countessPositionX,countessPositionY,buffoonPositionX,buffoonPositionY, tileMap) {
     super({ key: zone });
     this.nextZone=nextZone;
     this.countessX=countessPositionX;
     this.countessY=countessPositionY;
     this.buffoonX=buffoonPositionX;
     this.buffoonY=buffoonPositionY;  
+    this.tileMap = tileMap;
   }
 
 
@@ -22,7 +23,23 @@ export default class Game extends Phaser.Scene {
   }
 
   create() {
+
+
+    //mapa
+
+    this.map = this.make.tilemap({ 
+      key: this.tileMap 
+    });
+
+    const tileset1 = this.map.addTilesetImage('TileSet', 'map');
+    const tileset2 = this.map.addTilesetImage('TileSetBien', 'map2');
+
+    this.ground = this.map.createStaticLayer('Suelo', tileset1);
+    this.mud = this.map.createStaticLayer('Barro', tileset2);
+    this.fences = this.map.createStaticLayer('vallas', tileset1);
+    this.mapObstacles = this.map.createStaticLayer('Cosas encima', tileset1);
    
+    //otrascosas
 
     //Crea una caja
     this.score = 0;
