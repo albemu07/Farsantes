@@ -114,6 +114,7 @@ export default class Game extends Phaser.Scene {
     {
       console.log("Distrayendo guardia");
       o2.distraida =true;
+      o2.setText();
     }
   }
 
