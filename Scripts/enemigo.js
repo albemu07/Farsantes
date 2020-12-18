@@ -6,7 +6,6 @@ export default class Enemigo extends Phaser.GameObjects.Container
     constructor(scene, x, y,x2,y2,horizontal,type, sprite)
     {
         super(scene,x,y);
-        
         scene.add.existing(this);
         scene.physics.world.enable(this);
         this.body.setCollideWorldBounds();
@@ -19,23 +18,30 @@ export default class Enemigo extends Phaser.GameObjects.Container
         this.posY = (this.pos1Y+this.pos2Y)/2;
         this.escena = scene;
         this.tipo =type;
+        this.horizontal =horizontal;
         
         this.vision = new Vision (scene,0,0,'vista');
-        this.object = new Objecto(scene,31,31,sprite);
+        this.object = new Objecto(scene,30,30,sprite);
         this.add(this.object);
         this.add(this.vision);
+        
+        
+        
 
-        this.horizontal =horizontal;
         if (this.horizontal)
         {
             this.vision.setAngle(-90);
             this.vision.x= 70;
-            this.vision.y =30;
+            this.vision.y=30;
+
+            this.body.setSize(90,60);
         }
         else{
 
             this.vision.x=30;
             this.vision.y=70;
+
+            this.body.setSize(60,90);
         }
     }
     moveH()
@@ -54,6 +60,7 @@ export default class Enemigo extends Phaser.GameObjects.Container
                 }
                 this.vision.flipY= true;
                 this.vision.x = 60;
+                this.object.x =30;
                 
             }
             if(this.x+10 >= this.pos2X)
@@ -69,7 +76,8 @@ export default class Enemigo extends Phaser.GameObjects.Container
                     this.object.setTexture('monjeL');
                 }
                 this.vision.flipY= false;
-                this.vision.x = 0;
+                this.vision.x = 30;
+                this.object.x =60;
                 
             }
     }
@@ -88,7 +96,8 @@ export default class Enemigo extends Phaser.GameObjects.Container
                     this.object.setTexture('monjeF');
                 }
                 this.vision.flipY= true;
-                this.vision.y =60;              
+                this.vision.y =60; 
+                this.object.y =30;             
             }
             if(this.y+10>= this.pos2Y)
             {
@@ -103,7 +112,8 @@ export default class Enemigo extends Phaser.GameObjects.Container
                     this.object.setTexture('monjeB');
                 }
                 this.vision.flipY= false;
-                this.vision.y = 0;               
+                this.vision.y = 30;  
+                this.object.y= 60;             
             }
     }
 

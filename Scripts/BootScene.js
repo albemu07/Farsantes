@@ -17,6 +17,7 @@ export default class Boot extends Phaser.Scene{
         this.load.image('monjeR','./Assets/Nun/monjeRight.png');
         this.load.image('monjeF','./Assets/Nun/monjeFront.png');
         this.load.image('monjeB','./Assets/Nun/monjeBack.png');
+        this.load.image('dialogo','./Assets/Guard/dialogo.png')
         this.load.image('ring', '/Assets/ring/ring.png');
     
         this.load.image('vista','./Assets/SpriteSheet/deteccion.png') ;
@@ -36,6 +37,7 @@ export default class Boot extends Phaser.Scene{
         this.load.image('playButton','./Assets/Menu/PlayButton.png')
         this.load.image('settingsButton','./Assets/Menu/SettingsButton.png')
         this.load.image('backButton','./Assets/Menu/BackButton.png')
+
 
         
 

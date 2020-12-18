@@ -33,6 +33,14 @@ export default class Player extends Objeto {
       else return false;
     }
 
+    stunDown()
+    {
+      if (this.cursors.stun.isDown){
+        return true;
+      }
+      else return false;
+    }
+
     preUpdate(time, delta){
       super.preUpdate(time,delta);
       if (this.cursors.up.isDown) {
