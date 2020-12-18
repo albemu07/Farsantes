@@ -4,11 +4,14 @@ import Player from './Scripts/player.js'; //creo que no hace falta
 import Lever from './Scripts/lever.js';
 import Ring from './Scripts/ring.js';
 import Caja from './Scripts/caja.js';
+import Door from './Scripts/Door.js';
+import PressurePlate from './Scripts/pressurePlate.js'
 
 
 export default class Game extends Phaser.Scene {
   constructor(zone,nextZone,countessPositionX,countessPositionY,buffoonPositionX,buffoonPositionY, tileMap) {
     super({ key: zone });
+    this.zone=zone;
     this.nextZone=nextZone;
     this.countessX=countessPositionX;
     this.countessY=countessPositionY;
@@ -23,7 +26,6 @@ export default class Game extends Phaser.Scene {
   }
 
   create() {
-
 
     //mapa
 
@@ -41,12 +43,26 @@ export default class Game extends Phaser.Scene {
    
     //otrascosas
 
+
     //Crea una caja
     this.score = 0;
     this.caja = new Caja(this, 300, 300, 'BoxSprite');
     this.ring = new Ring(this, 50, 50, 'ring');
     this.playerBuffoon=new Buffoon(this,this.buffoonX,this.buffoonY,'IdleBuffoon');
     this.playerCountess=new Countess(this,this.countessX,this.countessY,'IdleCountess');
+
+
+       
+    //Grupo de puertas
+    this.plateDoors= this.physics.add.group()
+    this.plateDoors.add(new Door(this,600,550,false));
+    this.plateDoors.add(new Door(this,600,400,false));
+
+
+    //Grupo de placas
+    this.pressurePlates=this.physics.add.group()
+    this.pressurePlates.add(new PressurePlate(this,400,550,this.plateDoors.getChildren()[0],false))
+    this.pressurePlates.add(new PressurePlate(this,400,400,this.plateDoors.getChildren()[1],false))
     
     //Crear zona (en este caso es un sprite, por claridad)
     this.endTrigger= this.physics.add.sprite(700,300,'Trigger')
@@ -77,6 +93,9 @@ export default class Game extends Phaser.Scene {
         this.moveBox(o2);      });
       
 
+        
+    //Tecla de menú de pausa
+    this.input.keyboard.on('keydown_ESC', ()=> {this.scene.launch('pauseMenu',{zone: this.zone}); this.scene.sleep()},this);
   }
 
   preUpdate(time,delta){
@@ -85,6 +104,7 @@ export default class Game extends Phaser.Scene {
   update(time,delta){
     //Comprobación del overlapping entre trigger y jugadores
     this.physics.overlap(this.playerBuffoon, this.lever);  
+   this.checkPressureplate();
     this.checkEndOverlap();
     
   }
@@ -137,6 +157,20 @@ export default class Game extends Phaser.Scene {
  //Si no hay ninguno dentro, simplemente el texto se oculta
    else{
       this.endTriggerText.visible=false;
+    }
+  }
+
+  //Comprueba las colisiones entre jguadores y placa de presión. Si colisionan, cambia el "on" de la placa de presión a true; en el caso contrario, a false. Luego llama al método de interacción de la placa.
+  checkPressureplate(){
+    var num=this.pressurePlates.getChildren().length
+    for(var i=0;i<num;i++){
+      if (this.physics.overlap(this.playerBuffoon, this.pressurePlates.getChildren()[i]) ||this.physics.overlap(this.playerCountess, this.pressurePlates.getChildren()[i]) || this.physics.overlap(this.caja, this.pressurePlates.getChildren()[i]) ){
+        this.pressurePlates.getChildren()[i].active=true;
+      }
+      else{
+        this.pressurePlates.getChildren()[i].active=false;
+      }
+      this.pressurePlates.getChildren()[i].platePressed();
     }
   }
 }   

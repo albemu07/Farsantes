@@ -25,6 +25,6 @@ export default class Menu extends Phaser.Scene{
 
         //Funciones al pulsar
         this.play.on('pointerdown', ()=>{this.scene.start('Zone1')})
-        this.settings.on('pointerdown', ()=>{this.scene.start('Settings')})
+        this.settings.on('pointerdown', ()=>{this.scene.start('Settings',{pause: false})})
     }
 }

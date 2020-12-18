@@ -37,10 +37,12 @@ export default class Boot extends Phaser.Scene{
         //Assets del menú
         this.load.image('menuBackground','./Assets/Menu/menuBackground1.png')
         this.load.image('settingsBackground','./Assets/Menu/menuBackground2.png')
+        this.load.image('pauseBackground','./Assets/Menu/menuBackground3.png')
         this.load.image('playButton','./Assets/Menu/PlayButton.png')
         this.load.image('settingsButton','./Assets/Menu/SettingsButton.png')
         this.load.image('backButton','./Assets/Menu/BackButton.png')
-
+        this.load.image('exitButton','./Assets/Menu/exitButton.png')
+        this.load.image('gameButton','./Assets/Menu/gameButton.png')
 
         
 
