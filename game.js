@@ -37,7 +37,7 @@ export default class Game extends Phaser.Scene {
     //Texto encima del trigger
     this.endTriggerText=this.add.text(650,150,'POR AQUÍ')
    
-    this.lever=new Lever(this, 600, 200, false);
+    this.lever=new Lever(this, 500, 200, false);
    
     this.physics.add.overlap(this.playerBuffoon, this.lever, (o1, o2) => {
         this.lever.interaction();    });

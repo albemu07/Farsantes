@@ -23,10 +23,10 @@ export default class Boot extends Phaser.Scene{
         this.load.image('vista','./Assets/SpriteSheet/deteccion.png') ;
         this.load.image('BoxSprite', './Assets/Box/box.png');
         this.load.image('Trigger','./Assets/Mechanisms/nextZoneTrigger.png');
-        this.load.spritesheet('Lever1','./Assets/Lever/lever1.png',{frameWidth:352,frameHeight:208});
-        this.load.spritesheet('Lever2','./Assets/Lever/lever2.png',{frameWidth:352,frameHeight:208});
-        this.load.image('LeverOpen','./Assets/Lever/lever_Open.png');
-        this.load.image('LeverClose','./Assets/Lever/lever_Close.png');
+        this.load.spritesheet('Lever1','./Assets/Lever/lever1.png',{frameWidth:32,frameHeight:32});
+        this.load.spritesheet('Lever2','./Assets/Lever/lever2.png',{frameWidth:32,frameHeight:32});
+        this.load.image('LeverOpen','./Assets/Lever/Lever_Open.png');
+        this.load.image('LeverClose','./Assets/Lever/Lever_Close.png');
         this.load.spritesheet('DoorOpen','./Assets/Door/door_Open.png',{frameWidth:920,frameHeight:1127});
         this.load.spritesheet('DoorClose','./Assets/Door/door_Close.png',{frameWidth:820,frameHeight:1035});
 
@@ -87,7 +87,7 @@ export default class Boot extends Phaser.Scene{
           //Animaciones de palanca y puerta
           this.anims.create({
             key:'DesactivateLever',
-            frames: this.anims.generateFrameNumbers('Lever2'),
+            frames: this.anims.generateFrameNumbers('Lever1'),
             frameRate:6,
             repeat: 0
           });
@@ -108,7 +108,7 @@ export default class Boot extends Phaser.Scene{
       
           this.anims.create({
             key:'ActivateLever',
-            frames: this.anims.generateFrameNumbers('Lever1'),
+            frames: this.anims.generateFrameNumbers('Lever2'),
             frameRate:6,
             repeat: 0
           });
