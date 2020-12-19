@@ -47,8 +47,8 @@ export default class Game extends Phaser.Scene {
 
     //Crea una caja
     this.score = 0;
-    this.caja = new Caja(this, 300, 300, 'BoxSprite');
-    this.ring = new Ring(this, 50, 50, 'ring');
+    this.caja = new Caja(this, 224, 416, 'BoxSprite');
+    this.ring = new Ring(this, 80, 80, 'ring');
     this.playerBuffoon=new Buffoon(this,this.buffoonX,this.buffoonY,'IdleBuffoon');
     this.playerCountess=new Countess(this,this.countessX,this.countessY,'IdleCountess');
 
@@ -56,28 +56,36 @@ export default class Game extends Phaser.Scene {
        
     //Grupo de puertas
     this.plateDoors= this.physics.add.group()
-    this.plateDoors.add(new Door(this,600,550,false));
-    this.plateDoors.add(new Door(this,600,400,false));
+    this.plateDoors.add(new Door(this,176,464,false));
+    this.plateDoors.add(new Door(this,176,656,false));
+    this.plateDoors.add(new Door(this,784,272,false));
+    this.plateDoors.add(new Door(this,496,464,false));
+    this.plateDoors.add(new Door(this,176,336,false));
 
 
     //Grupo de placas
     this.pressurePlates=this.physics.add.group()
-    this.pressurePlates.add(new PressurePlate(this,400,550,this.plateDoors.getChildren()[0],false))
-    this.pressurePlates.add(new PressurePlate(this,400,400,this.plateDoors.getChildren()[1],false))
+    this.pressurePlates.add(new PressurePlate(this,240,496,this.plateDoors.getChildren()[0],false));
+    this.pressurePlates.add(new PressurePlate(this,240,624,this.plateDoors.getChildren()[1],false));
+    this.pressurePlates.add(new PressurePlate(this,112,128,this.plateDoors.getChildren()[2],false));
+    this.pressurePlates.add(new PressurePlate(this,720,656,this.plateDoors.getChildren()[3],false));
+    this.pressurePlates.add(new PressurePlate(this,688,400,this.plateDoors.getChildren()[4],false));
     
     //Crear zona (en este caso es un sprite, por claridad)
-    this.endTrigger= this.physics.add.sprite(700,300,'Trigger')
+    this.endTrigger= this.physics.add.sprite(400,736,'Trigger');
 
     //Texto encima del trigger
-    this.endTriggerText=this.add.text(650,150,'POR AQUÍ')
+    this.endTriggerText=this.add.text(650,150,'POR AQUÍ');
    
-    this.lever=new Lever(this, 500, 200, false);
+    this.lever1=new Lever(this, 80, 464, false, 272, 560);
+    this.lever2=new Lever(this, 80, 656, false, 304, 400);
    
-    this.physics.add.overlap(this.playerBuffoon, this.lever, (o1, o2) => {
-        this.lever.interaction();    });
-    this.physics.add.overlap(this.playerCountess, this.lever, (o1, o2) => {
-        this.lever.interaction();    });
-    this.physics.add.collider(this.playerBuffoon, this.lever.door); 
+    this.physics.add.overlap(this.playerBuffoon, this.lever1, (o1, o2) => {
+        o2.interaction();    });
+    this.physics.add.overlap(this.playerCountess, this.lever1, (o1, o2) => {
+        o2.interaction();    });
+    this.physics.add.collider(this.playerBuffoon, this.lever1.door);
+    this.physics.add.collider(this.playerCountess, this.lever1.door); 
 
     this.physics.add.overlap(this.playerBuffoon, this.ring, (o1, o2) => {
         this.score += o2.taken();
@@ -109,8 +117,8 @@ export default class Game extends Phaser.Scene {
 
   update(time,delta){
     //Comprobación del overlapping entre trigger y jugadores
-    this.physics.overlap(this.playerBuffoon, this.lever);  
-   this.checkPressureplate();
+    this.physics.overlap(this.playerBuffoon, this.lever1);  
+    this.checkPressureplate();
     this.checkEndOverlap();
     
   }

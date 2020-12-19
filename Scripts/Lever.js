@@ -1,9 +1,9 @@
 import Door from './door.js';
 import Objeto from './objeto.js';
 export default class Lever extends Objeto {
-    constructor(scene, x, y, activated){
+    constructor(scene, x, y, activated, xDoor, yDoor){
         super(scene, x, y, activated ? "LeverOpen" : "LeverClose", 32, 32, 1, false);
-        this.door=new Door(scene, this.x+100, this.y, activated);
+        this.door=new Door(scene, xDoor, yDoor, activated);
         this.on=activated;        
         this.cursorsLever = this.scene.input.keyboard.addKeys({
             action: Phaser.Input.Keyboard.KeyCodes.Z
