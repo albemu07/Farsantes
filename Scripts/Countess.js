@@ -4,6 +4,8 @@ export default class Countess extends Player {
       super(scene, x, y, sprite, 0.1, 320, 320, 'IdleCountessAnim', 'RunCountessAnim');
       // super.Countess = new Player(scene, x, y,sprite, 0.6, 320, 320);
       // var player = new Player(scene, x, y,sprite, 0.6, 320, 320);
+      this.xIni=x;
+      this.yIni=y;
       this.cursors = this.scene.input.keyboard.addKeys({
         up: Phaser.Input.Keyboard.KeyCodes.W,
         down: Phaser.Input.Keyboard.KeyCodes.S,
@@ -16,7 +18,7 @@ export default class Countess extends Player {
 
     respawn()
     {
-       this.x = 50;
-       this.y =50;
+       this.x = this.xIni;
+       this.y = this.yIni;
     }
   }

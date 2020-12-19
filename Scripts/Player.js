@@ -2,8 +2,8 @@ import Objeto from './objeto.js';
 export default class Player extends Objeto {
     constructor(scene, x, y,sprite, scale, colliderX, colliderY, animIdle, animRun) {
       super(scene, x, y, sprite, colliderX, colliderY, scale, false);
-      this.speedPlayer=300;     
-      this.speedCaja=150;
+      this.speedPlayer=100;     
+      this.speedCaja=50;
       this.speed= this.speedPlayer
       this.animIdle = animIdle;
       this.animRun = animRun;

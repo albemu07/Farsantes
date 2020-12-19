@@ -48,6 +48,7 @@ export default class Game extends Phaser.Scene {
     //Crea una caja
     this.score = 0;
     this.caja = new Caja(this, 224, 416, 'BoxSprite');
+    this.caja2=new Caja(this, 544, 480, 'BoxSprite');
     this.ring = new Ring(this, 80, 80, 'ring');
     this.playerBuffoon=new Buffoon(this,this.buffoonX,this.buffoonY,'IdleBuffoon');
     this.playerCountess=new Countess(this,this.countessX,this.countessY,'IdleCountess');
@@ -55,7 +56,7 @@ export default class Game extends Phaser.Scene {
 
        
     //Grupo de puertas
-    this.plateDoors= this.physics.add.group()
+    this.plateDoors= this.physics.add.staticGroup()
     this.plateDoors.add(new Door(this,176,464,false));
     this.plateDoors.add(new Door(this,176,656,false));
     this.plateDoors.add(new Door(this,784,272,false));
@@ -79,13 +80,43 @@ export default class Game extends Phaser.Scene {
    
     this.lever1=new Lever(this, 80, 464, false, 272, 560);
     this.lever2=new Lever(this, 80, 656, false, 304, 400);
+    this.lever3=new Lever(this, 688, 112, false, 48, 240);
+    this.lever4=new Lever(this, 16, 48, false, 752, 528);
    
+    for(var i=0; i<this.plateDoors.getChildren().length; i++){
+      this.physics.add.collider(this.playerBuffoon, this.plateDoors.getChildren()[i]);
+      this.physics.add.collider(this.playerCountess, this.plateDoors.getChildren()[i]);
+    }   
+
+    //Codigo provisional a falta de grupo de palancas
     this.physics.add.overlap(this.playerBuffoon, this.lever1, (o1, o2) => {
         o2.interaction();    });
     this.physics.add.overlap(this.playerCountess, this.lever1, (o1, o2) => {
         o2.interaction();    });
     this.physics.add.collider(this.playerBuffoon, this.lever1.door);
-    this.physics.add.collider(this.playerCountess, this.lever1.door); 
+    this.physics.add.collider(this.playerCountess, this.lever1.door);
+    
+    this.physics.add.overlap(this.playerBuffoon, this.lever2, (o1, o2) => {
+        o2.interaction();    });
+    this.physics.add.overlap(this.playerCountess, this.lever2, (o1, o2) => {
+        o2.interaction();    });
+    this.physics.add.collider(this.playerBuffoon, this.lever2.door);
+    this.physics.add.collider(this.playerCountess, this.lever2.door);
+    
+    this.physics.add.overlap(this.playerBuffoon, this.lever3, (o1, o2) => {
+      o2.interaction();    });
+    this.physics.add.overlap(this.playerCountess, this.lever3, (o1, o2) => {
+        o2.interaction();    });
+    this.physics.add.collider(this.playerBuffoon, this.lever3.door);
+    this.physics.add.collider(this.playerCountess, this.lever3.door);
+    
+    this.physics.add.overlap(this.playerBuffoon, this.lever4, (o1, o2) => {
+      o2.interaction();    });
+    this.physics.add.overlap(this.playerCountess, this.lever4, (o1, o2) => {
+      o2.interaction();    });
+    this.physics.add.collider(this.playerBuffoon, this.lever4.door);
+    this.physics.add.collider(this.playerCountess, this.lever4.door); 
+
 
     this.physics.add.overlap(this.playerBuffoon, this.ring, (o1, o2) => {
         this.score += o2.taken();
@@ -96,6 +127,8 @@ export default class Game extends Phaser.Scene {
 
       this.physics.add.collider(this.playerBuffoon, this.caja.box);
       this.physics.add.collider(this.playerCountess, this.caja.box);
+      this.physics.add.collider(this.playerBuffoon, this.caja2.box);
+      this.physics.add.collider(this.playerCountess, this.caja2.box);
       
       this.physics.add.collider(this.playerBuffoon, this.walls);
       this.physics.add.collider(this.playerCountess, this.walls);
@@ -105,7 +138,10 @@ export default class Game extends Phaser.Scene {
         this.moveBox(o1);      });
       this.physics.add.overlap(this.playerBuffoon, this.caja.object, (o2, o1) => {
         this.moveBox(o2);      });
-      
+      this.physics.add.overlap(this.playerCountess, this.caja2.object, (o1, o2) => {
+        this.moveBox(o1);      });
+      this.physics.add.overlap(this.playerBuffoon, this.caja2.object, (o2, o1) => {
+        this.moveBox(o2);      });
 
         
     //Tecla de menú de pausa
@@ -117,7 +153,10 @@ export default class Game extends Phaser.Scene {
 
   update(time,delta){
     //Comprobación del overlapping entre trigger y jugadores
-    this.physics.overlap(this.playerBuffoon, this.lever1);  
+    this.physics.overlap(this.playerBuffoon, this.lever1);
+    this.physics.overlap(this.playerBuffoon, this.lever2);
+    this.physics.overlap(this.playerBuffoon, this.lever3);
+    this.physics.overlap(this.playerBuffoon, this.lever4);  
     this.checkPressureplate();
     this.checkEndOverlap();
     
@@ -153,9 +192,13 @@ export default class Game extends Phaser.Scene {
 
   moveBox(player){
     if (player.grabDown()){
-      player.speedChange(this.caja.moveAlong(player));
+      if(player.speedChange(this.caja.moveAlong(player)));
+      else player.speedChange(this.caja2.moveAlong(player));
     }
-    else player.speedChange(this.caja.stopMove());
+    else {
+      if(player.speedChange(this.caja.stopMove()));
+      else player.speedChange(this.caja2.stopMove());
+    }
   }
 
   checkEndOverlap(){
