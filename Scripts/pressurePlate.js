@@ -1,18 +1,18 @@
 import Objeto from './objeto.js';
 export default class PressurePlate extends Objeto {
     constructor(scene, x, y, door, activated){
-        super(scene, x, y, activated, 64, 64, 0.5, false);
+        super(scene, x, y, activated ? "platePressed" : "plateUnpressed", 32, 32, 1, false);
         this.door=door
         this.active=activated;
     }
 
     platePressed(){
             if(this.active){
-               // this.anims.play("activePlate", true);
+                this.setTexture('platePressed')
                 this.door.abrir();
             }
             else{
-               // this.anims.play("inactivePlate", true);
+                this.setTexture('plateUnpressed')
                 this.door.cerrar();               
             }   
     }
