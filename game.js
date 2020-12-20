@@ -6,7 +6,7 @@ import Caja from './scripts/caja.js';
 import Door from './scripts/door.js';
 import PressurePlate from './scripts/pressurePlate.js'
 import Objecto from './scripts/objeto.js';
-//lol
+
 
 
 export default class Game extends Phaser.Scene {
