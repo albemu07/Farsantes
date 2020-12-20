@@ -33,15 +33,15 @@ export default class Game extends Phaser.Scene {
       key: this.tileMap 
     });
 
-    const tileset1 = this.map.addTilesetImage('TileSet', 'map');
-    const tileset2 = this.map.addTilesetImage('TileSetBien', 'map2');
+    const tileset1 = this.map.addTilesetImage('TileSetBien', 'map');
+    // const tileset2 = this.map.addTilesetImage('TileSetBien', 'map2');
 
-    this.ground = this.map.createStaticLayer('Ground', tileset1);
-    this.mud = this.map.createStaticLayer('Mud', tileset2);
+    this.ground = this.map.createStaticLayer('ground', tileset1);
+    this.mud = this.map.createStaticLayer('Mud', tileset1);
     // this.fences = this.map.createStaticLayer('vallas', tileset1);
-    this.walls = this.map.createStaticLayer('Walls', tileset1);
+    this.walls = this.map.createStaticLayer('walls', tileset1);
    
-    this.map.setCollisionBetween(46, 90);
+    this.map.setCollisionBetween(46, 105);
     //otrascosas
 
 
