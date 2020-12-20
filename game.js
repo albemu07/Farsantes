@@ -132,6 +132,8 @@ export default class Game extends Phaser.Scene {
       
       this.physics.add.collider(this.playerBuffoon, this.walls);
       this.physics.add.collider(this.playerCountess, this.walls);
+      this.physics.add.collider(this.walls, this.caja);
+      this.physics.add.collider(this.walls, this.caja2);
       // this.physics.add.collider(this.playerCountess, this.mud);
       // this.physics.add.collider(this.playerBuffoon, this.mud);
       this.physics.add.collider(this.playerCountess, this.muudtemp);
