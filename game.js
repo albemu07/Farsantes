@@ -1,11 +1,12 @@
-import Buffoon from './Scripts/buffoon.js';
-import Countess from './Scripts/countess.js';
-import Lever from './Scripts/lever.js';
-import Ring from './Scripts/ring.js';
-import Caja from './Scripts/caja.js';
-import Door from './Scripts/Door.js';
-import PressurePlate from './Scripts/pressurePlate.js'
-import Objecto from './Scripts/objeto.js';
+import Buffoon from './scripts/buffoon.js';
+import Countess from './scripts/countess.js';
+import Lever from './scripts/lever.js';
+import Ring from './scripts/ring.js';
+import Caja from './scripts/caja.js';
+import Door from './scripts/door.js';
+import PressurePlate from './scripts/pressurePlate.js'
+import Objecto from './scripts/objeto.js';
+//lol
 
 
 export default class Game extends Phaser.Scene {
