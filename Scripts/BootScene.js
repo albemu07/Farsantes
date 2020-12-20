@@ -19,7 +19,7 @@ export default class Boot extends Phaser.Scene{
         this.load.image('monjeB','./Assets/Nun/monjeBack.png');
         this.load.image('dialogo','./Assets/Guard/dialogo.png')
         this.load.image('ring', '/Assets/ring/ring.png');
-        // this.load.image('map', './Assets/Tile/SpriteSet.png');
+        this.load.image('mud', '/Assets/Mud/mod.png');
         this.load.image('map', './Assets/Tile/SpriteSetBien.png');
     
         this.load.image('vista','./Assets/SpriteSheet/deteccion.png') ;

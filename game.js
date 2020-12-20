@@ -1,11 +1,11 @@
 import Buffoon from './Scripts/buffoon.js';
 import Countess from './Scripts/countess.js';
-import Player from './Scripts/player.js'; //creo que no hace falta
 import Lever from './Scripts/lever.js';
 import Ring from './Scripts/ring.js';
 import Caja from './Scripts/caja.js';
 import Door from './Scripts/Door.js';
 import PressurePlate from './Scripts/pressurePlate.js'
+import Objecto from './Scripts/objeto.js';
 
 
 export default class Game extends Phaser.Scene {
@@ -33,27 +33,24 @@ export default class Game extends Phaser.Scene {
       key: this.tileMap 
     });
 
-    const tileset1 = this.map.addTilesetImage('TileSetBien', 'map');
-    // const tileset2 = this.map.addTilesetImage('TileSetBien', 'map2');
+    const tileset = this.map.addTilesetImage('TileSetBien', 'map');
 
-    this.ground = this.map.createStaticLayer('ground', tileset1);
-    this.mud = this.map.createStaticLayer('Mud', tileset1);
+    this.ground = this.map.createStaticLayer('ground', tileset);
+    this.mud = this.map.createStaticLayer('mud', tileset);
+    this.walls = this.map.createStaticLayer('walls', tileset);
+
     // this.fences = this.map.createStaticLayer('vallas', tileset1);
-    this.walls = this.map.createStaticLayer('walls', tileset1);
+
    
-    this.map.setCollisionBetween(46, 105);
+    this.map.setCollisionBetween(46, 999);
     //otrascosas
 
-
+    this.muudtemp = new Objecto(this, 624, 240, 'mud', 96, 32, 1, true);
     //Crea una caja
     this.score = 0;
     this.caja = new Caja(this, 224, 416, 'BoxSprite');
     this.caja2=new Caja(this, 544, 480, 'BoxSprite');
     this.ring = new Ring(this, 80, 80, 'ring');
-    this.playerBuffoon=new Buffoon(this,this.buffoonX,this.buffoonY,'IdleBuffoon');
-    this.playerCountess=new Countess(this,this.countessX,this.countessY,'IdleCountess');
-
-
        
     //Grupo de puertas
     this.plateDoors= this.physics.add.staticGroup()
@@ -82,6 +79,9 @@ export default class Game extends Phaser.Scene {
     this.lever2=new Lever(this, 80, 656, false, 304, 400);
     this.lever3=new Lever(this, 688, 112, false, 48, 240);
     this.lever4=new Lever(this, 16, 48, false, 752, 528);
+
+    this.playerBuffoon=new Buffoon(this,this.buffoonX,this.buffoonY,'IdleBuffoon');
+    this.playerCountess=new Countess(this,this.countessX,this.countessY,'IdleCountess');
    
     for(var i=0; i<this.plateDoors.getChildren().length; i++){
       this.physics.add.collider(this.playerBuffoon, this.plateDoors.getChildren()[i]);
@@ -132,16 +132,22 @@ export default class Game extends Phaser.Scene {
       
       this.physics.add.collider(this.playerBuffoon, this.walls);
       this.physics.add.collider(this.playerCountess, this.walls);
-      this.physics.add.collider(this.playerCountess, this.mud);
+      // this.physics.add.collider(this.playerCountess, this.mud);
+      // this.physics.add.collider(this.playerBuffoon, this.mud);
+      this.physics.add.collider(this.playerCountess, this.muudtemp);
 
       this.physics.add.overlap(this.playerCountess, this.caja.object, (o1, o2) => {
-        this.moveBox(o1);      });
+        this.moveBox(o1);     
+       });
       this.physics.add.overlap(this.playerBuffoon, this.caja.object, (o2, o1) => {
-        this.moveBox(o2);      });
+        this.moveBox(o2);     
+       });
       this.physics.add.overlap(this.playerCountess, this.caja2.object, (o1, o2) => {
-        this.moveBox(o1);      });
+        this.moveBox(o1);    
+        });
       this.physics.add.overlap(this.playerBuffoon, this.caja2.object, (o2, o1) => {
-        this.moveBox(o2);      });
+        this.moveBox(o2);    
+        });
 
         
     //Tecla de menú de pausa
@@ -158,8 +164,7 @@ export default class Game extends Phaser.Scene {
     this.physics.overlap(this.playerBuffoon, this.lever3);
     this.physics.overlap(this.playerBuffoon, this.lever4);  
     this.checkPressureplate();
-    this.checkEndOverlap();
-    
+    this.checkEndOverlap(); 
   }
   marGuardia(o1,o2)
   {
@@ -222,7 +227,7 @@ export default class Game extends Phaser.Scene {
   checkPressureplate(){
     var num=this.pressurePlates.getChildren().length
     for(var i=0;i<num;i++){
-      if (this.physics.overlap(this.playerBuffoon, this.pressurePlates.getChildren()[i]) ||this.physics.overlap(this.playerCountess, this.pressurePlates.getChildren()[i]) || this.physics.overlap(this.caja, this.pressurePlates.getChildren()[i]) ){
+      if (this.physics.overlap(this.playerBuffoon, this.pressurePlates.getChildren()[i]) ||this.physics.overlap(this.playerCountess, this.pressurePlates.getChildren()[i]) || this.physics.overlap(this.caja, this.pressurePlates.getChildren()[i]) || this.physics.overlap(this.caja2, this.pressurePlates.getChildren()[i])){
         this.pressurePlates.getChildren()[i].active=true;
       }
       else{
