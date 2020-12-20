@@ -150,7 +150,8 @@ export default class Game extends Phaser.Scene {
         });
       this.physics.add.overlap(this.playerBuffoon, this.caja2.object, (o2, o1) => {
         this.moveBox(o2);    
-        });
+        }); 
+
 
         
     //Tecla de menú de pausa
