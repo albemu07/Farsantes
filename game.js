@@ -49,7 +49,7 @@ export default class Game extends Phaser.Scene {
     this.muudtemp = new Objecto(this, 624, 240, 'mud', 96, 32, 1, true);
     //Crea una caja
     this.score = 0;
-    this.caja = new Caja(this, 224, 416, 'BoxSprite');
+    this.caja = new Caja(this, 224, 432, 'BoxSprite');
     this.caja2=new Caja(this, 544, 480, 'BoxSprite');
     this.ring = new Ring(this, 80, 80, 'ring');
        
