@@ -75,11 +75,16 @@ export default class Game extends Phaser.Scene {
 
     //Texto encima del trigger
     this.endTriggerText=this.add.text(650,150,'POR AQUÍ');
+
+    this.door1=new Door(this,272,546,false);
+    this.door2=new Door(this,304,400,false);
+    this.door3=new Door(this,48,240,false);
+    this.door4=new Door(this,752,528,false);
    
-    this.lever1=new Lever(this, 80, 464, false, 272, 560);
-    this.lever2=new Lever(this, 80, 656, false, 304, 400);
-    this.lever3=new Lever(this, 688, 112, false, 48, 240);
-    this.lever4=new Lever(this, 16, 48, false, 752, 528);
+    this.lever1=new Lever(this, 80, 464, false, this.door1);
+    this.lever2=new Lever(this, 80, 656, false, this.door2);
+    this.lever3=new Lever(this, 688, 112, false, this.door3);
+    this.lever4=new Lever(this, 16, 48, false, this.door4);
 
     this.playerBuffoon=new Buffoon(this,this.buffoonX,this.buffoonY,'IdleBuffoon');
     this.playerCountess=new Countess(this,this.countessX,this.countessY,'IdleCountess');
@@ -94,29 +99,29 @@ export default class Game extends Phaser.Scene {
         o2.interaction();    });
     this.physics.add.overlap(this.playerCountess, this.lever1, (o1, o2) => {
         o2.interaction();    });
-    this.physics.add.collider(this.playerBuffoon, this.lever1.door);
-    this.physics.add.collider(this.playerCountess, this.lever1.door);
+    this.physics.add.collider(this.playerBuffoon, this.door1);
+    this.physics.add.collider(this.playerCountess, this.door1);
     
     this.physics.add.overlap(this.playerBuffoon, this.lever2, (o1, o2) => {
         o2.interaction();    });
     this.physics.add.overlap(this.playerCountess, this.lever2, (o1, o2) => {
         o2.interaction();    });
-    this.physics.add.collider(this.playerBuffoon, this.lever2.door);
-    this.physics.add.collider(this.playerCountess, this.lever2.door);
+    this.physics.add.collider(this.playerBuffoon, this.door2);
+    this.physics.add.collider(this.playerCountess, this.door2);
     
     this.physics.add.overlap(this.playerBuffoon, this.lever3, (o1, o2) => {
       o2.interaction();    });
     this.physics.add.overlap(this.playerCountess, this.lever3, (o1, o2) => {
         o2.interaction();    });
-    this.physics.add.collider(this.playerBuffoon, this.lever3.door);
-    this.physics.add.collider(this.playerCountess, this.lever3.door);
+    this.physics.add.collider(this.playerBuffoon, this.door3);
+    this.physics.add.collider(this.playerCountess, this.door3);
     
     this.physics.add.overlap(this.playerBuffoon, this.lever4, (o1, o2) => {
       o2.interaction();    });
     this.physics.add.overlap(this.playerCountess, this.lever4, (o1, o2) => {
       o2.interaction();    });
-    this.physics.add.collider(this.playerBuffoon, this.lever4.door);
-    this.physics.add.collider(this.playerCountess, this.lever4.door); 
+    this.physics.add.collider(this.playerBuffoon, this.door4);
+    this.physics.add.collider(this.playerCountess, this.door4); 
 
 
     this.physics.add.overlap(this.playerBuffoon, this.ring, (o1, o2) => {
