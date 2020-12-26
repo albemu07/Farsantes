@@ -9,13 +9,14 @@ export default class Caja extends Phaser.GameObjects.Container
         scene.add.existing(this);
         scene.physics.world.enable(this);
         this.body.setCollideWorldBounds();
-        this.radio = 120;
+        this.radio = 60;
         this.myVelo = this.body.velocity;
         this.escena = scene;
         this.setScale(0.4);
         this.box = new Objeto(scene,32, 32,sprite, 500, 500, 0.1, true);
-        this.object = new Objeto(scene,32,32,sprite, 650, 650, 0.1, true);
+        this.object = new Objeto(scene,32,32,sprite, 700, 700, 0.1, true);
         this.add(this.object);
+        this.grab = false;
         this.add(this.box);
     }
 
@@ -27,8 +28,8 @@ export default class Caja extends Phaser.GameObjects.Container
         if(Math.abs(this.mod) < this.radio){
             this.body.velocity = player.body.velocity;
             // this.body.setVelocity() = playerVelocity;
-            // this.body.setVelocityX(playerVelocity.x);
-            // this.body.setVelocityY(playerVelocity.y);
+            // this.body.setVelocityX(player.body.velocity.x);
+            // this.body.setVelocityY(player.body.velocity.y);
             return true;
         }
         else this.body.velocity = this.myVelo;
