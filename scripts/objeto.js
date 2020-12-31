@@ -3,7 +3,7 @@ export default class Objeto extends Phaser.GameObjects.Sprite {
         super(scene, x, y, sprite);
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
-        this.body.setSize(colliderX,colliderY,true)
+        this.body.setSize(colliderX,colliderY,true);
         this.setScale(scale);
         if(!immov)
             this.body.setCollideWorldBounds();

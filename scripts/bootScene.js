@@ -17,8 +17,15 @@ export default class Boot extends Phaser.Scene{
         this.load.image('monjeR','./assets/nun/monjeRight.png');
         this.load.image('monjeF','./assets/nun/monjeFront.png');
         this.load.image('monjeB','./assets/nun/monjeBack.png');
-        this.load.image('dialogo','./assets/guard/dialogo.png')
         this.load.image('ring', '/assets/ring/ring.png');
+        this.load.image('ringBC', '/assets/ring/ringBlueClose.png')
+        this.load.image('ringB', '/assets/ring/ringBlue.png')
+        this.load.image('ringGC', '/assets/ring/ringGreenClose.png')
+        this.load.image('ringG', '/assets/ring/ringGreen.png')
+        this.load.image('ringRC', '/assets/ring/ringRedClose.png')
+        this.load.image('ringR', '/assets/ring/ringRed.png')
+        this.load.image('ringYC', '/assets/ring/ringYellowClose.png')
+        this.load.image('ringY', '/assets/ring/ringYellow.png')
         this.load.image('mud', '/assets/mud/mod.png');
         this.load.image('map', './assets/tile/spriteSetBien.png');
     

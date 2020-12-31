@@ -1,27 +1,22 @@
 import Enemigo from './enemigo.js'
-import Dialogo from './dialogue.js'
 export default class Guardia extends Enemigo
 {
-    constructor(scene,x,y,x2,y2,horizontal,type,sprite)
+    constructor(scene,type,route,circle,sprite)
     {
-        super(scene, x, y,x2,y2,horizontal,type, sprite);
+        super(scene,route[0][0],route[0][1],type,route,circle, sprite);
 
         this.velocidad = 60;
         this.distraida =false;
         this.stunTime =0;
-
-        
-        
 
         this.expresion = ['Hola Marquesa', 'Has visto a un farsante', 'arrestar a Arlequín', 
         'Es demasiado astuto', 'Mañana descaso', 'Hace mucho frío', 'Tengo que vigilar'];
         this.conv =this.expresion[ Math.floor(Math.random() * 7)];
         this.textConv = this.scene.add.text(this.x,this.object.displayHeight,this.conv);
         this.textConv.visible=false;
+    
 
-        
 
- 
     }
 
 
@@ -29,13 +24,13 @@ export default class Guardia extends Enemigo
     {
         this.scene.physics.moveTo(this, this.posX,this.posY, this.velocidad);
             
-        if (this.horizontal)
+        if (this.circle)
         {
-            this.moveH();
+            this.moveCircle();
         }  
         else 
         {            
-            this.moveV();
+            this.moveRoundTrip();
         }
 
         if (!this.distraida)

@@ -6,7 +6,8 @@ import Caja from './scripts/caja.js';
 import Door from './scripts/door.js';
 import PressurePlate from './scripts/pressurePlate.js'
 import Objecto from './scripts/objeto.js';
-
+import Guardia from './scripts/guardia.js';
+import Monje from './scripts/monje.js';
 
 
 export default class Game extends Phaser.Scene {
@@ -52,7 +53,10 @@ export default class Game extends Phaser.Scene {
     this.caja = new Caja(this, 400,32, 'BoxSprite');
     // this.caja = new Caja(this, 224, 432, 'BoxSprite');
     this.caja2=new Caja(this, 544, 480, 'BoxSprite');
-    this.ring = new Ring(this, 80, 80, 'ring');
+
+    //this.ring = new Ring(this, 80, 80, 'ring');
+    this.rings = this.physics.add.group();
+    this.rings.add(new Ring (this,40, 40,'ringRC','ringR',150,0));
        
     //Grupo de puertas
     this.plateDoors= this.physics.add.staticGroup()
@@ -70,7 +74,16 @@ export default class Game extends Phaser.Scene {
     this.pressurePlates.add(new PressurePlate(this,112,128,this.plateDoors.getChildren()[2],false));
     this.pressurePlates.add(new PressurePlate(this,720,656,this.plateDoors.getChildren()[3],false));
     this.pressurePlates.add(new PressurePlate(this,688,400,this.plateDoors.getChildren()[4],false));
-    
+
+
+    this.route1 =new Array (new Array(300,150),new Array(470,150),new Array(470,310),new Array(300,310));
+    this.route2 =new Array (new Array(140,80),new Array(140,150),new Array(80,150),new Array(210,150));
+    this.vigGuard = this.physics.add.group();
+    this.vigGuard.add(new Guardia(this,true,this.route1,true,'guardiaF'));
+    this.vigGuard.add(new Guardia(this,true,this.route2,false,'guardiaR'));
+    this.vigNun = this.physics.add.group();
+
+
     //Crear zona (en este caso es un sprite, por claridad)
     this.endTrigger= this.physics.add.sprite(400,736,'Trigger');
 
@@ -125,12 +138,8 @@ export default class Game extends Phaser.Scene {
     this.physics.add.collider(this.playerCountess, this.door4); 
 
 
-    this.physics.add.overlap(this.playerBuffoon, this.ring, (o1, o2) => {
-        this.score += o2.taken();
-        this.ring.destroy();         });
-    this.physics.add.overlap(this.playerCountess, this.ring, (o1, o2) => {
-        this.score += o2.taken();
-        this.ring.destroy();        });
+    this.physics.add.overlap(this.playerBuffoon, this.rings, (o1, o2) => {this.takeRing(o1,o2); });
+    this.physics.add.overlap(this.playerCountess, this.rings, (o1, o2) => {this.takeRing(o1,o2);     });
 
       this.physics.add.collider(this.playerBuffoon, this.caja.box);
       this.physics.add.collider(this.playerCountess, this.caja.box);
@@ -158,6 +167,12 @@ export default class Game extends Phaser.Scene {
         this.moveBox(o2);    
         }); 
 
+        
+    this.physics.add.overlap(this.playerBuffoon,this.vigGuard,(o1,o2)=>{this.arlVig(o1,o2);});
+    this.physics.add.overlap(this.playerBuffoon,this.vigNun,(o1,o2)=>{this.arlVig(o1,o2);});
+    this.physics.add.overlap(this.playerCountess,this.vigGuard,(o1,o2)=>{this.marGuardia(o1,o2);});
+    this.physics.add.overlap(this.playerCountess,this.vigNun,(o1,o2)=>{this.marMonje(o1,o2)});
+    
 
         
     //Tecla de menú de pausa
@@ -177,6 +192,20 @@ export default class Game extends Phaser.Scene {
     this.checkEndOverlap(); 
     if(!(this.physics.overlap(this.playerBuffoon, this.caja.object)) || (this.playerBuffoon.getVelocityX() === 0 && this.playerBuffoon.getVelocityY() === 0))
       this.playerBuffoon.speedChange(this.caja.stopMove());
+  }
+
+  takeRing(o1,o2)
+  {
+    if (this.physics.overlap(o1,o2.ring)){
+      console.log("anillo cogido");
+      this.score += o2.taken();
+      o2.destroy();
+    }
+    else 
+    {
+      o2.animate();
+    }
+ 
   }
   marGuardia(o1,o2)
   {
