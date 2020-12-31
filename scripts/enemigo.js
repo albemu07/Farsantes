@@ -3,7 +3,7 @@ import Vision from './vision.js';
 
 export default class Enemigo extends Phaser.GameObjects.Container
 {
-    constructor(scene,x,y,type,route,circle, sprite,spriteNum)
+    constructor(scene,x,y,type,route,circle, sprite)
     {
         super(scene,x,y);
         scene.add.existing(this);
