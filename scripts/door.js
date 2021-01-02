@@ -1,22 +1,19 @@
 import Objeto from './objeto.js';
 export default class Door extends Objeto {
-    constructor(scene, x, y, activated){
-        super(scene, x, y, activated ? "DoorOpen" : "DoorClose", 1000, 1000, 0.04, true);
+    constructor(scene, x, y, turn, activated){
+        super(scene, x, y, "DoorClosed", 32, 32, 1, true);
         this.body.enable=!activated;
-        this.open=activated;         
-    }
+        this.open=activated;      
+        this.angle=turn*90;   
+    }  
 
-    preUpdate(time, delta){
-        
-    }
-
-    abrir(){
+    abrir(){        
+        if(this.body.enable) this.anims.play("OpenDoor",true);
         this.body.enable=false;
-        this.anims.play('OpenDoor',true);
     }
 
-    cerrar(){
+    cerrar(){       
+        if(!this.body.enable) this.anims.play("CloseDoor",true);
         this.body.enable=true;
-        this.anims.play('CloseDoor',true);
     }
 }

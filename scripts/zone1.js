@@ -3,7 +3,7 @@ import Guardia from './guardia.js';
 import Monje from './monje.js';
 export default class Zone1 extends Game {
   constructor() {
-    super('Zone1','Zone2',380,32,432,32, 'tilemap');
+    super('Zone1','Zone2',380,32,592,82, 'tilemap');
   }
   create(){
     super.create();

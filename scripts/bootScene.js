@@ -36,8 +36,9 @@ export default class Boot extends Phaser.Scene{
         this.load.spritesheet('Lever2','./assets/lever/lever2.png',{frameWidth:32,frameHeight:32});
         this.load.image('LeverOpen','./assets/lever/leverOpen.png');
         this.load.image('LeverClose','./assets/lever/leverClose.png');
-        this.load.spritesheet('DoorOpen','./assets/door/doorOpen.png',{frameWidth:920,frameHeight:1127});
-        this.load.spritesheet('DoorClose','./assets/door/doorClosed.png',{frameWidth:820,frameHeight:1035});
+        this.load.image('DoorClosed','./assets/door/doorClose.png');
+        this.load.spritesheet('DoorOpen','./assets/door/openDoor.png',{frameWidth:38,frameHeight:38});        
+        this.load.spritesheet('DoorClose','./assets/door/closeDoor.png',{frameWidth:38,frameHeight:38});
         this.load.tilemapTiledJSON('tilemap', './assets/tile/nivelPrueba.json');
 
         //Placa de presión
@@ -111,14 +112,14 @@ export default class Boot extends Phaser.Scene{
           this.anims.create({
             key:'OpenDoor',
             frames: this.anims.generateFrameNumbers('DoorOpen'),
-            frameRate:3,
+            frameRate:7,
             repeat: 0
           });
       
           this.anims.create({
             key:'CloseDoor',
             frames: this.anims.generateFrameNumbers('DoorClose'),
-            frameRate:3,
+            frameRate:7,
             repeat: 0
           });
       
