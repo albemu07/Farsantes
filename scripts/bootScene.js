@@ -27,7 +27,6 @@ export default class Boot extends Phaser.Scene{
         this.load.image('ringYC', '/assets/ring/ringYellowClose.png')
         this.load.image('ringY', '/assets/ring/ringYellow.png')
         this.load.image('mud', '/assets/mud/mod.png');
-        this.load.image('map', './assets/tile/spriteSetBien.png');
     
         this.load.image('vista','./assets/spriteSheet/deteccion.png') ;
         this.load.image('BoxSprite', './assets/box/box.png');
@@ -40,6 +39,8 @@ export default class Boot extends Phaser.Scene{
         this.load.spritesheet('DoorOpen','./assets/door/openDoor.png',{frameWidth:38,frameHeight:38});        
         this.load.spritesheet('DoorClose','./assets/door/closeDoor.png',{frameWidth:38,frameHeight:38});
         this.load.tilemapTiledJSON('tilemap', './assets/tile/nivelPrueba.json');
+        this.load.tilemapTiledJSON('tilemap2', './assets/tile/zone2.json');
+        this.load.image('map', './assets/tile/spriteSetBien.png');
 
         //Placa de presión
         this.load.image('plateUnpressed','./assets/presurePlate/plateUnpressed.png')
