@@ -18,7 +18,7 @@ export default class Game extends Phaser.Scene {
     this.countessX=countessPositionX;
     this.countessY=countessPositionY;
     this.buffoonX=buffoonPositionX;
-    this.buffoonY=buffoonPositionY;  
+    this.buffoonY=buffoonPositionY;
     this.tileMap = tileMap;
   }
 
@@ -31,8 +31,8 @@ export default class Game extends Phaser.Scene {
 
     //mapa
 
-    this.map = this.make.tilemap({ 
-      key: this.tileMap 
+    this.map = this.make.tilemap({
+      key: this.tileMap
     });
 
     const tileset = this.map.addTilesetImage('TileSetBien', 'map');
@@ -43,7 +43,7 @@ export default class Game extends Phaser.Scene {
 
     // this.fences = this.map.createStaticLayer('vallas', tileset1);
 
-   
+
     this.map.setCollisionBetween(46, 999);
     //otrascosas
 
@@ -57,7 +57,7 @@ export default class Game extends Phaser.Scene {
     //this.ring = new Ring(this, 80, 80, 'ring');
     this.rings = this.physics.add.group();
     this.rings.add(new Ring (this,40, 40,'ringRC','ringR',150,0));
-       
+
     //Grupo de puertas
     this.plateDoors= this.physics.add.staticGroup()
     this.plateDoors.add(new Door(this,176,464,false));
@@ -94,19 +94,24 @@ export default class Game extends Phaser.Scene {
     this.door2=new Door(this,304,400,false);
     this.door3=new Door(this,48,240,false);
     this.door4=new Door(this,752,528,false);
-   
+
     this.lever1=new Lever(this, 80, 464, false, this.door1);
     this.lever2=new Lever(this, 80, 656, false, this.door2);
     this.lever3=new Lever(this, 688, 112, false, this.door3);
     this.lever4=new Lever(this, 16, 48, false, this.door4);
 
-    this.playerBuffoon=new Buffoon(this,this.buffoonX,this.buffoonY,'IdleBuffoon');
-    this.playerCountess=new Countess(this,this.countessX,this.countessY,'IdleCountess');
-   
+    this.gamepad;
+    this.input.gamepad.once('down', function (pad, button, index) {
+        this.gamepad = pad;
+    }, this);
+
+    this.playerBuffoon=new Buffoon(this,this.buffoonX,this.buffoonY,'IdleBuffoon', this.gamepad);
+    this.playerCountess=new Countess(this,this.countessX,this.countessY,'IdleCountess', this.gamepad);
+
     for(var i=0; i<this.plateDoors.getChildren().length; i++){
       this.physics.add.collider(this.playerBuffoon, this.plateDoors.getChildren()[i]);
       this.physics.add.collider(this.playerCountess, this.plateDoors.getChildren()[i]);
-    }   
+    }
 
     //Codigo provisional a falta de grupo de palancas
     this.physics.add.overlap(this.playerBuffoon, this.lever1, (o1, o2) => {
@@ -115,27 +120,27 @@ export default class Game extends Phaser.Scene {
         o2.interaction();    });
     this.physics.add.collider(this.playerBuffoon, this.door1);
     this.physics.add.collider(this.playerCountess, this.door1);
-    
+
     this.physics.add.overlap(this.playerBuffoon, this.lever2, (o1, o2) => {
         o2.interaction();    });
     this.physics.add.overlap(this.playerCountess, this.lever2, (o1, o2) => {
         o2.interaction();    });
     this.physics.add.collider(this.playerBuffoon, this.door2);
     this.physics.add.collider(this.playerCountess, this.door2);
-    
+
     this.physics.add.overlap(this.playerBuffoon, this.lever3, (o1, o2) => {
       o2.interaction();    });
     this.physics.add.overlap(this.playerCountess, this.lever3, (o1, o2) => {
         o2.interaction();    });
     this.physics.add.collider(this.playerBuffoon, this.door3);
     this.physics.add.collider(this.playerCountess, this.door3);
-    
+
     this.physics.add.overlap(this.playerBuffoon, this.lever4, (o1, o2) => {
       o2.interaction();    });
     this.physics.add.overlap(this.playerCountess, this.lever4, (o1, o2) => {
       o2.interaction();    });
     this.physics.add.collider(this.playerBuffoon, this.door4);
-    this.physics.add.collider(this.playerCountess, this.door4); 
+    this.physics.add.collider(this.playerCountess, this.door4);
 
 
     this.physics.add.overlap(this.playerBuffoon, this.rings, (o1, o2) => {this.takeRing(o1,o2); });
@@ -145,7 +150,7 @@ export default class Game extends Phaser.Scene {
       this.physics.add.collider(this.playerCountess, this.caja.box);
       this.physics.add.collider(this.playerBuffoon, this.caja2.box);
       this.physics.add.collider(this.playerCountess, this.caja2.box);
-      
+
       this.physics.add.collider(this.playerBuffoon, this.walls);
       this.physics.add.collider(this.playerCountess, this.walls);
       this.physics.add.collider(this.walls, this.caja);
@@ -155,26 +160,26 @@ export default class Game extends Phaser.Scene {
       this.physics.add.collider(this.playerCountess, this.muudtemp);
 
       this.physics.add.overlap(this.playerCountess, this.caja.object, (o1, o2) => {
-        this.moveBox(o1);     
+        this.moveBox(o1);
        });
       this.physics.add.overlap(this.playerBuffoon, this.caja.object, (o2, o1) => {
-        this.moveBox(o2);     
+        this.moveBox(o2);
        });
       this.physics.add.overlap(this.playerCountess, this.caja2.object, (o1, o2) => {
-        this.moveBox(o1);    
+        this.moveBox(o1);
         });
       this.physics.add.overlap(this.playerBuffoon, this.caja2.object, (o2, o1) => {
-        this.moveBox(o2);    
-        }); 
+        this.moveBox(o2);
+        });
 
-        
+
     this.physics.add.overlap(this.playerBuffoon,this.vigGuard,(o1,o2)=>{this.arlVig(o1,o2);});
     this.physics.add.overlap(this.playerBuffoon,this.vigNun,(o1,o2)=>{this.arlVig(o1,o2);});
     this.physics.add.overlap(this.playerCountess,this.vigGuard,(o1,o2)=>{this.marGuardia(o1,o2);});
     this.physics.add.overlap(this.playerCountess,this.vigNun,(o1,o2)=>{this.marMonje(o1,o2)});
-    
 
-        
+
+
     //Tecla de menú de pausa
     this.input.keyboard.on('keydown_ESC', ()=> {this.scene.launch('pauseMenu',{zone: this.zone}); this.scene.sleep()},this);
   }
@@ -184,12 +189,15 @@ export default class Game extends Phaser.Scene {
 
   update(time,delta){
     //Comprobación del overlapping entre trigger y jugadores
+    if ( this.gamepad){
+      this.playerBuffoon.setGamePad(this.gamepad);
+    }
     this.physics.overlap(this.playerBuffoon, this.lever1);
     this.physics.overlap(this.playerBuffoon, this.lever2);
     this.physics.overlap(this.playerBuffoon, this.lever3);
-    this.physics.overlap(this.playerBuffoon, this.lever4);  
+    this.physics.overlap(this.playerBuffoon, this.lever4);
     this.checkPressureplate();
-    this.checkEndOverlap(); 
+    this.checkEndOverlap();
     if(!(this.physics.overlap(this.playerBuffoon, this.caja.object)) || (this.playerBuffoon.getVelocityX() === 0 && this.playerBuffoon.getVelocityY() === 0))
       this.playerBuffoon.speedChange(this.caja.stopMove());
   }
@@ -201,11 +209,11 @@ export default class Game extends Phaser.Scene {
       this.score += o2.taken();
       o2.destroy();
     }
-    else 
+    else
     {
       o2.animate();
     }
- 
+
   }
   marGuardia(o1,o2)
   {
@@ -225,7 +233,7 @@ export default class Game extends Phaser.Scene {
       this.playerCountess.respawn();
       this.playerBuffoon.respawn();
     }
-    
+
   }
   arlVig(o1,o2)
   {
@@ -277,4 +285,4 @@ export default class Game extends Phaser.Scene {
       this.pressurePlates.getChildren()[i].platePressed();
     }
   }
-}   
+}

@@ -1,6 +1,6 @@
 import Player from './player.js';
 export default class Buffoon extends Player {
-    constructor(scene, x, y,sprite) {
+    constructor(scene, x, y,sprite, gamepad) {
       super(scene, x, y, sprite, 0.7, 40, 45, 'IdleBuffoonAnim', 'RunBuffoonAnim');
       this.xIni=x;
       this.yIni=y;
@@ -9,7 +9,7 @@ export default class Buffoon extends Player {
         down: Phaser.Input.Keyboard.KeyCodes.DOWN,
         left: Phaser.Input.Keyboard.KeyCodes.LEFT,
         right: Phaser.Input.Keyboard.KeyCodes.RIGHT,
-        grab: Phaser.Input.Keyboard.KeyCodes.C
+        grab: Phaser.Input.Keyboard.KeyCodes.ENTER,
       });
     }
 
