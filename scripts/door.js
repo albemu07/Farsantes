@@ -4,7 +4,7 @@ export default class Door extends Objeto {
         super(scene, x, y, "DoorClosed", 32, 32, 1, true);
         this.body.enable=!activated;
         this.open=activated;      
-        this.angle=turn*90;   
+        this.angle=turn   
     }  
 
     abrir(){        

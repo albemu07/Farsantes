@@ -18,7 +18,7 @@ export default class Game extends Phaser.Scene {
     this.countessX=countessPositionX;
     this.countessY=countessPositionY;
     this.buffoonX=buffoonPositionX;
-    this.buffoonY=buffoonPositionY;  
+    this.buffoonY=buffoonPositionY;
     this.tileMap = tileMap;
   }
 
@@ -30,50 +30,146 @@ export default class Game extends Phaser.Scene {
   create() {
 
     //mapa
-
-    this.map = this.make.tilemap({ 
-      key: this.tileMap 
+    this.map = this.make.tilemap({
+      key: this.tileMap
     });
 
-    const tileset = this.map.addTilesetImage('TileSetBien', 'map');
+    const tileset = this.map.addTilesetImage('spriteSetBien', 'map');
 
+    //Crear capa de suelo
     this.ground = this.map.createStaticLayer('ground', tileset);
+    //Crear capa de barro
     this.mud = this.map.createStaticLayer('mud', tileset);
+    //Crear capa de paredes
     this.walls = this.map.createStaticLayer('walls', tileset);
+    
+    //Crear trigger de siguiente zona
+    this.triggerLayer=this.map.getObjectLayer('endTrigger')['objects']
+    this.triggerLayer.forEach(object =>{
+      this.endTrigger=this.add.zone(object.x,object.y).setOrigin(0,0)
+      this.endTrigger.setSize(object.width,object.height)  
+    })
+    this.physics.world.enable(this.endTrigger)
 
-    // this.fences = this.map.createStaticLayer('vallas', tileset1);
+    //Crear capa de puertas de placas
+    this.plateDoorsLayer=this.map.getObjectLayer('plateDoors')['objects'] //Creación de capa de puertas asociadas a placas
+    this.plateDoorsGroup=this.physics.add.staticGroup();                  //Creación del grupo de puertas asociadas a placas
+    this.plateDoorsLayer.forEach(object =>{                               
+      this.plateDoorsGroup.add(new Door(this,object.x,object.y,object.rotation,false))    //Por cada objeto dentro de la capa se crea una puerta en el grupo.
+    })
+    //Crear capa de placas
+    this.platesLayer=this.map.getObjectLayer('plates')['objects']         //Creación de capa de placas
+    this.platesGroup=this.physics.add.staticGroup();                      //Creación del grupo de placas
+    this.platesLayer.forEach(object =>{                                   //Por cada objeto dentro de la capa se crea una placa en el grupo. La puerta asociada es la puerta del grupo anterior con el mismo nombre.
+      this.platesGroup.add(new PressurePlate(this,object.x,object.y,this.plateDoorsGroup.getChildren()[object.name],false))
+    })
 
-   
+    //Crear capa de puertas de palancas
+    this.leverDoorsLayer=this.map.getObjectLayer('leverDoors')['objects'] //Creación de capa de puertas asociadas a palancas
+    this.leverDoorsGroup=this.physics.add.staticGroup();                  //Creación del grupo de puertas asociadas a palancas
+    this.leverDoorsLayer.forEach(object =>{                              
+       this.leverDoorsGroup.add(new Door(this,object.x,object.y,object.rotation,false))    //Por cada objeto dentro de la capa se crea una puerta en el grupo.
+    })
+    //Crear capa de palancas
+    this.leversLayer=this.map.getObjectLayer('levers')['objects']         //Creación de capa de palancas
+    this.leversGroup=this.physics.add.staticGroup();                      //Creación del grupo de palancas
+    this.leversLayer.forEach(object =>{                                   //Por cada objeto dentro de la capa se crea una palcan en el grupo. La puerta asociada es la puerta del grupo anterior con el mismo nombre.
+       this.leversGroup.add(new Lever(this,object.x,object.y,this.leverDoorsGroup.getChildren()[object.name],false))
+    })
+
+    //Crear capa de cajas
+    this.boxesLayer=this.map.getObjectLayer('boxes')['objects']           //Creación de capa de cajas
+    this.boxesGroup=this.physics.add.group();                             //Creación del grupo de cajas
+    this.boxesLayer.forEach(object =>{                                    
+      this.boxesGroup.add(new Caja(this,object.x,object.y,'BoxSprite'));  //Por cada objeto dentro de la capa se crea una caja en el grupo.
+    })
+
+    //Crear capa de coleccionables
+    this.ringsLayer=this.map.getObjectLayer('rings')['objects']           //Creación de capa de coleccionables
+    this.ringsGroup=this.physics.add.staticGroup();                       //Creación del grupo de coleccionables
+    this.ringsLayer.forEach(object =>{                                    
+      this.ringsGroup.add(new Ring (this,object.x,object.y,'ringRC','ringR',object.value,0));  //Por cada objeto dentro de la capa se crea un anillo en el grupo.
+    })
+
+    //Crear capa de guardias
+    this.guardsLayer=this.map.getObjectLayer('guards')['objects']         //Creación de capa de guardias
+    this.guardsGroup=this.physics.add.group();                            //Creación del grupo de guardias
+    this.guardsLayer.forEach(object =>{                                    
+      this.guardsGroup.add(new Guardia(this,object.route,object.circle,'guardiaF'));  //Por cada objeto dentro de la capa se crea un guardia en el grupo.
+    })
+ 
+    //Crear capa de monjas
+    this.monksLayer=this.map.getObjectLayer('monks')['objects']           //Creación de capa de monjas
+    this.monksGroup=this.physics.add.group();                            //Creación del grupo de monjas
+    this.monksLayer.forEach(object =>{                                    
+      this.monksGroup.add(new Guardia(this,object.route,object.circle,'guardiaF'));  //Por cada objeto dentro de la capa se crea una monja en el grupo.
+    })
+
+    //Creación de los jugadores
+    this.playerBuffoon=new Buffoon(this,this.buffoonX,this.buffoonY,'IdleBuffoon');
+    this.playerCountess=new Countess(this,this.countessX,this.countessY,'IdleCountess');
+
+    //COLISIONES
+    //Jugadores con los muros
+    this.physics.add.collider(this.playerBuffoon, this.walls);
+    this.physics.add.collider(this.playerCountess, this.walls);
+
+    //Jugadores con las puertas (de placas y palancas)
+    for(var i=0;i<this.plateDoorsGroup.getChildren().length;i++){
+        this.physics.add.collider(this.playerBuffoon,this.plateDoorsGroup.getChildren()[i])
+        this.physics.add.collider(this.playerCountess,this.plateDoorsGroup.getChildren()[i])
+    }
+    for(var i=0;i<this.leverDoorsGroup.getChildren().length;i++){
+      this.physics.add.collider(this.playerBuffoon,this.leverDoorsGroup.getChildren()[i])
+      this.physics.add.collider(this.playerCountess,this.leverDoorsGroup.getChildren()[i])
+    }
+
+    //Jugadores con las palancas
+    for(var i=0;i<this.leversGroup.getChildren().length;i++){
+      this.physics.add.overlap(this.playerBuffoon, this.leversGroup.getChildren()[i], (o1, o2) => {
+        o2.interaction();});
+      this.physics.add.overlap(this.playerCountess, this.leversGroup.getChildren()[i], (o1, o2) => {
+         o2.interaction();});
+    }
+
+    //Cajas con jugadores, muros y puertas
+    for(var i=0;i<this.boxesGroup.getChildren().length;i++){
+      let caja=this.boxesGroup.getChildren()[i]
+      //Muros
+      this.physics.add.collider(this.walls,caja)
+      //Bufon
+      this.physics.add.collider(this.playerBuffoon,caja.box)
+      this.physics.add.overlap(this.playerBuffoon, caja.object, (o1, o2) => {
+        this.moveBox(o1,caja);    
+       });
+      //Condesa
+      this.physics.add.collider(this.playerCountess,caja.box)
+       this.physics.add.overlap(this.playerCountess, caja.object, (o1,o2) => {
+        this.moveBox(o1,caja);   
+       });
+
+      //Puertas
+      for(var j=0;j<this.plateDoorsGroup.getChildren().length;j++){
+        this.physics.add.collider(caja,this.plateDoorsGroup.getChildren()[j])
+      }
+      for(var j=0;j<this.leverDoorsGroup.getChildren().length;j++){
+        this.physics.add.collider(caja,this.leversDoorsGroup.getChildren()[j])
+      }
+              
+    }
+
+    //Jugadores con coleccionables
+    for(var i=0;i<this.ringsGroup.getChildren().length;i++){
+      this.physics.add.overlap(this.playerBuffoon, this.ringsGroup.getChildren()[i], (o1, o2) => {this.takeRing(o1,o2); });
+    }
+
+
+    //Jugadores con los guardias
+
+    this.score = 0;     
+
+    //SetCollisionBetween
     this.map.setCollisionBetween(46, 999);
-    //otrascosas
-
-    this.muudtemp = new Objecto(this, 624, 240, 'mud', 96, 32, 1, true);
-    //Crea una caja
-    this.score = 0;
-    this.caja = new Caja(this, 400,32, 'BoxSprite');
-    // this.caja = new Caja(this, 224, 432, 'BoxSprite');
-    this.caja2=new Caja(this, 544, 480, 'BoxSprite');
-
-    //this.ring = new Ring(this, 80, 80, 'ring');
-    this.rings = this.physics.add.group();
-    this.rings.add(new Ring (this,40, 40,'ringRC','ringR',150,0));
-       
-    //Grupo de puertas
-    this.plateDoors= this.physics.add.staticGroup()
-    this.plateDoors.add(new Door(this,176,464,false));
-    this.plateDoors.add(new Door(this,176,656,false));
-    this.plateDoors.add(new Door(this,784,272,false));
-    this.plateDoors.add(new Door(this,496,464,false));
-    this.plateDoors.add(new Door(this,176,336,false));
-
-
-    //Grupo de placas
-    this.pressurePlates=this.physics.add.group()
-    this.pressurePlates.add(new PressurePlate(this,240,496,this.plateDoors.getChildren()[0],false));
-    this.pressurePlates.add(new PressurePlate(this,240,624,this.plateDoors.getChildren()[1],false));
-    this.pressurePlates.add(new PressurePlate(this,112,128,this.plateDoors.getChildren()[2],false));
-    this.pressurePlates.add(new PressurePlate(this,720,656,this.plateDoors.getChildren()[3],false));
-    this.pressurePlates.add(new PressurePlate(this,688,400,this.plateDoors.getChildren()[4],false));
 
 
     this.route1 =new Array (new Array(300,150),new Array(470,150),new Array(470,310),new Array(300,310));
@@ -83,98 +179,23 @@ export default class Game extends Phaser.Scene {
     this.vigGuard.add(new Guardia(this,true,this.route2,false,'guardiaR'));
     this.vigNun = this.physics.add.group();
 
-
-    //Crear zona (en este caso es un sprite, por claridad)
-    this.endTrigger= this.physics.add.sprite(400,736,'Trigger');
-
     //Texto encima del trigger
     this.endTriggerText=this.add.text(650,150,'POR AQUÍ');
 
-    this.door1=new Door(this,272,546,false);
-    this.door2=new Door(this,304,400,false);
-    this.door3=new Door(this,48,240,false);
-    this.door4=new Door(this,752,528,false);
-   
-    this.lever1=new Lever(this, 80, 464, false, this.door1);
-    this.lever2=new Lever(this, 80, 656, false, this.door2);
-    this.lever3=new Lever(this, 688, 112, false, this.door3);
-    this.lever4=new Lever(this, 16, 48, false, this.door4);
+    //Gamepad
+    this.gamepad;
+    this.input.gamepad.once('down', function (pad, button, index) {
+        this.gamepad = pad;
+    }, this);
 
-    this.playerBuffoon=new Buffoon(this,this.buffoonX,this.buffoonY,'IdleBuffoon');
-    this.playerCountess=new Countess(this,this.countessX,this.countessY,'IdleCountess');
-   
-    for(var i=0; i<this.plateDoors.getChildren().length; i++){
-      this.physics.add.collider(this.playerBuffoon, this.plateDoors.getChildren()[i]);
-      this.physics.add.collider(this.playerCountess, this.plateDoors.getChildren()[i]);
-    }   
-
-    //Codigo provisional a falta de grupo de palancas
-    this.physics.add.overlap(this.playerBuffoon, this.lever1, (o1, o2) => {
-        o2.interaction();    });
-    this.physics.add.overlap(this.playerCountess, this.lever1, (o1, o2) => {
-        o2.interaction();    });
-    this.physics.add.collider(this.playerBuffoon, this.door1);
-    this.physics.add.collider(this.playerCountess, this.door1);
-    
-    this.physics.add.overlap(this.playerBuffoon, this.lever2, (o1, o2) => {
-        o2.interaction();    });
-    this.physics.add.overlap(this.playerCountess, this.lever2, (o1, o2) => {
-        o2.interaction();    });
-    this.physics.add.collider(this.playerBuffoon, this.door2);
-    this.physics.add.collider(this.playerCountess, this.door2);
-    
-    this.physics.add.overlap(this.playerBuffoon, this.lever3, (o1, o2) => {
-      o2.interaction();    });
-    this.physics.add.overlap(this.playerCountess, this.lever3, (o1, o2) => {
-        o2.interaction();    });
-    this.physics.add.collider(this.playerBuffoon, this.door3);
-    this.physics.add.collider(this.playerCountess, this.door3);
-    
-    this.physics.add.overlap(this.playerBuffoon, this.lever4, (o1, o2) => {
-      o2.interaction();    });
-    this.physics.add.overlap(this.playerCountess, this.lever4, (o1, o2) => {
-      o2.interaction();    });
-    this.physics.add.collider(this.playerBuffoon, this.door4);
-    this.physics.add.collider(this.playerCountess, this.door4); 
-
-
-    this.physics.add.overlap(this.playerBuffoon, this.rings, (o1, o2) => {this.takeRing(o1,o2); });
-    this.physics.add.overlap(this.playerCountess, this.rings, (o1, o2) => {this.takeRing(o1,o2);     });
-
-      this.physics.add.collider(this.playerBuffoon, this.caja.box);
-      this.physics.add.collider(this.playerCountess, this.caja.box);
-      this.physics.add.collider(this.playerBuffoon, this.caja2.box);
-      this.physics.add.collider(this.playerCountess, this.caja2.box);
-      
-      this.physics.add.collider(this.playerBuffoon, this.walls);
-      this.physics.add.collider(this.playerCountess, this.walls);
-      this.physics.add.collider(this.walls, this.caja);
-      this.physics.add.collider(this.walls, this.caja2);
-      // this.physics.add.collider(this.playerCountess, this.mud);
-      // this.physics.add.collider(this.playerBuffoon, this.mud);
+      //barro temporal
       this.physics.add.collider(this.playerCountess, this.muudtemp);
 
-      this.physics.add.overlap(this.playerCountess, this.caja.object, (o1, o2) => {
-        this.moveBox(o1);     
-       });
-      this.physics.add.overlap(this.playerBuffoon, this.caja.object, (o2, o1) => {
-        this.moveBox(o2);     
-       });
-      this.physics.add.overlap(this.playerCountess, this.caja2.object, (o1, o2) => {
-        this.moveBox(o1);    
-        });
-      this.physics.add.overlap(this.playerBuffoon, this.caja2.object, (o2, o1) => {
-        this.moveBox(o2);    
-        }); 
-
-        
     this.physics.add.overlap(this.playerBuffoon,this.vigGuard,(o1,o2)=>{this.arlVig(o1,o2);});
     this.physics.add.overlap(this.playerBuffoon,this.vigNun,(o1,o2)=>{this.arlVig(o1,o2);});
     this.physics.add.overlap(this.playerCountess,this.vigGuard,(o1,o2)=>{this.marGuardia(o1,o2);});
     this.physics.add.overlap(this.playerCountess,this.vigNun,(o1,o2)=>{this.marMonje(o1,o2)});
-    
 
-        
     //Tecla de menú de pausa
     this.input.keyboard.on('keydown_ESC', ()=> {this.scene.launch('pauseMenu',{zone: this.zone}); this.scene.sleep()},this);
   }
@@ -184,14 +205,12 @@ export default class Game extends Phaser.Scene {
 
   update(time,delta){
     //Comprobación del overlapping entre trigger y jugadores
-    this.physics.overlap(this.playerBuffoon, this.lever1);
-    this.physics.overlap(this.playerBuffoon, this.lever2);
-    this.physics.overlap(this.playerBuffoon, this.lever3);
-    this.physics.overlap(this.playerBuffoon, this.lever4);  
+    if ( this.gamepad){
+      this.playerBuffoon.setGamePad(this.gamepad);
+    }
     this.checkPressureplate();
-    this.checkEndOverlap(); 
-    if(!(this.physics.overlap(this.playerBuffoon, this.caja.object)) || (this.playerBuffoon.getVelocityX() === 0 && this.playerBuffoon.getVelocityY() === 0))
-      this.playerBuffoon.speedChange(this.caja.stopMove());
+    this.checkEndOverlap();
+    this.checkBoxes();
   }
 
   takeRing(o1,o2)
@@ -201,11 +220,11 @@ export default class Game extends Phaser.Scene {
       this.score += o2.taken();
       o2.destroy();
     }
-    else 
+    else
     {
       o2.animate();
     }
- 
+
   }
   marGuardia(o1,o2)
   {
@@ -225,7 +244,7 @@ export default class Game extends Phaser.Scene {
       this.playerCountess.respawn();
       this.playerBuffoon.respawn();
     }
-    
+
   }
   arlVig(o1,o2)
   {
@@ -236,45 +255,54 @@ export default class Game extends Phaser.Scene {
     }
   }
 
-  moveBox(player){
+  moveBox(player,box){
     if (player.grabDown()){
-      if(player.speedChange(this.caja.moveAlong(player)));
-      else player.speedChange(this.caja2.moveAlong(player));
+      player.speedChange(box.moveAlong(player))
     }
     else {
-      if(player.speedChange(this.caja.stopMove()));
-      else player.speedChange(this.caja2.stopMove());
+      player.speedChange(box.stopMove());
     }
   }
 
   checkEndOverlap(){
-  //Si ambos jugadores entran en el trigger, se pasa de escena
-    if(this.physics.overlap(this.playerBuffoon, this.endTrigger) && this.physics.overlap(this.playerCountess, this.endTrigger)){
-      console.log('Siguiente escena');
-      this.scene.start(this.nextZone);
+    //Si ambos jugadores entran en el trigger, se pasa de escena
+      if(this.physics.overlap(this.playerBuffoon, this.endTrigger) && this.physics.overlap(this.playerCountess, this.endTrigger)){
+        console.log('Siguiente escena');
+        this.scene.start(this.nextZone);
+      }
+   //Si solo uno de ellos entra, "llama" al otro haciendo visible un texto
+      else if(this.physics.overlap(this.playerBuffoon, this.endTrigger) || this.physics.overlap(this.playerCountess, this.endTrigger)){
+         console.log('Un jugador colisionando');
+         this.endTriggerText.visible=true;
+      }
+   //Si no hay ninguno dentro, simplemente el texto se oculta
+     else{
+        this.endTriggerText.visible=false;
+      }
     }
- //Si solo uno de ellos entra, "llama" al otro haciendo visible un texto
-    else if(this.physics.overlap(this.playerBuffoon, this.endTrigger) || this.physics.overlap(this.playerCountess, this.endTrigger)){
-       console.log('Un jugador colisionando');
-       this.endTriggerText.visible=true;
-    }
- //Si no hay ninguno dentro, simplemente el texto se oculta
-   else{
-      this.endTriggerText.visible=false;
-    }
-  }
 
   //Comprueba las colisiones entre jguadores y placa de presión. Si colisionan, cambia el "on" de la placa de presión a true; en el caso contrario, a false. Luego llama al método de interacción de la placa.
   checkPressureplate(){
-    var num=this.pressurePlates.getChildren().length
+    var num=this.platesGroup.getChildren().length
     for(var i=0;i<num;i++){
-      if (this.physics.overlap(this.playerBuffoon, this.pressurePlates.getChildren()[i]) ||this.physics.overlap(this.playerCountess, this.pressurePlates.getChildren()[i]) || this.physics.overlap(this.caja, this.pressurePlates.getChildren()[i]) || this.physics.overlap(this.caja2, this.pressurePlates.getChildren()[i])){
-        this.pressurePlates.getChildren()[i].active=true;
+      if (this.physics.overlap(this.playerBuffoon, this.platesGroup.getChildren()[i]) ||this.physics.overlap(this.playerCountess, this.platesGroup.getChildren()[i]) || this.physics.overlap(this.boxesGroup, this.platesGroup.getChildren()[i])){
+        this.platesGroup.getChildren()[i].active=true;
       }
       else{
-        this.pressurePlates.getChildren()[i].active=false;
+        this.platesGroup.getChildren()[i].active=false;
       }
-      this.pressurePlates.getChildren()[i].platePressed();
+      this.platesGroup.getChildren()[i].platePressed();
     }
   }
-}   
+
+  //Si la caja no está colisionando con ningún jugador, deja de moverse
+  checkBoxes(){
+    for(var i=0; i<this.boxesGroup.getChildren().length;i++){
+      let caja=this.boxesGroup.getChildren()[i]
+
+      if(!this.physics.overlap(this.playerBuffoon, caja.object) && !this.physics.overlap(this.playerCountess, caja.object))
+      caja.stopMove();
+
+    }
+  }
+}
