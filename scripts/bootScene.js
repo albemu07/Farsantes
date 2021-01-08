@@ -41,6 +41,7 @@ export default class Boot extends Phaser.Scene{
         this.load.spritesheet('DoorClose','./assets/door/closeDoor.png',{frameWidth:38,frameHeight:38});
         this.load.tilemapTiledJSON('tilemap', './assets/tile/nivelPrueba.json');
         this.load.tilemapTiledJSON('tilemap2', './assets/tile/zone2.json');
+        this.load.tilemapTiledJSON('tilemap3', './assets/tile/zone3.json');
         this.load.image('map', './assets/tile/spriteSet.png');
         this.load.image('map2', './assets/tile/spriteSetNight.png');
 

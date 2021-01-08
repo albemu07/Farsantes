@@ -1,9 +1,9 @@
 import Enemigo from './enemigo.js'
 export default class Guardia extends Enemigo
 {
-    constructor(scene,x,y,x2,y2,horizontal,type,sprite)
+    constructor(scene,type,route,circle,sprite)
     {
-        super(scene, x, y,x2,y2,horizontal,type, sprite);
+        super(scene,route[0][0],route[0][1],type,route,circle, sprite);
 
         this.velocidad = 50;
  
@@ -12,14 +12,16 @@ export default class Guardia extends Enemigo
     {
         this.scene.physics.moveTo(this, this.posX,this.posY, this.velocidad);
             
-        if (this.horizontal)
+        if (this.circle)
         {
-            this.moveH();
+            this.moveCircle();
         }  
         else 
-        {
-            this.moveV();
+        {            
+            this.moveRoundTrip();
         }
+
+        
     }
    
 
