@@ -117,11 +117,11 @@ export default class Game extends Phaser.Scene {
       let ruta=new Array()                                                //Crea un array en el que añadir posiciones
       this.routeLayer.forEach(object =>{                                  //Añade posiciones al array si el objeto Punto de ruta tiene el mismo nombre que la monja
         let punto=object
-        if(punto.name===guardia.name){
+        if(punto.name===monk.name){
           ruta.push(new Array(punto.x,punto.y))
         }
       })                                 
-      this.monksGroup.add(new Guardia(this,false,ruta,monk.properties[0].value,'guardiaF'));  //Por cada objeto dentro de la capa se crea una monja en el grupo.
+      this.monksGroup.add(new Monje(this,false,ruta,monk.properties[0].value,'monjeF'));  //Por cada objeto dentro de la capa se crea una monja en el grupo.
     })
 
     //Creación de los jugadores
@@ -182,12 +182,22 @@ export default class Game extends Phaser.Scene {
       this.physics.add.overlap(this.playerBuffoon, this.ringsGroup.getChildren()[i], (o1, o2) => {this.takeRing(o1,o2); });
     }
 
+    for(var i=0;i<this.guardsGroup.getChildren().length;i++){
+      this.physics.add.overlap(this.playerBuffoon,this.guardsGroup.getChildren()[i],(o1,o2)=>{this.arlVig(o1,o2);});
+      this.physics.add.overlap(this.playerCountess,this.guardsGroup.getChildren()[i],(o1,o2)=>{this.marGuardia(o1,o2);});
+    }
+    for(var i=0;i<this.ringsGroup.getChildren().length;i++){
+      this.physics.add.overlap(this.playerBuffoon,this.guardsGroup.getChildren()[i],(o1,o2)=>{this.arlVig(o1,o2);});
+      this.physics.add.overlap(this.playerCountess,this.monksGroup.getChildren()[i],(o1,o2)=>{this.marMonje(o1,o2)});
+    }
+    
+
 
     //Jugadores con los guardias
-    this.physics.add.overlap(this.playerBuffoon,this.guardsGroup,(o1,o2)=>{this.arlVig(o1,o2);});
-    this.physics.add.overlap(this.playerBuffoon,this.monksGroup,(o1,o2)=>{this.arlVig(o1,o2);});
-    this.physics.add.overlap(this.playerCountess,this.guardsGroup,(o1,o2)=>{this.marGuardia(o1,o2);});
-    this.physics.add.overlap(this.playerCountess,this.monksGroup,(o1,o2)=>{this.marMonje(o1,o2)});
+    // this.physics.add.overlap(this.playerBuffoon,this.guardsGroup,(o1,o2)=>{this.arlVig(o1,o2);});
+    // this.physics.add.overlap(this.playerBuffoon,this.monksGroup,(o1,o2)=>{this.arlVig(o1,o2);});
+    // this.physics.add.overlap(this.playerCountess,this.guardsGroup,(o1,o2)=>{this.marGuardia(o1,o2);});
+    // this.physics.add.overlap(this.playerCountess,this.monksGroup,(o1,o2)=>{this.marMonje(o1,o2)});
 
     this.score = 0;     
 
