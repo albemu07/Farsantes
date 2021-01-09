@@ -40,6 +40,7 @@ export default class Boot extends Phaser.Scene{
         this.load.spritesheet('DoorOpen','./assets/door/openDoor.png',{frameWidth:38,frameHeight:38});        
         this.load.spritesheet('DoorClose','./assets/door/closeDoor.png',{frameWidth:38,frameHeight:38});
         this.load.tilemapTiledJSON('tilemap', './assets/tile/nivelPrueba.json');
+        this.load.tilemapTiledJSON('tilemap1', './assets/tile/zone1.json');
         this.load.tilemapTiledJSON('tilemap2', './assets/tile/zone2.json');
         this.load.tilemapTiledJSON('tilemap3', './assets/tile/zone3.json');
         this.load.image('map', './assets/tile/spriteSet.png');
@@ -59,6 +60,12 @@ export default class Boot extends Phaser.Scene{
         this.load.image('backButton','./assets/menu/backButton.png')
         this.load.image('exitButton','./assets/menu/exitButton.png')
         this.load.image('gameButton','./assets/menu/gameButton.png')
+
+        //Assets de las escenas de texto
+        this.load.image('textBackground','./assets/menu/textBackground.png')
+        this.load.image('text11','./assets/menu/text1.png')
+        this.load.image('text12','./assets/menu/text2.png')
+        this.load.image('continueButton','./assets/menu/continueButton.png')
 
         
 
