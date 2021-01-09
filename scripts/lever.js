@@ -4,7 +4,7 @@ export default class Lever extends Objeto {
     constructor(scene, x, y, door,activated){
         super(scene, x, y, activated ? "LeverOpen" : "LeverClose", 32, 32, 1, false);
         this.door=door;
-        this.on=activated;        
+        this.active=activated;        
         this.cursorsLever = this.scene.input.keyboard.addKeys({
             action: Phaser.Input.Keyboard.KeyCodes.Z
         });
@@ -12,8 +12,8 @@ export default class Lever extends Objeto {
 
     interaction(){
         if(Phaser.Input.Keyboard.JustDown(this.cursorsLever.action)){
-            this.on=!this.on;
-            if(this.on){
+            this.active=!this.active;
+            if(this.active){
                 this.anims.play("ActivateLever", true);
                 this.door.abrir();
             }

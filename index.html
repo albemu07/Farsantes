@@ -72,6 +72,8 @@
        import Settings from './scripts/settingsScene.js'
        import PauseMenu from './scripts/pauseMenu.js'
        import Game from './game.js'
+       import TextScene from './scripts/textScene.js'
+       import TextScene1 from './scripts/textScene1.js'
 
        import Zone1 from './scripts/zone1.js'
        import Zone2 from './scripts/zone2.js'
@@ -89,7 +91,7 @@
           mode: Phaser.Scale.FIT,
           autoCenter: Phaser.Scale.CENTER_BOTH,
         },
-        scene: [Boot,Menu,Settings,PauseMenu,Zone1,Zone2],
+        scene: [Boot,Menu,Settings,PauseMenu,TextScene1,Zone1,Zone2],
         physics: {
           default: "arcade",
           arcade: { gravity: { y:0 }, debug: true },

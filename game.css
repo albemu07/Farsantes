@@ -123,7 +123,6 @@ section{
 }
 
 
-
 #Teammates{
   border: 0px solid black;
   table-layout: fixed;
@@ -150,6 +149,6 @@ td img{
 
 #GameContainer{
  margin: auto;
- padding-top: 12vh;
- height: 60vh;
+ padding-top: 8vh;
+ height: 70vh;
 }

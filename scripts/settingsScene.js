@@ -13,14 +13,14 @@ export default class Settings extends Phaser.Scene{
         this.add.image(0,0,'settingsBackground').setOrigin(0,0)
 
         //Botones
-        this.back=this.add.image(400,300,'backButton')
+        this.back=this.add.image(443,400,'backButton').setScale(1.2)
 
         //Interacciones
         this.back.setInteractive();
 
         //Cambio de tamaño al pasar el ratón por encima
-        this.back.on('pointerover',()=>{this.back.setScale(1.2)})
-        this.back.on('pointerout',()=>{this.back.setScale(1)})
+        this.back.on('pointerover',()=>{this.back.setScale(1.4)})
+        this.back.on('pointerout',()=>{this.back.setScale(1.2)})
 
         //Funciones al pulsar
         this.back.on('pointerdown',this.previousScene,this)
