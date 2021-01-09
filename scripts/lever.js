@@ -11,16 +11,16 @@ export default class Lever extends Objeto {
     }
 
     interaction(){
-        if(Phaser.Input.Keyboard.JustDown(this.cursorsLever.action)){
+        // if(Phaser.Input.Keyboard.JustDown(this.cursorsLever.action)|| (this.pad && this.pad.X)){
             this.active=!this.active;
-            if(this.active){
-                this.anims.play("ActivateLever", true);
-                this.door.abrir();
-            }
-            else{
-                this.anims.play("DesactivateLever", true);
-                this.door.cerrar();
-            }
-        }       
+        if(this.active){
+            this.anims.play("ActivateLever", true);
+            this.door.abrir();
+        }
+        else{
+            this.anims.play("DesactivateLever", true);
+            this.door.cerrar();
+        }
+              
     }
 }

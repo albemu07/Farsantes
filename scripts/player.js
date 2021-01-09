@@ -11,6 +11,7 @@ export default class Player extends Objeto {
       this.colliderY = colliderY;
       this.scale = scale;
       this.pad = gamepad;
+      this.lol = false;
     }
 
     getVelocityY(){
@@ -25,6 +26,28 @@ export default class Player extends Objeto {
       if (caja)
         this.speed = this.speedCaja;
       else this.speed = this.speedPlayer;
+    }
+
+    grabLever(){
+      if (this.pad){
+        if (!this.lol && this.pad.B){
+          this.lol = true;
+          return true;
+        }
+        else if(this.lol && !this.pad.B){
+          this.lol = false;
+        }
+      }
+      else{
+        if (!this.lol && this.cursors.grab.isDown){
+          this.lol = true;
+          return true;
+        }
+        else if(this.lol && !this.cursors.grab.isDown){
+          this.lol = false;
+        }
+      }
+          return false;
     }
 
     grabDown(){

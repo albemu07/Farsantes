@@ -146,9 +146,9 @@ export default class Game extends Phaser.Scene {
     //Jugadores con las palancas
     for(var i=0;i<this.leversGroup.getChildren().length;i++){
       this.physics.add.overlap(this.playerBuffoon, this.leversGroup.getChildren()[i], (o1, o2) => {
-        o2.interaction();});
+        if (o1.grabLever()) o2.interaction();});
       this.physics.add.overlap(this.playerCountess, this.leversGroup.getChildren()[i], (o1, o2) => {
-         o2.interaction();});
+        if (o1.grabLever()) o2.interaction();});
     }
 
     //Cajas con jugadores, muros y puertas
@@ -200,9 +200,18 @@ export default class Game extends Phaser.Scene {
 
     //Gamepad
     this.gamepad;
-    this.input.gamepad.once('down', function (pad, button, index) {
+    this.gamepad2;
+    if (!this.gamepad){
+      this.input.gamepad.once('down', function (pad) {
         this.gamepad = pad;
     }, this);
+    }
+    else {
+      this.input.gamepad.once('down', function (pad) {
+        this.gamepad2 = pad;
+    }, this);
+    }
+
 
       //barro temporal
       this.physics.add.collider(this.playerCountess, this.muudtemp);
@@ -218,8 +227,11 @@ export default class Game extends Phaser.Scene {
 
   update(time,delta){
     //Comprobación del overlapping entre trigger y jugadores
-    if ( this.gamepad){
+    if (this.gamepad){
       this.playerBuffoon.setGamePad(this.gamepad);
+    }
+    if (this.gamepad2){
+      this.playerCountess.setGamePad(this.gamepad2);
     }
     this.checkPressureplate();
     this.checkEndOverlap();
