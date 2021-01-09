@@ -125,8 +125,8 @@ export default class Game extends Phaser.Scene {
     })
 
     //Creación de los jugadores
-    this.playerBuffoon=new Buffoon(this,this.buffoonX,this.buffoonY,'IdleBuffoon');
-    this.playerCountess=new Countess(this,this.countessX,this.countessY,'IdleCountess');
+    this.playerBuffoon=new Buffoon(this,this.buffoonX,this.buffoonY,'RunBuffoon');
+    this.playerCountess=new Countess(this,this.countessX,this.countessY,'RunCountess');
 
     //COLISIONES
     //Jugadores con los muros

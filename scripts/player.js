@@ -74,21 +74,30 @@ export default class Player extends Objeto {
       if (!this.pad){
         if (this.cursors.up.isDown) {
           this.body.setVelocityY(-this.speed);
+          // this.flipX=false;
+          // this.flipY=false;
+          this.angle = 0;
         }
         else if (this.cursors.down.isDown) {
           this.body.setVelocityY(this.speed);
+          // this.flipX=false;
+          // this.flipY=true;
+          this.angle = 180;
         }
         else{
             this.body.setVelocityY(0);
         }
         if (this.cursors.left.isDown) {
           this.body.setVelocityX(-this.speed);
-          this.flipX=true;
-          
+          // this.flipX=true;
+          // this.flipY=false;
+          this.angle = 270;
         }
         else if (this.cursors.right.isDown) {
           this.body.setVelocityX(this.speed);
-          this.flipX=false;
+          // this.flipX=true;
+          // this.flipY=true;
+          this.angle = 90;
         }
         else{
           this.body.setVelocityX(0);
@@ -97,21 +106,31 @@ export default class Player extends Objeto {
       else {
         if (this.pad.up || this.pad.leftStick.y < -0.2) {
           this.body.setVelocityY(-this.speed);
+          this.rotation = 0;
+           this.flipX=false;
+           this.flipY=false;
         }
         else if (this.pad.down || this.pad.leftStick.y > 0.2) {
           this.body.setVelocityY(this.speed);
+          this.rotation = 180;
+          this.flipX=false;
+          this.flipY=true;
         }
         else{
             this.body.setVelocityY(0);
         }
         if (this.pad.left || this.pad.leftStick.x < -0.2) {
           this.body.setVelocityX(-this.speed);
-          this.flipX=true;
+           this.flipY=false;
+           this.rotation = 90;
+           this.flipX=true;
           
         }
         else if (this.pad.right || this.pad.leftStick.x > 0.2) {
           this.body.setVelocityX(this.speed);
-          this.flipX=false;
+           this.flipY=true;
+           this.rotation = 270;
+           this.flipX=true;
         }
         else{
           this.body.setVelocityX(0);

@@ -1,7 +1,7 @@
 import Player from './player.js';
 export default class Countess extends Player {
     constructor(scene, x, y, sprite, gamepad) {
-      super(scene, x, y, sprite, 0.1, 320, 320, 'IdleCountessAnim', 'RunCountessAnim', gamepad);
+      super(scene, x, y, sprite, 1, 25, 25, 'RunCountessAnim', 'RunCountessAnim', gamepad);
       // super.Countess = new Player(scene, x, y,sprite, 0.6, 320, 320);
       // var player = new Player(scene, x, y,sprite, 0.6, 320, 320);
       this.xIni=x;
