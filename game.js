@@ -91,18 +91,37 @@ export default class Game extends Phaser.Scene {
       this.ringsGroup.add(new Ring (this,object.x,object.y,'ringRC','ringR',object.value,0));  //Por cada objeto dentro de la capa se crea un anillo en el grupo.
     })
 
+    //Crear capa de puntos de ruta
+    this.routeLayer=this.map.getObjectLayer('routePoints')['objects']
+
     //Crear capa de guardias
     this.guardsLayer=this.map.getObjectLayer('guards')['objects']         //Creación de capa de guardias
     this.guardsGroup=this.physics.add.group();                            //Creación del grupo de guardias
-    this.guardsLayer.forEach(object =>{                                    
-      this.guardsGroup.add(new Guardia(this,object.route,object.circle,'guardiaF'));  //Por cada objeto dentro de la capa se crea un guardia en el grupo.
+    this.guardsLayer.forEach(object =>{
+      let guardia =object                                                 //Guarda el objeto guardia en una variable temporal
+      let ruta=new Array()                                                //Crea un array en el que añadir posiciones
+      this.routeLayer.forEach(object =>{                                  //Añade posiciones al array si el objeto Punto de ruta tiene el mismo nombre que el guardia
+        let punto=object
+        if(punto.name===guardia.name){
+          ruta.push(new Array(punto.x,punto.y))
+        }
+      })                             
+      this.guardsGroup.add(new Guardia(this,true,ruta,guardia.properties[0].value,'guardiaF'));  //Por cada objeto dentro de la capa se crea un guardia en el grupo.
     })
  
     //Crear capa de monjas
     this.monksLayer=this.map.getObjectLayer('monks')['objects']           //Creación de capa de monjas
-    this.monksGroup=this.physics.add.group();                            //Creación del grupo de monjas
-    this.monksLayer.forEach(object =>{                                    
-      this.monksGroup.add(new Guardia(this,object.route,object.circle,'guardiaF'));  //Por cada objeto dentro de la capa se crea una monja en el grupo.
+    this.monksGroup=this.physics.add.group();                             //Creación del grupo de monjas
+    this.monksLayer.forEach(object =>{                            
+      let monk=object                                                     //Guarda el objeto Monja en una variable temporal
+      let ruta=new Array()                                                //Crea un array en el que añadir posiciones
+      this.routeLayer.forEach(object =>{                                  //Añade posiciones al array si el objeto Punto de ruta tiene el mismo nombre que la monja
+        let punto=object
+        if(punto.name===guardia.name){
+          ruta.push(new Array(punto.x,punto.y))
+        }
+      })                                 
+      this.monksGroup.add(new Guardia(this,false,ruta,monk.properties[0].value,'guardiaF'));  //Por cada objeto dentro de la capa se crea una monja en el grupo.
     })
 
     //Creación de los jugadores
@@ -165,22 +184,19 @@ export default class Game extends Phaser.Scene {
 
 
     //Jugadores con los guardias
+    this.physics.add.overlap(this.playerBuffoon,this.guardsGroup,(o1,o2)=>{this.arlVig(o1,o2);});
+    this.physics.add.overlap(this.playerBuffoon,this.monksGroup,(o1,o2)=>{this.arlVig(o1,o2);});
+    this.physics.add.overlap(this.playerCountess,this.guardsGroup,(o1,o2)=>{this.marGuardia(o1,o2);});
+    this.physics.add.overlap(this.playerCountess,this.monksGroup,(o1,o2)=>{this.marMonje(o1,o2)});
 
     this.score = 0;     
 
     //SetCollisionBetween
     this.map.setCollisionBetween(46, 999);
 
-
-    this.route1 =new Array (new Array(300,150),new Array(470,150),new Array(470,310),new Array(300,310));
-    this.route2 =new Array (new Array(140,80),new Array(140,150),new Array(80,150),new Array(210,150));
-    this.vigGuard = this.physics.add.group();
-    this.vigGuard.add(new Guardia(this,true,this.route1,true,'guardiaF'));
-    this.vigGuard.add(new Guardia(this,true,this.route2,false,'guardiaR'));
-    this.vigNun = this.physics.add.group();
-
     //Texto encima del trigger
-    this.endTriggerText=this.add.text(650,150,'POR AQUÍ');
+    //this.endTriggerText=this.add.text(this.endTrigger.x,this.endTrigger.y,'POR AQUÍ');
+    this.endTriggerText=this.add.image(this.endTrigger.x+20,this.endTrigger.y-10,'endTriggerText').setScale(0.25)
 
     //Gamepad
     this.gamepad;
@@ -191,10 +207,7 @@ export default class Game extends Phaser.Scene {
       //barro temporal
       this.physics.add.collider(this.playerCountess, this.muudtemp);
 
-    this.physics.add.overlap(this.playerBuffoon,this.vigGuard,(o1,o2)=>{this.arlVig(o1,o2);});
-    this.physics.add.overlap(this.playerBuffoon,this.vigNun,(o1,o2)=>{this.arlVig(o1,o2);});
-    this.physics.add.overlap(this.playerCountess,this.vigGuard,(o1,o2)=>{this.marGuardia(o1,o2);});
-    this.physics.add.overlap(this.playerCountess,this.vigNun,(o1,o2)=>{this.marMonje(o1,o2)});
+
 
     //Tecla de menú de pausa
     this.input.keyboard.on('keydown_ESC', ()=> {this.scene.launch('pauseMenu',{zone: this.zone}); this.scene.sleep()},this);

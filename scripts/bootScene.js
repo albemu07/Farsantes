@@ -27,6 +27,7 @@ export default class Boot extends Phaser.Scene{
         this.load.image('ringYC', '/assets/ring/ringYellowClose.png')
         this.load.image('ringY', '/assets/ring/ringYellow.png')
         this.load.image('mud', '/assets/mud/mod.png');
+        this.load.image('endTriggerText','/assets/menu/endTriggerText.png')
         //this.load.image('map', './assets/tile/spriteSetBien.png');
     
         this.load.image('vista','./assets/spriteSheet/deteccion.png') ;
@@ -42,7 +43,8 @@ export default class Boot extends Phaser.Scene{
         this.load.tilemapTiledJSON('tilemap', './assets/tile/nivelPrueba.json');
         this.load.tilemapTiledJSON('tilemap1', './assets/tile/zone1.json');
         this.load.tilemapTiledJSON('tilemap2', './assets/tile/zone2.json');
-        this.load.tilemapTiledJSON('tilemap3', './assets/tile/zone3.json');
+        this.load.tilemapTiledJSON('tilemap3', './assets/tile/zona3.json');
+        this.load.tilemapTiledJSON('tilemap4', './assets/tile/pruebaGuardia.json');
         this.load.image('map', './assets/tile/spriteSet.png');
         this.load.image('map2', './assets/tile/spriteSetNight.png');
 
@@ -52,9 +54,9 @@ export default class Boot extends Phaser.Scene{
 
 
         //Assets del menú
-        this.load.image('menuBackground','./assets/menu/menuBackground1.png')
-        this.load.image('settingsBackground','./assets/menu/menuBackground2.png')
-        this.load.image('pauseBackground','./assets/menu/menuBackground3.png')
+        this.load.image('menuBackground','./assets/menu/menuBackground.png')
+        this.load.image('settingsBackground','./assets/menu/settingsBackground.png')
+        this.load.image('pauseBackground','./assets/menu/pauseBackground.png')
         this.load.image('playButton','./assets/menu/playButton.png')
         this.load.image('settingsButton','./assets/menu/settingsButton.png')
         this.load.image('backButton','./assets/menu/backButton.png')

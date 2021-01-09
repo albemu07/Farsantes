@@ -30,12 +30,30 @@
   <object id="6" name="5" x="784" y="529"/>
   <object id="7" name="6" x="465" y="337"/>
  </objectgroup>
- <objectgroup id="17" name="routePoints"/>
+ <objectgroup id="17" name="routePoints">
+  <object id="23" name="0" x="111" y="304"/>
+  <object id="24" name="0" x="176" y="304"/>
+  <object id="25" name="0" x="176" y="367"/>
+  <object id="28" name="1" x="240" y="365"/>
+  <object id="29" name="1" x="303" y="365"/>
+  <object id="30" name="1" x="305" y="306"/>
+ </objectgroup>
  <objectgroup id="9" name="levers"/>
  <objectgroup id="13" name="endTrigger">
   <object id="17" x="811" y="293" width="78" height="85"/>
  </objectgroup>
- <objectgroup id="11" name="guards"/>
+ <objectgroup id="11" name="guards">
+  <object id="22" name="0" x="79" y="286">
+   <properties>
+    <property name="circle" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="27" name="1" x="236" y="276">
+   <properties>
+    <property name="circle" type="bool" value="false"/>
+   </properties>
+  </object>
+ </objectgroup>
  <objectgroup id="12" name="monks"/>
  <objectgroup id="10" name="boxes">
   <object id="15" x="336" y="111"/>

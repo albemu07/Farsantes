@@ -24,7 +24,7 @@ export default class Menu extends Phaser.Scene{
         this.settings.on('pointerout',()=>{this.settings.setScale(1.2)})
 
         //Funciones al pulsar
-        this.play.on('pointerdown', ()=>{this.scene.start('textScene1')})
+        this.play.on('pointerdown', ()=>{this.scene.start('Zone1')})
         this.settings.on('pointerdown', ()=>{this.scene.start('Settings',{pause: false})})
     }
 }
