@@ -4,6 +4,16 @@ export default class Menu extends Phaser.Scene{
     }
 
     create(){
+        const config = {
+            mute:false,
+            volume: 0.3,
+            rate: 1,
+            detune: 0,
+            seek: 0,
+            loop: true,
+            delay:0
+        }
+        this.music = this.sound.add("music", config)
 
         //Fondo
         this.add.image(0,0,'menuBackground').setOrigin(0,0)
@@ -24,7 +34,10 @@ export default class Menu extends Phaser.Scene{
         this.settings.on('pointerout',()=>{this.settings.setScale(1.2)})
 
         //Funciones al pulsar
-        this.play.on('pointerdown', ()=>{this.scene.start('Zone1')})
+        this.play.on('pointerdown', ()=>{
+            this.music.play();
+            // this.music.setLoop(true);
+            this.scene.start('Zone1')})
         this.settings.on('pointerdown', ()=>{this.scene.start('Settings',{pause: false})})
     }
 }

@@ -71,9 +71,14 @@ export default class Boot extends Phaser.Scene{
         this.load.image('text12','./assets/menu/text2.png')
         this.load.image('continueButton','./assets/menu/continueButton.png')
 
-        
-
-
+        //Assests sonido
+        this.load.audio('closeDoor', './assets/door/close_door_1.mp3');
+        this.load.audio('openDoor', './assets/door/open_door_1.mp3');
+        this.load.audio('gotRing', './assets/ring/ring.mp3');
+        this.load.audio('levelPassed', './assets/extra/levelFinish.mp3');
+        this.load.audio('footstep', './assets/extra/footStep.mp3');
+        this.load.audio('mudstep', './assets/mud/mudFootStep.mp3');
+        this.load.audio('music', './assets/extra/music.mp3');
 
         //Al cargar todos los recursos, se inicia la escena Menú
         this.load.on('complete', function(){
@@ -144,5 +149,17 @@ export default class Boot extends Phaser.Scene{
             frameRate:6,
             repeat: 0
           });
+
+          // const config = {
+          //   mute: false,
+          //   volume: 1,
+          //   rate: 1,
+          //   detune: 0,
+          //   seek: 0,
+          //   loop: false,
+          //   delay: 0,
+          // };
+
+          
     }
 }

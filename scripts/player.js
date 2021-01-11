@@ -12,6 +12,8 @@ export default class Player extends Objeto {
       this.scale = scale;
       this.pad = gamepad;
       this.lol = false;
+      this.sound = false;
+      this.steps = scene.sound.add("footstep");
     }
 
     getVelocityY(){
@@ -139,9 +141,18 @@ export default class Player extends Objeto {
  
       if(this.body.velocity.x===0 && this.body.velocity.y===0){
         this.anims.play(this.animIdle,true);
+        if (this.sound){
+          this.steps.stop();
+          this.sound = false;
+        }
       }
       else{
         this.anims.play(this.animRun,true);
+        if(!this.sound){
+          this.steps.play();
+          this.steps.setLoop(true);
+          this.sound = true;
+        }   
       }
     }
   }

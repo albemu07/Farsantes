@@ -13,7 +13,7 @@ export default class Ring extends Phaser.GameObjects.Container {
         this.checkAnim();
         this.ring = new Objeto(scene, 50, 50, this.sprite, 32, 32, 1, false);
         this.add(this.ring);
-        
+        this.took = scene.sound.add("gotRing");  
     }
     checkAnim()
     {
@@ -44,6 +44,7 @@ export default class Ring extends Phaser.GameObjects.Container {
     }
     taken(){
         //animación
+        this.took.play();
         return this.value;
         
     }

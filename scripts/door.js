@@ -5,15 +5,24 @@ export default class Door extends Objeto {
         this.body.enable=!activated;
         this.open=activated;      
         this.angle=turn   
+        this.closing = scene.sound.add('closeDoor');
+        this.opening = scene.sound.add('openDoor');
     }  
 
     abrir(){        
-        if(this.body.enable) this.anims.play("OpenDoor",true);
+        if(this.body.enable){
+            this.anims.play("OpenDoor",true);
+            this.opening.play();
+        } 
         this.body.enable=false;
+        
     }
 
     cerrar(){       
-        if(!this.body.enable) this.anims.play("CloseDoor",true);
+        if(!this.body.enable){
+            this.anims.play("CloseDoor",true);
+            this.closing.play();
+        } 
         this.body.enable=true;
     }
 }

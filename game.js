@@ -68,7 +68,7 @@ export default class Game extends Phaser.Scene {
     this.leverDoorsLayer=this.map.getObjectLayer('leverDoors')['objects'] //Creación de capa de puertas asociadas a palancas
     this.leverDoorsGroup=this.physics.add.staticGroup();                  //Creación del grupo de puertas asociadas a palancas
     this.leverDoorsLayer.forEach(object =>{                              
-       this.leverDoorsGroup.add(new Door(this,object.x,object.y,object.rotation,false))    //Por cada objeto dentro de la capa se crea una puerta en el grupo.
+       this.leverDoorsGroup.add(new Door(this,object.x,object.y,object.rotation,true))    //Por cada objeto dentro de la capa se crea una puerta en el grupo.
     })
     //Crear capa de palancas
     this.leversLayer=this.map.getObjectLayer('levers')['objects']         //Creación de capa de palancas
@@ -200,7 +200,6 @@ export default class Game extends Phaser.Scene {
     // this.physics.add.overlap(this.playerCountess,this.monksGroup,(o1,o2)=>{this.marMonje(o1,o2)});
 
     this.score = 0;     
-
     //SetCollisionBetween
     this.map.setCollisionBetween(46, 999);
 
@@ -254,6 +253,7 @@ export default class Game extends Phaser.Scene {
       console.log("anillo cogido");
       this.score += o2.taken();
       o2.destroy();
+
     }
     else
     {
@@ -303,7 +303,10 @@ export default class Game extends Phaser.Scene {
     //Si ambos jugadores entran en el trigger, se pasa de escena
       if(this.physics.overlap(this.playerBuffoon, this.endTrigger) && this.physics.overlap(this.playerCountess, this.endTrigger)){
         console.log('Siguiente escena');
-        this.scene.start(this.nextZone);
+          this.levelFinished = this.sound.add('levelPassed')     
+          this.levelFinished.play();
+          this.scene.start(this.nextZone);
+
       }
    //Si solo uno de ellos entra, "llama" al otro haciendo visible un texto
       else if(this.physics.overlap(this.playerBuffoon, this.endTrigger) || this.physics.overlap(this.playerCountess, this.endTrigger)){
