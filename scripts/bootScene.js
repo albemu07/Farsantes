@@ -35,13 +35,13 @@ export default class Boot extends Phaser.Scene{
         this.load.image('vista','./assets/spriteSheet/deteccion.png') ;
         this.load.image('BoxSprite', './assets/box/box.png');
         this.load.image('Trigger','./assets/mechanisms/nextZoneTrigger.png');
-        this.load.spritesheet('Lever1','./assets/lever/lever1.png',{frameWidth:32,frameHeight:32});
-        this.load.spritesheet('Lever2','./assets/lever/lever2.png',{frameWidth:32,frameHeight:32});
-        this.load.image('LeverOpen','./assets/lever/leverOpen.png');
-        this.load.image('LeverClose','./assets/lever/leverClose.png');
-        this.load.image('DoorClosed','./assets/door/doorClose.png');
-        this.load.spritesheet('DoorOpen','./assets/door/openDoor.png',{frameWidth:38,frameHeight:38});        
-        this.load.spritesheet('DoorClose','./assets/door/closeDoor.png',{frameWidth:38,frameHeight:38});
+        this.load.spritesheet('Lever11','./assets/lever/lever11.png',{frameWidth:32,frameHeight:32});
+        this.load.spritesheet('Lever21','./assets/lever/lever21.png',{frameWidth:32,frameHeight:32});
+        this.load.image('LeverOpen1','./assets/lever/leverOpen.png');
+        this.load.image('LeverClose1','./assets/lever/leverClose.png');
+        this.load.image('DoorClosed1','./assets/door/doorClose.png');
+        this.load.spritesheet('DoorOpen1','./assets/door/openDoor.png',{frameWidth:38,frameHeight:38});        
+        this.load.spritesheet('DoorClose1','./assets/door/closeDoor.png',{frameWidth:38,frameHeight:38});
         this.load.tilemapTiledJSON('tilemap', './assets/tile/nivelPrueba.json');
         this.load.tilemapTiledJSON('tilemap1', './assets/tile/zone1.json');
         this.load.tilemapTiledJSON('tilemap2', './assets/tile/zone2.json');
@@ -51,8 +51,8 @@ export default class Boot extends Phaser.Scene{
         this.load.image('map2', './assets/tile/spriteSetNight.png');
 
         //Placa de presión
-        this.load.image('plateUnpressed','./assets/presurePlate/plateUnpressed.png')
-        this.load.image('platePressed','./assets/presurePlate/platePressed.png')
+        this.load.image('plateUnpressed1','./assets/presurePlate/plateUnpressed1.png')
+        this.load.image('platePressed1','./assets/presurePlate/platePressed1.png')
 
 
         //Assets del menú
@@ -118,29 +118,29 @@ export default class Boot extends Phaser.Scene{
       
           //Animaciones de palanca y puerta
           this.anims.create({
-            key:'DesactivateLever',
-            frames: this.anims.generateFrameNumbers('Lever1'),
+            key:'DesactivateLever1',
+            frames: this.anims.generateFrameNumbers('Lever11'),
             frameRate:6,
             repeat: 0
           });
       
           this.anims.create({
-            key:'OpenDoor',
-            frames: this.anims.generateFrameNumbers('DoorOpen'),
+            key:'OpenDoor1',
+            frames: this.anims.generateFrameNumbers('DoorOpen1'),
             frameRate:7,
             repeat: 0
           });
       
           this.anims.create({
-            key:'CloseDoor',
-            frames: this.anims.generateFrameNumbers('DoorClose'),
+            key:'CloseDoor1',
+            frames: this.anims.generateFrameNumbers('DoorClose1'),
             frameRate:7,
             repeat: 0
           });
       
           this.anims.create({
-            key:'ActivateLever',
-            frames: this.anims.generateFrameNumbers('Lever2'),
+            key:'ActivateLever1',
+            frames: this.anims.generateFrameNumbers('Lever21'),
             frameRate:6,
             repeat: 0
           });
