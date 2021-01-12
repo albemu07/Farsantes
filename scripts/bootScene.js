@@ -50,8 +50,8 @@ export default class Boot extends Phaser.Scene{
     this.load.spritesheet('LeverClose1','./assets/lever/lever21.png',{frameWidth:32,frameHeight:32});
     this.load.spritesheet('LeverOpen2','./assets/lever/lever12.png',{frameWidth:32,frameHeight:32});
     this.load.spritesheet('LeverClose2','./assets/lever/lever22.png',{frameWidth:32,frameHeight:32});
-    this.load.spritesheet('LeverOpen3','./assets/lever/lever13.png',{frameWidth:32,frameHeight:32});
-    this.load.spritesheet('LeverClose3','./assets/lever/lever23.png',{frameWidth:32,frameHeight:32});
+    //this.load.spritesheet('LeverOpen3','./assets/lever/lever13.png',{frameWidth:32,frameHeight:32});
+    //this.load.spritesheet('LeverClose3','./assets/lever/lever23.png',{frameWidth:32,frameHeight:32});
 
     //Door
     this.load.spritesheet('DoorOpen1','./assets/door/openDoor1.png',{frameWidth:38,frameHeight:38});        
@@ -97,6 +97,15 @@ export default class Boot extends Phaser.Scene{
     this.load.image('text11','./assets/menu/text1.png');
     this.load.image('text12','./assets/menu/text2.png');
     this.load.image('continueButton','./assets/menu/continueButton.png');
+
+    //Assests sonido
+    this.load.audio('closeDoor', './assets/door/close_door_1.mp3');
+    this.load.audio('openDoor', './assets/door/open_door_1.mp3');
+    this.load.audio('gotRing', './assets/ring/ring.mp3');
+    this.load.audio('levelPassed', './assets/extra/levelFinish.mp3');
+    this.load.audio('footstep', './assets/extra/footStep.mp3');
+    this.load.audio('mudstep', './assets/mud/mudFootStep.mp3');
+    this.load.audio('music', './assets/extra/music.mp3');
 
     //Al cargar todos los recursos, se inicia la escena Menú
     this.load.on('complete', function(){
@@ -165,28 +174,14 @@ export default class Boot extends Phaser.Scene{
       frameRate:6,
       repeat: 0
     });
-
-        //Assests sonido
-        this.load.audio('closeDoor', './assets/door/close_door_1.mp3');
-        this.load.audio('openDoor', './assets/door/open_door_1.mp3');
-        this.load.audio('gotRing', './assets/ring/ring.mp3');
-        this.load.audio('levelPassed', './assets/extra/levelFinish.mp3');
-        this.load.audio('footstep', './assets/extra/footStep.mp3');
-        this.load.audio('mudstep', './assets/mud/mudFootStep.mp3');
-        this.load.audio('music', './assets/extra/music.mp3');
+        
     this.anims.create({
       key:'DesactivateLever3',
       frames: this.anims.generateFrameNumbers('LeverOpen3'),
       frameRate:6,
       repeat: 0
     });
-
-        //Al cargar todos los recursos, se inicia la escena Menú
-        this.load.on('complete', function(){
-            console.log('Preload complete');
-            this.scene.start('Menu');
-        },this);
-    }
+          
     this.anims.create({
       key:'ActivateLever3',
       frames: this.anims.generateFrameNumbers('LeverClose3'),
@@ -223,80 +218,6 @@ export default class Boot extends Phaser.Scene{
       repeat: 0
     }); 
 
-    create(){
-        
-        //Animaciones de ambos personajes
-        this.anims.create({
-            key:'IdleBuffoonAnim',
-            frames: this.anims.generateFrameNumbers('IdleBuffoon'),
-            frameRate:4,
-            repeat: -1
-          });
-      
-          this.anims.create({
-            key:'RunBuffoonAnim',
-            frames: this.anims.generateFrameNumbers('RunBuffoon'),
-            frameRate:6,
-            repeat: -1
-          });
-      
-          
-          this.anims.create({
-            key:'IdleCountessAnim',
-            frames: this.anims.generateFrameNumbers('IdleCountess'),
-            frameRate:3,
-            repeat: -1
-          });
-      
-          
-          this.anims.create({
-            key:'RunCountessAnim',
-            frames: this.anims.generateFrameNumbers('RunCountess'),
-            frameRate:6,
-            repeat: -1
-          });
-      
-          //Animaciones de palanca y puerta
-          this.anims.create({
-            key:'DesactivateLever',
-            frames: this.anims.generateFrameNumbers('Lever1'),
-            frameRate:6,
-            repeat: 0
-          });
-      
-          this.anims.create({
-            key:'OpenDoor',
-            frames: this.anims.generateFrameNumbers('DoorOpen'),
-            frameRate:7,
-            repeat: 0
-          });
-      
-          this.anims.create({
-            key:'CloseDoor',
-            frames: this.anims.generateFrameNumbers('DoorClose'),
-            frameRate:7,
-            repeat: 0
-          });
-      
-          this.anims.create({
-            key:'ActivateLever',
-            frames: this.anims.generateFrameNumbers('Lever2'),
-            frameRate:6,
-            repeat: 0
-          });
-
-          // const config = {
-          //   mute: false,
-          //   volume: 1,
-          //   rate: 1,
-          //   detune: 0,
-          //   seek: 0,
-          //   loop: false,
-          //   delay: 0,
-          // };
-
-          
-    }
     this.anims.create({
       key:'OpenDoor3',
       frames: this.anims.generateFrameNumbers('DoorOpen3'),

@@ -12,7 +12,7 @@ export default class Door extends Objeto {
 
     abrir(){        
         if(this.body.enable){
-            this.anims.play("OpenDoor",true);
+            this.anims.play("OpenDoor"+this.level,true);
             this.opening.play();
         } 
         this.body.enable=false;
@@ -21,7 +21,7 @@ export default class Door extends Objeto {
 
     cerrar(){       
         if(!this.body.enable){
-            this.anims.play("CloseDoor",true);
+            this.anims.play("CloseDoor"+this.level,true);
             this.closing.play();
         } 
         this.body.enable=true;
