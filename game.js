@@ -5,7 +5,6 @@ import Ring from './scripts/ring.js';
 import Caja from './scripts/caja.js';
 import Door from './scripts/door.js';
 import PressurePlate from './scripts/pressurePlate.js'
-import Objecto from './scripts/objeto.js';
 import Guardia from './scripts/guardia.js';
 import Monje from './scripts/monje.js';
 
@@ -22,10 +21,9 @@ export default class Game extends Phaser.Scene {
     this.tileMap = tileMap;
   }
 
+  // preload() {
 
-  preload() {
-
-  }
+  // }
 
   create() {
 
@@ -55,33 +53,33 @@ export default class Game extends Phaser.Scene {
     this.plateDoorsLayer=this.map.getObjectLayer('plateDoors')['objects'] //Creación de capa de puertas asociadas a placas
     this.plateDoorsGroup=this.physics.add.staticGroup();                  //Creación del grupo de puertas asociadas a placas
     this.plateDoorsLayer.forEach(object =>{                               
-      this.plateDoorsGroup.add(new Door(this,object.x,object.y,object.rotation,false))    //Por cada objeto dentro de la capa se crea una puerta en el grupo.
+      this.plateDoorsGroup.add(new Door(this,object.x,object.y,object.rotation,false, 1))    //Por cada objeto dentro de la capa se crea una puerta en el grupo.
     })
     //Crear capa de placas
     this.platesLayer=this.map.getObjectLayer('plates')['objects']         //Creación de capa de placas
     this.platesGroup=this.physics.add.staticGroup();                      //Creación del grupo de placas
     this.platesLayer.forEach(object =>{                                   //Por cada objeto dentro de la capa se crea una placa en el grupo. La puerta asociada es la puerta del grupo anterior con el mismo nombre.
-      this.platesGroup.add(new PressurePlate(this,object.x,object.y,this.plateDoorsGroup.getChildren()[object.name],false))
+      this.platesGroup.add(new PressurePlate(this,object.x,object.y,this.plateDoorsGroup.getChildren()[object.name],false, 1))
     })
 
     //Crear capa de puertas de palancas
     this.leverDoorsLayer=this.map.getObjectLayer('leverDoors')['objects'] //Creación de capa de puertas asociadas a palancas
     this.leverDoorsGroup=this.physics.add.staticGroup();                  //Creación del grupo de puertas asociadas a palancas
     this.leverDoorsLayer.forEach(object =>{                              
-       this.leverDoorsGroup.add(new Door(this,object.x,object.y,object.rotation,false))    //Por cada objeto dentro de la capa se crea una puerta en el grupo.
+       this.leverDoorsGroup.add(new Door(this,object.x,object.y,object.rotation,false,1))    //Por cada objeto dentro de la capa se crea una puerta en el grupo.
     })
     //Crear capa de palancas
     this.leversLayer=this.map.getObjectLayer('levers')['objects']         //Creación de capa de palancas
     this.leversGroup=this.physics.add.staticGroup();                      //Creación del grupo de palancas
     this.leversLayer.forEach(object =>{                                   //Por cada objeto dentro de la capa se crea una palcan en el grupo. La puerta asociada es la puerta del grupo anterior con el mismo nombre.
-       this.leversGroup.add(new Lever(this,object.x,object.y,this.leverDoorsGroup.getChildren()[object.name],false))
+       this.leversGroup.add(new Lever(this,object.x,object.y,this.leverDoorsGroup.getChildren()[object.name],false, 1))
     })
 
     //Crear capa de cajas
     this.boxesLayer=this.map.getObjectLayer('boxes')['objects']           //Creación de capa de cajas
     this.boxesGroup=this.physics.add.group();                             //Creación del grupo de cajas
     this.boxesLayer.forEach(object =>{                                    
-      this.boxesGroup.add(new Caja(this,object.x,object.y,'BoxSprite'));  //Por cada objeto dentro de la capa se crea una caja en el grupo.
+      this.boxesGroup.add(new Caja(this,object.x,object.y,'BoxSprite',1));  //Por cada objeto dentro de la capa se crea una caja en el grupo.
     })
 
     //Crear capa de coleccionables
@@ -133,6 +131,9 @@ export default class Game extends Phaser.Scene {
     this.physics.add.collider(this.playerBuffoon, this.walls);
     this.physics.add.collider(this.playerCountess, this.walls);
 
+    //Marquesa con el barro
+    this.physics.add.collider(this.playerCountess, this.mud);
+
     //Jugadores con las puertas (de placas y palancas)
     for(var i=0;i<this.plateDoorsGroup.getChildren().length;i++){
         this.physics.add.collider(this.playerBuffoon,this.plateDoorsGroup.getChildren()[i])
@@ -146,9 +147,11 @@ export default class Game extends Phaser.Scene {
     //Jugadores con las palancas
     for(var i=0;i<this.leversGroup.getChildren().length;i++){
       this.physics.add.overlap(this.playerBuffoon, this.leversGroup.getChildren()[i], (o1, o2) => {
-        if (o1.grabLever()) o2.interaction();});
+        if (o1.grabLever()) 
+          o2.interaction();});
       this.physics.add.overlap(this.playerCountess, this.leversGroup.getChildren()[i], (o1, o2) => {
-        if (o1.grabLever()) o2.interaction();});
+        if (o1.grabLever()) 
+          o2.interaction();});
     }
 
     //Cajas con jugadores, muros y puertas
@@ -173,8 +176,7 @@ export default class Game extends Phaser.Scene {
       }
       for(var j=0;j<this.leverDoorsGroup.getChildren().length;j++){
         this.physics.add.collider(caja,this.leversDoorsGroup.getChildren()[j])
-      }
-              
+      }           
     }
 
     //Jugadores con coleccionables
@@ -192,7 +194,6 @@ export default class Game extends Phaser.Scene {
     }
     
 
-
     //Jugadores con los guardias
     // this.physics.add.overlap(this.playerBuffoon,this.guardsGroup,(o1,o2)=>{this.arlVig(o1,o2);});
     // this.physics.add.overlap(this.playerBuffoon,this.monksGroup,(o1,o2)=>{this.arlVig(o1,o2);});
@@ -201,7 +202,8 @@ export default class Game extends Phaser.Scene {
 
     this.score = 0;     
     //SetCollisionBetween
-    this.map.setCollisionBetween(46, 999);
+    this.walls.setCollisionBetween(46, 999);
+    this.mud.setCollisionBetween(46,999);
 
     //Texto encima del trigger
     //this.endTriggerText=this.add.text(this.endTrigger.x,this.endTrigger.y,'POR AQUÍ');
@@ -221,17 +223,12 @@ export default class Game extends Phaser.Scene {
     }, this);
     }
 
-
-      //barro temporal
-      this.physics.add.collider(this.playerCountess, this.muudtemp);
-
-
-
     //Tecla de menú de pausa
     this.input.keyboard.on('keydown_ESC', ()=> {this.scene.launch('pauseMenu',{zone: this.zone}); this.scene.sleep()},this);
   }
 
   preUpdate(time,delta){
+    super.preUpdate(time, delta);
   }
 
   update(time,delta){
