@@ -27,6 +27,14 @@ export default class Game extends Phaser.Scene {
 
   create() {
 
+    this.win = false;
+
+    this.levelFinished = this.sound.add('levelPassed');
+    this.levelFinished.once('stop', function (music) {
+      console.log('AAAAAAAAAAAAAAAAAAAAAH')
+      this.scene.start(this.nextZone);
+    });
+      
     //mapa
     this.map = this.make.tilemap({
       key: this.tileMap
@@ -296,14 +304,16 @@ export default class Game extends Phaser.Scene {
     }
   }
 
+
+
   checkEndOverlap(){
     //Si ambos jugadores entran en el trigger, se pasa de escena
       if(this.physics.overlap(this.playerBuffoon, this.endTrigger) && this.physics.overlap(this.playerCountess, this.endTrigger)){
-        console.log('Siguiente escena');
-          this.levelFinished = this.sound.add('levelPassed')     
+        console.log('Siguiente escena');  
+        if(!this.win) {
           this.levelFinished.play();
-          this.scene.start(this.nextZone);
-
+          this.win = true;
+        }
       }
    //Si solo uno de ellos entra, "llama" al otro haciendo visible un texto
       else if(this.physics.overlap(this.playerBuffoon, this.endTrigger) || this.physics.overlap(this.playerCountess, this.endTrigger)){
