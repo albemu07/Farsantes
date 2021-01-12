@@ -19,7 +19,6 @@ export default class Lever extends Objeto {
         else{
             this.anims.play("DesactivateLever"+this.level, true);
             this.door.cerrar();
-        }
-              
+        }             
     }
 }

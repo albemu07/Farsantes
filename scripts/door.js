@@ -1,7 +1,7 @@
 import Objeto from './objeto.js';
 export default class Door extends Objeto {
     constructor(scene, x, y, turn, activated, level){
-        super(scene, x, y,  activated ? "DoorOpen"+level:"DoorClosed"+level, 12, 32, 1, true);
+        super(scene, x, y,  activated ? "DoorClose"+level:"DoorOpen"+level, 12, 12, 1, true);
         this.body.enable=!activated;
         this.open=activated;      
         this.angle=turn; 

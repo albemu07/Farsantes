@@ -2,7 +2,7 @@ import Objeto from './objeto.js';
 
 export default class Caja extends Phaser.GameObjects.Container
 {
-    constructor(scene, x, y,sprite)
+    constructor(scene, x, y,sprite, level)
     {
         super(scene,x,y);
         
@@ -13,8 +13,8 @@ export default class Caja extends Phaser.GameObjects.Container
         this.myVelo = this.body.velocity;
         this.escena = scene;
         this.setScale(0.4);
-        this.box = new Objeto(scene,32, 32,sprite, 500, 500, 0.1, true);
-        this.object = new Objeto(scene,32,32,sprite, 700, 700, 0.1, true);
+        this.box = new Objeto(scene,32, 32,sprite+(level%2), 500, 500, 0.1, true);
+        this.object = new Objeto(scene,32,32,null, 700, 700, 0.1, true);
         this.add(this.object);
         this.grab = false;
         this.add(this.box);

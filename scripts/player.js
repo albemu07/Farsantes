@@ -38,16 +38,10 @@ export default class Player extends Objeto {
           this.lol = false;
         }
       }
-      else{
-        if (!this.lol && this.cursors.grab.isDown){
-          this.lol = true;
-          return true;
-        }
-        else if(this.lol && !this.cursors.grab.isDown){
-          this.lol = false;
-        }
+      else if (Phaser.Input.Keyboard.JustDown(this.cursors.grab)){        
+        return true;            
       }
-          return false;
+      return false;
     }
 
     grabDown(){
