@@ -3,7 +3,7 @@ import Vision from './vision.js';
 
 export default class Enemigo extends Phaser.GameObjects.Container
 {
-    constructor(scene,x,y,type,route,circle, sprite)
+    constructor(scene,x,y,type,route,circle, sprite,anim)
     {
         super(scene,x,y);
         scene.add.existing(this);
@@ -13,11 +13,13 @@ export default class Enemigo extends Phaser.GameObjects.Container
         this.tipo =type;
         this.route = route;
         this.circle = circle;
+        this.animation=anim;
         this.setScale(0.4);
         this.vision = new Vision (scene,0,0,'vista');
-        this.object = new Objecto(scene,30,30,sprite,100,100,1,false);
+        this.object = new Objecto(scene,30,30,sprite,100,100,2.5,false);
         this.add(this.object);
         this.add(this.vision);
+        this.object.anims.play(this.animacion,true);
         this.after =1;
         this.pos1X = x
         this.pos1Y = y
@@ -153,65 +155,38 @@ export default class Enemigo extends Phaser.GameObjects.Container
     }
     leftAnim()
     {
-        if (this.tipo)
-        {
-            this.object.setTexture('guardiaL');
-        }
-        else 
-        {
-            this.object.setTexture('monjeL');
-        }
+        
+        this.object.angle = 270;
         this.vision.flipY= false;
-        this.vision.x = 30;
-        this.vision.y=30;
+        this.vision.x = 20;
+        this.vision.y=55;
         this.object.x =60;
         this.object.y=30;
     }
     rightAnim()
     {
-        if (this.tipo)
-        {
-           this.object.setTexture('guardiaR');
-        }
-        else 
-        {
-            this.object.setTexture('monjeR');
-        }
+        this.object.angle = 90;
         this.vision.flipY= true;
-        this.vision.x = 60;
-        this.vision.y=30;
+        this.vision.x = 80;
+        this.vision.y=5;
         this.object.x =30;
         this.object.y=30;
     }
     frontAnim()
     {
-        if (this.tipo)
-        {
-            this.object.setTexture('guardiaF');
-        }
-        else 
-        {
-            this.object.setTexture('monjeF');
-        }
+        this.object.angle = 180;
         this.vision.flipY= true;
-        this.vision.y =60; 
-        this.vision.x=30;
+        this.vision.y =80; 
+        this.vision.x=55;
         this.object.y =30;  
         this.object.x=30; 
     }
     backAnim()
     {
-        if (this.tipo)
-        {
-            this.object.setTexture('guardiaB');
-        }
-        else 
-        {
-            this.object.setTexture('monjeB');
-        }
+        this.object.angle = 0;
         this.vision.flipY= false;
-        this.vision.y = 30;  
-        this.vision.x=30;
+        this.vision.y = 20;  
+        this.vision.x=5;
         this.object.y= 60;  
         this.object.x=30;
     }

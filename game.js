@@ -94,7 +94,7 @@ export default class Game extends Phaser.Scene {
     this.ringsLayer=this.map.getObjectLayer('rings')['objects']           //Creación de capa de coleccionables
     this.ringsGroup=this.physics.add.staticGroup();                       //Creación del grupo de coleccionables
     this.ringsLayer.forEach(object =>{                                    
-      this.ringsGroup.add(new Ring (this,object.x,object.y,'ringRC','ringR',object.value,0));  //Por cada objeto dentro de la capa se crea un anillo en el grupo.
+      this.ringsGroup.add(new Ring (this,object.x,object.y,object.type,object.rotation));  //Por cada objeto dentro de la capa se crea un anillo en el grupo.
     })
 
     //Crear capa de puntos de ruta
@@ -112,7 +112,7 @@ export default class Game extends Phaser.Scene {
           ruta.push(new Array(punto.x,punto.y))
         }
       })                             
-      this.guardsGroup.add(new Guardia(this,true,ruta,guardia.properties[0].value,'guardiaF'));  //Por cada objeto dentro de la capa se crea un guardia en el grupo.
+      this.guardsGroup.add(new Guardia(this,true,ruta,guardia.properties[0].value,'runguard','GuardAnim'));  //Por cada objeto dentro de la capa se crea un guardia en el grupo.
     })
  
     //Crear capa de monjas
@@ -127,7 +127,7 @@ export default class Game extends Phaser.Scene {
           ruta.push(new Array(punto.x,punto.y))
         }
       })                                 
-      this.monksGroup.add(new Monje(this,false,ruta,monk.properties[0].value,'monjeF'));  //Por cada objeto dentro de la capa se crea una monja en el grupo.
+      this.monksGroup.add(new Monje(this,false,ruta,monk.properties[0].value,'runmonk','MonkAnim'));  //Por cada objeto dentro de la capa se crea una monja en el grupo.
     })
 
     //Creación de los jugadores
