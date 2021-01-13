@@ -5,14 +5,14 @@ export default class Ring extends Phaser.GameObjects.Container {
         scene.add.existing(this);
         scene.physics.world.enable(this);
         this.body.setCollideWorldBounds();
-        this.value = value;
+        this.value = value*100;
         this.body.setSize(100,100);
         this.body.immovable = true;
-        this.setAngle(angle);
         this.scene= scene;
         this.checkAnim();
-        this.ring = new Objeto(scene, 50, 50, this.sprite, 32, 32, 1, false);
+        this.ring = new Objeto(scene, 50, 50, this.sprite, 32, 32, 1,false);
         this.add(this.ring);
+        this.ring.setAngle(angle);
         this.took = scene.sound.add("gotRing");  
     }
     checkAnim()

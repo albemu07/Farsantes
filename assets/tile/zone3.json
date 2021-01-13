@@ -110,34 +110,34 @@
                  "height":0,
                  "id":8,
                  "name":"3",
-                 "rotation":0,
+                 "rotation":-90,
                  "type":"3",
                  "visible":true,
                  "width":0,
-                 "x":30.6667,
-                 "y":64
+                 "x":13.3333666666667,
+                 "y":44
                 }, 
                 {
                  "height":0,
                  "id":22,
                  "name":"2",
-                 "rotation":0,
+                 "rotation":90,
                  "type":"2",
                  "visible":true,
                  "width":0,
-                 "x":800,
-                 "y":94.6667
+                 "x":723,
+                 "y":62.6667
                 }, 
                 {
                  "height":0,
                  "id":28,
                  "name":"1",
-                 "rotation":0,
+                 "rotation":-90,
                  "type":"1",
                  "visible":true,
                  "width":0,
-                 "x":720,
-                 "y":528
+                 "x":678,
+                 "y":486.666666666667
                 }],
          "opacity":1,
          "properties":[
@@ -257,7 +257,7 @@
                  "name":"",
                  "rotation":0,
                  "type":"",
-                 "visible":true,
+                 "visible":false,
                  "width":82.6667,
                  "x":804,
                  "y":328
@@ -316,17 +316,6 @@
                  "width":0,
                  "x":718.667,
                  "y":146.667
-                }, 
-                {
-                 "height":0,
-                 "id":38,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":1.33333,
-                 "x":117.333,
-                 "y":-90.6667
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -413,7 +402,7 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":680,
+                 "x":666,
                  "y":184
                 }, 
                 {
@@ -424,7 +413,7 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":346,
+                 "x":344,
                  "y":126
                 }, 
                 {
@@ -435,7 +424,7 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":346,
+                 "x":344,
                  "y":572
                 }],
          "opacity":1,
