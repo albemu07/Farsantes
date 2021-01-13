@@ -11,7 +11,7 @@ export default class Guardia extends Enemigo
     preUpdate()
     {
         this.scene.physics.moveTo(this, this.posX,this.posY, this.velocidad);
-            
+        this.object.anims.play(this.animacion,true);   
         if (this.circle)
         {
             this.moveCircle();
