@@ -196,17 +196,12 @@ export default class Game extends Phaser.Scene {
       this.physics.add.overlap(this.playerBuffoon,this.guardsGroup.getChildren()[i],(o1,o2)=>{this.arlVig(o1,o2);});
       this.physics.add.overlap(this.playerCountess,this.guardsGroup.getChildren()[i],(o1,o2)=>{this.marGuardia(o1,o2);});
     }
-    for(var i=0;i<this.ringsGroup.getChildren().length;i++){
-      this.physics.add.overlap(this.playerBuffoon,this.guardsGroup.getChildren()[i],(o1,o2)=>{this.arlVig(o1,o2);});
+    for(var i=0;i<this.monksGroup.getChildren().length;i++){
+      this.physics.add.overlap(this.playerBuffoon,this.monksGroup.getChildren()[i],(o1,o2)=>{this.arlVig(o1,o2);});
       this.physics.add.overlap(this.playerCountess,this.monksGroup.getChildren()[i],(o1,o2)=>{this.marMonje(o1,o2)});
     }
     
 
-    //Jugadores con los guardias
-    // this.physics.add.overlap(this.playerBuffoon,this.guardsGroup,(o1,o2)=>{this.arlVig(o1,o2);});
-    // this.physics.add.overlap(this.playerBuffoon,this.monksGroup,(o1,o2)=>{this.arlVig(o1,o2);});
-    // this.physics.add.overlap(this.playerCountess,this.guardsGroup,(o1,o2)=>{this.marGuardia(o1,o2);});
-    // this.physics.add.overlap(this.playerCountess,this.monksGroup,(o1,o2)=>{this.marMonje(o1,o2)});
 
     this.score = 0;     
     //SetCollisionBetween

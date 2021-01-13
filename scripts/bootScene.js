@@ -151,13 +151,13 @@ export default class Boot extends Phaser.Scene{
     this.anims.create({
       key:'GuardAnim',
       frames: this.anims.generateFrameNumbers('runguard'),
-      frameRate:6,
+      frameRate:3,
       repeat: -1
     })
     this.anims.create({
       key:'MonkAnim',
       frames: this.anims.generateFrameNumbers('runmonk'),
-      frameRate:6,
+      frameRate:3,
       repeat: -1
     })
     //Palanca
