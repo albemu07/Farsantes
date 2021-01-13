@@ -40,7 +40,7 @@ export default class Game extends Phaser.Scene {
       key: this.tileMap
     });
 
-    const tileset = this.map.addTilesetImage('spriteSetBien', 'map');
+    const tileset = this.map.addTilesetImage('spriteSetBien', 'map3');
 
     //Crear capa de suelo
     this.ground = this.map.createStaticLayer('ground', tileset);
@@ -183,7 +183,7 @@ export default class Game extends Phaser.Scene {
         this.physics.add.collider(caja,this.plateDoorsGroup.getChildren()[j])
       }
       for(var j=0;j<this.leverDoorsGroup.getChildren().length;j++){
-        this.physics.add.collider(caja,this.leversDoorsGroup.getChildren()[j])
+        this.physics.add.collider(caja,this.leverDoorsGroup.getChildren()[j])
       }           
     }
 
