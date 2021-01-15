@@ -79,7 +79,7 @@ export default class Game extends Phaser.Scene {
     this.plateDoorsLayer=this.map.getObjectLayer('plateDoors')['objects'] //Creación de capa de puertas asociadas a placas
     this.plateDoorsGroup=this.physics.add.staticGroup();                  //Creación del grupo de puertas asociadas a placas
     this.plateDoorsLayer.forEach(object =>{                               
-      this.plateDoorsGroup.add(new Door(this,object.x,object.y,object.rotation,true, this.level))    //Por cada objeto dentro de la capa se crea una puerta en el grupo.
+      this.plateDoorsGroup.add(new Door(this,object.x,object.y,object.rotation,false, this.level))    //Por cada objeto dentro de la capa se crea una puerta en el grupo.
     })
     //Crear capa de placas
     this.platesLayer=this.map.getObjectLayer('plates')['objects']         //Creación de capa de placas
@@ -92,7 +92,7 @@ export default class Game extends Phaser.Scene {
     this.leverDoorsLayer=this.map.getObjectLayer('leverDoors')['objects'] //Creación de capa de puertas asociadas a palancas
     this.leverDoorsGroup=this.physics.add.staticGroup();                  //Creación del grupo de puertas asociadas a palancas
     this.leverDoorsLayer.forEach(object =>{                              
-       this.leverDoorsGroup.add(new Door(this,object.x,object.y,object.rotation,true, this.level))    //Por cada objeto dentro de la capa se crea una puerta en el grupo.
+       this.leverDoorsGroup.add(new Door(this,object.x,object.y,object.rotation,false, this.level))    //Por cada objeto dentro de la capa se crea una puerta en el grupo.
     })
     //Crear capa de palancas
     this.leversLayer=this.map.getObjectLayer('levers')['objects']         //Creación de capa de palancas
