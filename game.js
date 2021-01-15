@@ -236,10 +236,10 @@ export default class Game extends Phaser.Scene {
     this.gamepad2=false;
 
     //Tecla de menú de pausa
-    this.input.keyboard.on('keydown_ESC',()=>{this.scene.launch('pauseMenu',{zone: this.zone}); this.scene.sleep()},this);
+    this.input.keyboard.on('keydown_ESC',()=>{this.scene.launch('pauseMenu',{zone: this.zone, effSound:this.effectSound, mSound: this.musicSound}); this.scene.sleep()},this);
     this.input.gamepad.on('down', (pad, button, value) =>{
         if(button.index===9){
-          this.scene.launch('pauseMenu',{zone: this.zone}); this.scene.sleep()
+          this.scene.launch('pauseMenu',{zone: this.zone, effSound:this.effectSound, mSound: this.musicSound}); this.scene.sleep()
         }           
   });
 
