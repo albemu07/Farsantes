@@ -1,5 +1,5 @@
 import Enemigo from './enemigo.js'
-export default class Guardia extends Enemigo
+export default class Monje extends Enemigo
 {
     constructor(scene,type,route,circle,sprite,anim)
     {
