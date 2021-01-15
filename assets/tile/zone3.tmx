@@ -3,8 +3,8 @@
  <editorsettings>
   <export target="zone3.json" format="json"/>
  </editorsettings>
- <tileset firstgid="1" name="spriteSetBien" tilewidth="32" tileheight="32" tilecount="117" columns="9">
-  <image source="spriteSetBien.png" width="288" height="416"/>
+ <tileset firstgid="1" name="spriteSetBien" tilewidth="32" tileheight="32" tilecount="126" columns="9">
+  <image source="spriteSet.png" width="288" height="448"/>
  </tileset>
  <layer id="1" name="ground" width="28" height="21" locked="1" opacity="0.97">
   <data encoding="csv">
@@ -127,15 +127,15 @@
   <object id="38" x="117.333" y="-90.6667" width="1.33333"/>
  </objectgroup>
  <objectgroup id="15" name="routePoints">
-  <object id="46" name="1" x="216" y="318"/>
-  <object id="45" name="1" x="216" y="90"/>
-  <object id="44" name="1" x="62" y="90"/>
-  <object id="47" name="2" x="784" y="184"/>
-  <object id="48" name="2" x="784" y="100"/>
-  <object id="49" name="2" x="666" y="100"/>
-  <object id="50" name="2" x="680" y="184"/>
-  <object id="51" name="3" x="346" y="126"/>
-  <object id="53" name="3" x="346" y="572"/>
+  <object id="46" name="1" x="202.667" y="298"/>
+  <object id="45" name="1" x="202.667" y="70"/>
+  <object id="44" name="1" x="48.6667" y="70"/>
+  <object id="47" name="2" x="772" y="166.667"/>
+  <object id="48" name="2" x="772" y="82.6667"/>
+  <object id="49" name="2" x="654" y="82.6667"/>
+  <object id="50" name="2" x="658" y="166.667"/>
+  <object id="51" name="3" x="333" y="126"/>
+  <object id="53" name="3" x="333" y="572"/>
  </objectgroup>
  <objectgroup id="12" name="plates"/>
 </map>
