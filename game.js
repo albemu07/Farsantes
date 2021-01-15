@@ -19,22 +19,40 @@ export default class Game extends Phaser.Scene {
     this.buffoonX=buffoonPositionX;
     this.buffoonY=buffoonPositionY;
     this.tileMap = tileMap;
+    
   }
 
-  // preload() {
+  init(data){
+    this.effectSound=data.effSound;
+    this.musicSound=data.mSound;
+  }
+  
+  onWake(sys, data){
+    this.effectSound=data.effSound;
+    this.musicSound=data.mSound;
+    for(var i=0;i<this.plateDoorsGroup.getChildren().length;i++){
+      this.plateDoorsGroup.getChildren()[i].changeVolume(this.effectSound/100);
+    }
+    for(var i=0;i<this.leverDoorsGroup.getChildren().length;i++){
+      this.leverDoorsGroup.getChildren()[i].changeVolume(this.effectSound/100);
+    }
+    this.playerBuffoon.changeVolume(this.effectSound/100);
+    this.playerCountess.changeVolume(this.effectSound/100);
+  }
 
-  // }
+  passScene(){
+    this.scene.start(this.nextZone,{effSound:this.effectSound, mSound:this.musicSound});
+  }
 
   create() {
 
     this.win = false;
 
     this.levelFinished = this.sound.add('levelPassed');
-      this.levelFinished.once('stop', function (music) {
-        console.log('a')
-        this.scene.start(this.nextZone);
-      });
-      
+
+    this.levelFinished.once('complete', this.passScene, this);
+
+    this.events.on('wake', this.onWake, this);
     //mapa
     this.map = this.make.tilemap({
       key: this.tileMap
@@ -74,7 +92,7 @@ export default class Game extends Phaser.Scene {
     this.leverDoorsLayer=this.map.getObjectLayer('leverDoors')['objects'] //Creación de capa de puertas asociadas a palancas
     this.leverDoorsGroup=this.physics.add.staticGroup();                  //Creación del grupo de puertas asociadas a palancas
     this.leverDoorsLayer.forEach(object =>{                              
-       this.leverDoorsGroup.add(new Door(this,object.x,object.y,object.rotation,false,1))    //Por cada objeto dentro de la capa se crea una puerta en el grupo.
+       this.leverDoorsGroup.add(new Door(this,object.x,object.y,object.rotation,true,1))    //Por cada objeto dentro de la capa se crea una puerta en el grupo.
     })
     //Crear capa de palancas
     this.leversLayer=this.map.getObjectLayer('levers')['objects']         //Creación de capa de palancas
@@ -201,8 +219,6 @@ export default class Game extends Phaser.Scene {
       this.physics.add.overlap(this.playerCountess,this.monksGroup.getChildren()[i],(o1,o2)=>{this.marMonje(o1,o2)});
     }
     
-
-
     this.score = 0;     
     //SetCollisionBetween
     this.walls.setCollisionBetween(46, 999);
@@ -227,7 +243,8 @@ export default class Game extends Phaser.Scene {
     }
 
     //Tecla de menú de pausa
-    this.input.keyboard.on('keydown_ESC', ()=> {this.scene.launch('pauseMenu',{zone: this.zone}); this.scene.sleep()},this);
+    this.input.keyboard.on('keydown_ESC', ()=> {this.scene.launch('pauseMenu',{zone: this.zone, effSound:this.effectSound, mSound:this.musicSound}); 
+    this.scene.sleep()},this);
   }
 
   preUpdate(time,delta){
@@ -306,6 +323,9 @@ export default class Game extends Phaser.Scene {
       if(this.physics.overlap(this.playerBuffoon, this.endTrigger) && this.physics.overlap(this.playerCountess, this.endTrigger)){
         console.log('Siguiente escena');  
         if(!this.win) {
+          this.scene.pause();
+          this.playerBuffoon.stopSound();
+          this.playerCountess.stopSound();
           this.levelFinished.play();
           this.win = true;
         }

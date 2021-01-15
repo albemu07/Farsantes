@@ -1,6 +1,8 @@
 export default class Boot extends Phaser.Scene{
   constructor(){
       super({key: 'Boot'})
+      this.effectSound=100;
+      this.musicSound=20;
   }
 
   preload(){
@@ -93,6 +95,8 @@ export default class Boot extends Phaser.Scene{
     this.load.image('exitButton','./assets/menu/exitButton.png');
     this.load.image('gameButton','./assets/menu/gameButton.png');
     this.load.image('endTriggerText','/assets/menu/endTriggerText.png');
+    this.load.image('plusButton','/assets/menu/plusButton.png');
+    this.load.image('minusButton','/assets/menu/lessButton.png');
 
     //Assets de las escenas de texto
     this.load.image('textBackground','./assets/menu/textBackground.png');
@@ -112,7 +116,7 @@ export default class Boot extends Phaser.Scene{
     //Al cargar todos los recursos, se inicia la escena Menú
     this.load.on('complete', function(){
         console.log('Preload complete');
-        this.scene.start('Menu');
+        this.scene.start('Menu', {effSound:this.effectSound, mSound:this.musicSound});
     },this);
   }
 

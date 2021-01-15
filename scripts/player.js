@@ -30,6 +30,14 @@ export default class Player extends Objeto {
       else this.speed = this.speedPlayer;
     }
 
+    stopSound(){
+      this.steps.stop();
+    }
+
+    changeVolume(vol){
+      this.steps.setVolume(vol);
+    }
+    
     grabLever(){
       if (this.pad){
         if (!this.lol && this.pad.B){

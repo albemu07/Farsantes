@@ -18,4 +18,4 @@ export default class Buffoon extends Player {
        this.x = this.xIni;
        this.y = this.yIni;
     }
-  }
+}
