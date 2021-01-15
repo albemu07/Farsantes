@@ -1,40 +1,42 @@
+@font-face{
+  font-family: PixelGothic; src: url(./font/Pixel_Gothic_Font.ttf)
+}
+
+@font-face{
+font-family: liliput; src: url(./font/lilliput_steps.ttf)
+}
+
 h1 {
-  text-align: left;
-  font-family: monospace;
-  font-weight: 500;
-  font-size: 4vh;
-  text-transform: uppercase;
+  font-family: liliput, serif;
+  font-weight: lighter;
+  font-size: 0vh;
 }
 
 h2{
-  text-align: left;
-  font-family: sans-serif;
-  font-weight: 300;
-  font-size: 3vh;
+  font-family: PixelGothic, serif;
+  font-weight: lighter;
+  font-size: 0vh; 
 }
+
 h3{
-  text-align: center;
-  font-family: Arial, Helvetica, sans-serif;
+  text-align: justify;
+  font-family: liliput, serif;
   font-weight: 300;
-  font-size: 4vh;
-  padding: 2vw;
+  font-size: 3.5vh;
   color: rgb(0, 0, 0);
 }
 
-header{
-  padding-bottom: 5vh;
-}
 body{
   margin:0;
   background-color: #42455a ;
-  font-family: sans-serif;
-  font-weight:600 ;
 }
 
 nav{
   width: 100vw;
   text-align: center;
   background: #55d6aa;
+  background: #210032;
+  background-image: url(./webpage/background3.png);
 }
 
 .navbar{
@@ -84,67 +86,90 @@ nav a:hover::before{
   width: 100%;
 }
 
-section{
+.fullWindow{
   width: 100vw;
   height: 95vh;
+  padding-top: 5vh;
+}
+
+.fullDiv{
+  width: 100%;
+  height: 100%;
+}
+
+.titleDiv{
+  width: 100%;
+  height: 20%;
+}
+
+.contentDiv{
+  width: 100%;
+  height: 80%;
+}
+
+.contentDiv img{
+  height: 80%;
+}
+
+#controlsDiv{
+  text-align: center;
+}
+
+#teammatesDiv{
+  display: flex;
+  justify-content: center;
+}
+
+#historyLeft{
+  width: 30%;
+  height: 100%;
+  float: left;
+  text-align: center;
+}
+
+#historyRight{
+  width: 60%;
+  height: 100%;
+  float: left;
 }
 
 #game{
-  background-color: #42455a;
+  background-image: url(./webpage/background2.png);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
+
 #TitleName{
   text-align: center;
   font-size: 10vh;
-  color: whitesmoke;
-  text-shadow: thistle;
+  color: rgb(0, 0, 0);
   padding-top: 5vh;
   padding-bottom: 2vh;
 
 }
-#Content{
-  display: inline-flex;
-  
-}
+
 #Controls{
-  background-color: #52425a;
+  background-image: url(./webpage/background1.png);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 #History{
-  background-color: #425a47;
+  background-image: url(./webpage/background2.png);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 #Team{
-  background-color: #4c425a;
+  background-image: url(./webpage/background1.png);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
-
-#History{
-  background-color: #695233;
-
-}
-
 
 #Teammates{
   border: 0px solid black;
-  table-layout: fixed;
-  width: 100vw;
-  height: 95vh;
-}
-
-th,
-td {
-  border: 1px solid black;
-  overflow: hidden;
-}
-tr{
-  border: 0px solid black;
-  overflow: hidden;
-}
-
-td img{
-  display: block;
   width: 70%;
-  margin-left: auto;
-  margin-right: auto;
+  align-self: center;
 }
 
 #GameContainer{

@@ -1,5 +1,4 @@
 import Objecto from './objeto.js';
-import Vision from './vision.js';
 
 export default class Enemigo extends Phaser.GameObjects.Container
 {
@@ -14,12 +13,11 @@ export default class Enemigo extends Phaser.GameObjects.Container
         this.route = route;
         this.circle = circle;
         this.animation=anim;
-        this.setScale(0.4);
-        this.vision = new Vision (scene,0,0,'vista');
-        this.object = new Objecto(scene,30,30,sprite,100,100,2.5,false);
+        this.vision = new Objecto (scene,0,0,'vista',32,32,1,false);
+        this.vision.alpha =0.5;
+        this.object = new Objecto(scene,0,0,sprite,64,64,1,false);
         this.add(this.object);
         this.add(this.vision);
-        this.object.anims.play(this.animacion,true);
         this.after =1;
         this.pos1X = x
         this.pos1Y = y
@@ -82,7 +80,7 @@ export default class Enemigo extends Phaser.GameObjects.Container
 
     checkHorizontal()
     {
-        if(this.pos1X === this.pos2X)
+        if(Math.abs(this.pos1X-this.pos2X ) < Math.abs(this.pos1Y-this.pos2Y))
             this.horizontal =false;
         else 
             this.horizontal =true;
@@ -91,7 +89,7 @@ export default class Enemigo extends Phaser.GameObjects.Container
         {
             this.vision.setAngle(-90);
 
-            this.body.setSize(90,60);
+            this.body.setSize(64,42);
 
             if (this.pos1X>this.pos2X)
             {
@@ -102,7 +100,7 @@ export default class Enemigo extends Phaser.GameObjects.Container
         }
         else{
             this.vision.setAngle(0);
-            this.body.setSize(60,90);
+            this.body.setSize(42,64);
             if (this.pos1Y>this.pos2Y)
             {
                 this.backAnim();
@@ -158,36 +156,36 @@ export default class Enemigo extends Phaser.GameObjects.Container
         
         this.object.angle = 270;
         this.vision.flipY= false;
-        this.vision.x = 20;
-        this.vision.y=55;
-        this.object.x =60;
-        this.object.y=30;
+        this.vision.x =16;
+        this.vision.y=21;
+        this.object.x=48;
+        this.object.y=12;
     }
     rightAnim()
     {
         this.object.angle = 90;
         this.vision.flipY= true;
-        this.vision.x = 80;
-        this.vision.y=5;
-        this.object.x =30;
+        this.vision.x =48;
+        this.vision.y=21;
+        this.object.x =16;
         this.object.y=30;
     }
     frontAnim()
     {
         this.object.angle = 180;
         this.vision.flipY= true;
-        this.vision.y =80; 
-        this.vision.x=55;
-        this.object.y =30;  
-        this.object.x=30; 
+        this.vision.y =48; 
+        this.vision.x=21;
+        this.object.y =16;  
+        this.object.x=12; 
     }
     backAnim()
     {
         this.object.angle = 0;
         this.vision.flipY= false;
-        this.vision.y = 20;  
-        this.vision.x=5;
-        this.object.y= 60;  
+        this.vision.y = 16;  
+        this.vision.x=21;
+        this.object.y= 48;  
         this.object.x=30;
     }
 

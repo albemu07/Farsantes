@@ -1,7 +1,7 @@
 import Player from './player.js';
 export default class Buffoon extends Player {
     constructor(scene, x, y,sprite, gamepad) {
-      super(scene, x, y, sprite, 1, 25, 25, 'RunBuffoonAnim', 'RunBuffoonAnim');
+      super(scene, x, y, sprite, 0.9, 25, 25, 'IdleBuffoonAnim', 'RunBuffoonAnim');
       this.xIni=x;
       this.yIni=y;
       this.cursors = this.scene.input.keyboard.addKeys({
@@ -18,4 +18,4 @@ export default class Buffoon extends Player {
        this.x = this.xIni;
        this.y = this.yIni;
     }
-  }
+}

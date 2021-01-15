@@ -11,7 +11,7 @@ export default class Player extends Objeto {
       this.colliderY = colliderY;
       this.scale = scale;
       this.pad = gamepad;
-      this.lol = false;
+      this.leverGrabbed = false;
       this.sound = false;
       this.steps = scene.sound.add("footstep");
     }
@@ -30,21 +30,24 @@ export default class Player extends Objeto {
       else this.speed = this.speedPlayer;
     }
 
-    grabLever(){
-      if (this.pad){
-        if (!this.lol && this.pad.B){
-          this.lol = true;
-          return true;
-        }
-        else if(this.lol && !this.pad.B){
-          this.lol = false;
-        }
-      }
-      else if (Phaser.Input.Keyboard.JustDown(this.cursors.grab)){        
-        return true;            
-      }
-      return false;
+    stopSound(){
+      this.steps.stop();
     }
+
+    changeVolume(vol){
+      this.steps.setVolume(vol);
+    }
+    
+    grabLever(){
+      if(!this.leverGrabbed &&((this.pad && this.pad.B) || this.cursors.grab.isDown)){
+        this.leverGrabbed=true;
+        return true
+      }
+      else if(this.leverGrabbed && (this.pad && !this.pad.B || !this.pad) && !this.cursors.grab.isDown){
+        this.leverGrabbed=false
+        return false;
+      }
+     }
 
     grabDown(){
       if (this.cursors.grab.isDown || (this.pad && this.pad.B)){
@@ -59,7 +62,7 @@ export default class Player extends Objeto {
 
     stunDown()
     {
-      if (this.cursors.stun.isDown || (this.pad && this.pad.Y)){
+      if (this.cursors.stun.isDown || (this.pad && this.pad.B)){
         return true;
       }
       else return false;
@@ -67,71 +70,31 @@ export default class Player extends Objeto {
 
     preUpdate(time, delta){
       super.preUpdate(time,delta);
-      if (!this.pad){
-        if (this.cursors.up.isDown) {
-          this.body.setVelocityY(-this.speed);
-          // this.flipX=false;
-          // this.flipY=false;
-          this.angle = 0;
-        }
-        else if (this.cursors.down.isDown) {
-          this.body.setVelocityY(this.speed);
-          // this.flipX=false;
-          // this.flipY=true;
-          this.angle = 180;
-        }
-        else{
-            this.body.setVelocityY(0);
-        }
-        if (this.cursors.left.isDown) {
-          this.body.setVelocityX(-this.speed);
-          // this.flipX=true;
-          // this.flipY=false;
-          this.angle = 270;
-        }
-        else if (this.cursors.right.isDown) {
-          this.body.setVelocityX(this.speed);
-          // this.flipX=true;
-          // this.flipY=true;
-          this.angle = 90;
-        }
-        else{
-          this.body.setVelocityX(0);
-        } 
+      if(this.cursors.up.isDown || (this.pad && (this.pad.up || this.pad.leftStick.y < -0.2))){
+        this.body.setVelocityY(-this.speed);
+        this.angle=0
       }
-      else {
-        if (this.pad.up || this.pad.leftStick.y < -0.2) {
-          this.body.setVelocityY(-this.speed);
-          this.rotation = 0;
-           this.flipX=false;
-           this.flipY=false;
-        }
-        else if (this.pad.down || this.pad.leftStick.y > 0.2) {
-          this.body.setVelocityY(this.speed);
-          this.rotation = 180;
-          this.flipX=false;
-          this.flipY=true;
-        }
-        else{
-            this.body.setVelocityY(0);
-        }
-        if (this.pad.left || this.pad.leftStick.x < -0.2) {
-          this.body.setVelocityX(-this.speed);
-           this.flipY=false;
-           this.rotation = 90;
-           this.flipX=true;
-          
-        }
-        else if (this.pad.right || this.pad.leftStick.x > 0.2) {
-          this.body.setVelocityX(this.speed);
-           this.flipY=true;
-           this.rotation = 270;
-           this.flipX=true;
-        }
-        else{
-          this.body.setVelocityX(0);
-        } 
+      else if(this.cursors.down.isDown || (this.pad && (this.pad.down || this.pad.leftStick.y > 0.2))){
+        this.body.setVelocityY(this.speed);
+        this.angle=180
       }
+      else{
+        this.body.setVelocityY(0)
+      }
+
+      if(this.cursors.left.isDown || (this.pad && (this.pad.left || this.pad.leftStick.x < -0.2))){
+        this.body.setVelocityX(-this.speed);
+        this.angle=270
+      }
+      else if(this.cursors.right.isDown || (this.pad && (this.pad.right || this.pad.leftStick.x > 0.2))){
+        this.body.setVelocityX(this.speed);
+        this.angle=90
+      }
+      else{
+        this.body.setVelocityX(0)
+      }
+
+      this.body.velocity.normalize().scale(this.speedPlayer)
  
       if(this.body.velocity.x===0 && this.body.velocity.y===0){
         this.anims.play(this.animIdle,true);

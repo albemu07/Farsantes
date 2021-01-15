@@ -1,17 +1,17 @@
 export default class Boot extends Phaser.Scene{
   constructor(){
       super({key: 'Boot'})
+      this.effectSound=100;
+      this.musicSound=20;
   }
 
   preload(){
     //CARGA DE RECURSOS
     //Player
-    this.load.spritesheet('IdleBuffoon','./assets/buffoon/idle.png',{frameWidth:150,frameHeight:150});
-    this.load.spritesheet('RB','./assets/buffoon/run.png',{frameWidth:150,frameHeight:150});
-    this.load.spritesheet('RunBuffoon','./assets/buffoon/arlequin.png',{frameWidth:32,frameHeight:32});
-    this.load.spritesheet('IdleCountess','./assets/countess/idle.png',{frameWidth:320,frameHeight:320});
-    this.load.spritesheet('RC','./assets/countess/run.png',{frameWidth:320,frameHeight:320});
-    this.load.spritesheet('RunCountess','./assets/countess/markesa.png',{frameWidth:32,frameHeight:32});
+    this.load.spritesheet('IdleBuffoon','./assets/buffoon/idle.png',{frameWidth:64,frameHeight:64});
+    this.load.spritesheet('RunBuffoon','./assets/buffoon/arlequin.png',{frameWidth:64,frameHeight:64});
+    this.load.spritesheet('IdleCountess','./assets/countess/idle.png',{frameWidth:64,frameHeight:64});
+    this.load.spritesheet('RunCountess','./assets/countess/markesa.png',{frameWidth:64,frameHeight:64});
 
     //Guardia
     // this.load.image('guardiaL','./assets/guard/guardiaLeft.png');
@@ -42,17 +42,14 @@ export default class Boot extends Phaser.Scene{
     //Caja
     this.load.image('BoxSprite1', './assets/box/box1.png');
     this.load.image('BoxSprite0', './assets/box/box2.png');
-    //this.load.image('BoxSprite1', './assets/box/box1.png');
-
-    //this.load.image('Trigger','./assets/mechanisms/nextZoneTrigger.png');
 
     //Palanca
     this.load.spritesheet('LeverOpen1','./assets/lever/lever11.png',{frameWidth:32,frameHeight:32});
     this.load.spritesheet('LeverClose1','./assets/lever/lever21.png',{frameWidth:32,frameHeight:32});
     this.load.spritesheet('LeverOpen2','./assets/lever/lever12.png',{frameWidth:32,frameHeight:32});
     this.load.spritesheet('LeverClose2','./assets/lever/lever22.png',{frameWidth:32,frameHeight:32});
-    //this.load.spritesheet('LeverOpen3','./assets/lever/lever13.png',{frameWidth:32,frameHeight:32});
-    //this.load.spritesheet('LeverClose3','./assets/lever/lever23.png',{frameWidth:32,frameHeight:32});
+    this.load.spritesheet('LeverOpen3','./assets/lever/lever13.png',{frameWidth:32,frameHeight:32});
+    this.load.spritesheet('LeverClose3','./assets/lever/lever23.png',{frameWidth:32,frameHeight:32});
 
     //Door
     this.load.spritesheet('DoorOpen1','./assets/door/openDoor1.png',{frameWidth:38,frameHeight:38});        
@@ -64,16 +61,20 @@ export default class Boot extends Phaser.Scene{
 
     //Niveles
     this.load.tilemapTiledJSON('tilemap', './assets/tile/nivelPrueba.json');
-    this.load.tilemapTiledJSON('tilemap1', './assets/tile/zone1.json');
-    this.load.tilemapTiledJSON('tilemap2', './assets/tile/zone2.json');
-    this.load.tilemapTiledJSON('tilemap3', './assets/tile/zone3.json');
+    this.load.tilemapTiledJSON('tilemap11', './assets/tile/zone1.json');
+    this.load.tilemapTiledJSON('tilemap12', './assets/tile/zone2.json');
+    this.load.tilemapTiledJSON('tilemap13', './assets/tile/zone3.json');
+    this.load.tilemapTiledJSON('tilemap21', './assets/tile/zone21.json');
+    this.load.tilemapTiledJSON('tilemap22', './assets/tile/zone22.json');
+    this.load.tilemapTiledJSON('tilemap23', './assets/tile/zone23.json');
+
     this.load.tilemapTiledJSON('tilemap4', './assets/tile/pruebaGuardia.json');
     this.load.tilemapTiledJSON('tilemap31', './assets/tile/zone31.json');
     this.load.tilemapTiledJSON('tilemap32', './assets/tile/zone32.json');
     this.load.tilemapTiledJSON('tilemap33', './assets/tile/zone33.json');
 
     //Tilesets
-    this.load.image('map', './assets/tile/spriteSet.png');
+    this.load.image('map1', './assets/tile/spriteSet.png');
     this.load.image('map2', './assets/tile/spriteSetNight.png');
     this.load.image('map3', './assets/tile/spriteSetConvento.png');
 
@@ -95,12 +96,17 @@ export default class Boot extends Phaser.Scene{
     this.load.image('exitButton','./assets/menu/exitButton.png');
     this.load.image('gameButton','./assets/menu/gameButton.png');
     this.load.image('endTriggerText','/assets/menu/endTriggerText.png');
+    this.load.image('plusButton','/assets/menu/plusButton.png');
+    this.load.image('minusButton','/assets/menu/lessButton.png');
 
     //Assets de las escenas de texto
     this.load.image('textBackground','./assets/menu/textBackground.png');
     this.load.image('text11','./assets/menu/text1.png');
     this.load.image('text12','./assets/menu/text2.png');
     this.load.image('continueButton','./assets/menu/continueButton.png');
+    this.load.image('finalText1','./assets/menu/finaltext1.png');
+    this.load.image('finalText2','./assets/menu/finaltext2.png');
+
 
     //Assests sonido
     this.load.audio('closeDoor', './assets/door/close_door_1.mp3');
@@ -114,7 +120,7 @@ export default class Boot extends Phaser.Scene{
     //Al cargar todos los recursos, se inicia la escena Menú
     this.load.on('complete', function(){
         console.log('Preload complete');
-        this.scene.start('Menu');
+        this.scene.start('Menu', {effSound:this.effectSound, mSound:this.musicSound});
     },this);
   }
 
@@ -139,7 +145,7 @@ export default class Boot extends Phaser.Scene{
     this.anims.create({
       key:'IdleCountessAnim',
       frames: this.anims.generateFrameNumbers('IdleCountess'),
-      frameRate:3,
+      frameRate:4,
       repeat: -1
     }); 
     
@@ -153,13 +159,13 @@ export default class Boot extends Phaser.Scene{
     this.anims.create({
       key:'GuardAnim',
       frames: this.anims.generateFrameNumbers('runguard'),
-      frameRate:6,
+      frameRate:3,
       repeat: -1
     })
     this.anims.create({
       key:'MonkAnim',
       frames: this.anims.generateFrameNumbers('runmonk'),
-      frameRate:6,
+      frameRate:3,
       repeat: -1
     })
     //Palanca

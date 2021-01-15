@@ -26,4 +26,9 @@ export default class Door extends Objeto {
         } 
         this.body.enable=true;
     }
+
+    changeVolume(vol){
+        this.closing.setVolume(vol);
+        this.opening.setVolume(vol);
+    }
 }
