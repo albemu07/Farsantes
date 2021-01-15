@@ -10,7 +10,7 @@ import Monje from './scripts/monje.js';
 
 
 export default class Game extends Phaser.Scene {
-  constructor(zone,nextZone,countessPositionX,countessPositionY,buffoonPositionX,buffoonPositionY, tileMap) {
+  constructor(zone,nextZone,countessPositionX,countessPositionY,buffoonPositionX,buffoonPositionY, tileMap, level) {
     super({ key: zone });
     this.zone=zone;
     this.nextZone=nextZone;
@@ -19,7 +19,7 @@ export default class Game extends Phaser.Scene {
     this.buffoonX=buffoonPositionX;
     this.buffoonY=buffoonPositionY;
     this.tileMap = tileMap;
-    
+    this.level = level;
   }
 
   init(data){
@@ -58,7 +58,7 @@ export default class Game extends Phaser.Scene {
       key: this.tileMap
     });
 
-    const tileset = this.map.addTilesetImage('spriteSetBien', 'map1');
+    const tileset = this.map.addTilesetImage('spriteSetBien', 'map'+this.level);
 
     //Crear capa de suelo
     this.ground = this.map.createStaticLayer('ground', tileset);
@@ -79,33 +79,33 @@ export default class Game extends Phaser.Scene {
     this.plateDoorsLayer=this.map.getObjectLayer('plateDoors')['objects'] //Creación de capa de puertas asociadas a placas
     this.plateDoorsGroup=this.physics.add.staticGroup();                  //Creación del grupo de puertas asociadas a placas
     this.plateDoorsLayer.forEach(object =>{                               
-      this.plateDoorsGroup.add(new Door(this,object.x,object.y,object.rotation,false, 1))    //Por cada objeto dentro de la capa se crea una puerta en el grupo.
+      this.plateDoorsGroup.add(new Door(this,object.x,object.y,object.rotation,false, this.level))    //Por cada objeto dentro de la capa se crea una puerta en el grupo.
     })
     //Crear capa de placas
     this.platesLayer=this.map.getObjectLayer('plates')['objects']         //Creación de capa de placas
     this.platesGroup=this.physics.add.staticGroup();                      //Creación del grupo de placas
     this.platesLayer.forEach(object =>{                                   //Por cada objeto dentro de la capa se crea una placa en el grupo. La puerta asociada es la puerta del grupo anterior con el mismo nombre.
-      this.platesGroup.add(new PressurePlate(this,object.x,object.y,this.plateDoorsGroup.getChildren()[object.name],false, 1))
+      this.platesGroup.add(new PressurePlate(this,object.x,object.y,this.plateDoorsGroup.getChildren()[object.name],false, this.level))
     })
 
     //Crear capa de puertas de palancas
     this.leverDoorsLayer=this.map.getObjectLayer('leverDoors')['objects'] //Creación de capa de puertas asociadas a palancas
     this.leverDoorsGroup=this.physics.add.staticGroup();                  //Creación del grupo de puertas asociadas a palancas
     this.leverDoorsLayer.forEach(object =>{                              
-       this.leverDoorsGroup.add(new Door(this,object.x,object.y,object.rotation,false,1))    //Por cada objeto dentro de la capa se crea una puerta en el grupo.
+       this.leverDoorsGroup.add(new Door(this,object.x,object.y,object.rotation,false, this.level))    //Por cada objeto dentro de la capa se crea una puerta en el grupo.
     })
     //Crear capa de palancas
     this.leversLayer=this.map.getObjectLayer('levers')['objects']         //Creación de capa de palancas
     this.leversGroup=this.physics.add.staticGroup();                      //Creación del grupo de palancas
     this.leversLayer.forEach(object =>{                                   //Por cada objeto dentro de la capa se crea una palcan en el grupo. La puerta asociada es la puerta del grupo anterior con el mismo nombre.
-       this.leversGroup.add(new Lever(this,object.x,object.y,this.leverDoorsGroup.getChildren()[object.name],false, 1))
+       this.leversGroup.add(new Lever(this,object.x,object.y,this.leverDoorsGroup.getChildren()[object.name],false, this.level))
     })
 
     //Crear capa de cajas
     this.boxesLayer=this.map.getObjectLayer('boxes')['objects'];           //Creación de capa de cajas
     this.boxesGroup=this.physics.add.group();                             //Creación del grupo de cajas
     this.boxesLayer.forEach(object =>{                                    
-      this.boxesGroup.add(new Caja(this,object.x,object.y,'BoxSprite',1));  //Por cada objeto dentro de la capa se crea una caja en el grupo.
+      this.boxesGroup.add(new Caja(this,object.x,object.y,'BoxSprite', this.level));  //Por cada objeto dentro de la capa se crea una caja en el grupo.
     })
 
     //Crear capa de coleccionables
