@@ -51,8 +51,8 @@ export default class Boot extends Phaser.Scene{
     this.load.spritesheet('LeverClose1','./assets/lever/lever21.png',{frameWidth:32,frameHeight:32});
     this.load.spritesheet('LeverOpen2','./assets/lever/lever12.png',{frameWidth:32,frameHeight:32});
     this.load.spritesheet('LeverClose2','./assets/lever/lever22.png',{frameWidth:32,frameHeight:32});
-    //this.load.spritesheet('LeverOpen3','./assets/lever/lever13.png',{frameWidth:32,frameHeight:32});
-    //this.load.spritesheet('LeverClose3','./assets/lever/lever23.png',{frameWidth:32,frameHeight:32});
+    this.load.spritesheet('LeverOpen3','./assets/lever/lever13.png',{frameWidth:32,frameHeight:32});
+    this.load.spritesheet('LeverClose3','./assets/lever/lever23.png',{frameWidth:32,frameHeight:32});
 
     //Door
     this.load.spritesheet('DoorOpen1','./assets/door/openDoor1.png',{frameWidth:38,frameHeight:38});        
