@@ -76,14 +76,14 @@ export default class Game extends Phaser.Scene {
     })
 
     //Crear capa de cajas
-    this.boxesLayer=this.map.getObjectLayer('boxes')['objects']           //Creación de capa de cajas
+    this.boxesLayer=this.map.getObjectLayer('boxes')['objects'];           //Creación de capa de cajas
     this.boxesGroup=this.physics.add.group();                             //Creación del grupo de cajas
     this.boxesLayer.forEach(object =>{                                    
       this.boxesGroup.add(new Caja(this,object.x,object.y,'BoxSprite',1));  //Por cada objeto dentro de la capa se crea una caja en el grupo.
     })
 
     //Crear capa de coleccionables
-    this.ringsLayer=this.map.getObjectLayer('rings')['objects']           //Creación de capa de coleccionables
+    this.ringsLayer=this.map.getObjectLayer('rings')['objects'];           //Creación de capa de coleccionables
     this.ringsGroup=this.physics.add.staticGroup();                       //Creación del grupo de coleccionables
     this.ringsLayer.forEach(object =>{                                    
       this.ringsGroup.add(new Ring (this,object.x,object.y,'ringRC','ringR',object.value,0));  //Por cada objeto dentro de la capa se crea un anillo en el grupo.
