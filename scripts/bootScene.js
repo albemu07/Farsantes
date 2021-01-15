@@ -8,12 +8,12 @@ export default class Boot extends Phaser.Scene{
   preload(){
     //CARGA DE RECURSOS
     //Player
-    this.load.spritesheet('IdleBuffoon','./assets/buffoon/idle.png',{frameWidth:150,frameHeight:150});
+    this.load.spritesheet('IdleBuffoon','./assets/buffoon/idle.png',{frameWidth:64,frameHeight:64});
     this.load.spritesheet('RB','./assets/buffoon/run.png',{frameWidth:150,frameHeight:150});
-    this.load.spritesheet('RunBuffoon','./assets/buffoon/arlequin.png',{frameWidth:32,frameHeight:32});
-    this.load.spritesheet('IdleCountess','./assets/countess/idle.png',{frameWidth:320,frameHeight:320});
+    this.load.spritesheet('RunBuffoon','./assets/buffoon/arlequin.png',{frameWidth:64,frameHeight:64});
+    this.load.spritesheet('IdleCountess','./assets/countess/idle.png',{frameWidth:64,frameHeight:64});
     this.load.spritesheet('RC','./assets/countess/run.png',{frameWidth:320,frameHeight:320});
-    this.load.spritesheet('RunCountess','./assets/countess/markesa.png',{frameWidth:32,frameHeight:32});
+    this.load.spritesheet('RunCountess','./assets/countess/markesa.png',{frameWidth:64,frameHeight:64});
 
     //Guardia
     // this.load.image('guardiaL','./assets/guard/guardiaLeft.png');
@@ -141,7 +141,7 @@ export default class Boot extends Phaser.Scene{
     this.anims.create({
       key:'IdleCountessAnim',
       frames: this.anims.generateFrameNumbers('IdleCountess'),
-      frameRate:3,
+      frameRate:4,
       repeat: -1
     }); 
     
