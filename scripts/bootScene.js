@@ -9,10 +9,8 @@ export default class Boot extends Phaser.Scene{
     //CARGA DE RECURSOS
     //Player
     this.load.spritesheet('IdleBuffoon','./assets/buffoon/idle.png',{frameWidth:64,frameHeight:64});
-    this.load.spritesheet('RB','./assets/buffoon/run.png',{frameWidth:150,frameHeight:150});
     this.load.spritesheet('RunBuffoon','./assets/buffoon/arlequin.png',{frameWidth:64,frameHeight:64});
     this.load.spritesheet('IdleCountess','./assets/countess/idle.png',{frameWidth:64,frameHeight:64});
-    this.load.spritesheet('RC','./assets/countess/run.png',{frameWidth:320,frameHeight:320});
     this.load.spritesheet('RunCountess','./assets/countess/markesa.png',{frameWidth:64,frameHeight:64});
 
     //Guardia
@@ -44,9 +42,6 @@ export default class Boot extends Phaser.Scene{
     //Caja
     this.load.image('BoxSprite1', './assets/box/box1.png');
     this.load.image('BoxSprite0', './assets/box/box2.png');
-    //this.load.image('BoxSprite1', './assets/box/box1.png');
-
-    //this.load.image('Trigger','./assets/mechanisms/nextZoneTrigger.png');
 
     //Palanca
     this.load.spritesheet('LeverOpen1','./assets/lever/lever11.png',{frameWidth:32,frameHeight:32});
@@ -106,6 +101,9 @@ export default class Boot extends Phaser.Scene{
     this.load.image('text11','./assets/menu/text1.png');
     this.load.image('text12','./assets/menu/text2.png');
     this.load.image('continueButton','./assets/menu/continueButton.png');
+    this.load.image('finalText1','./assets/menu/finaltext1.png');
+    this.load.image('finalText2','./assets/menu/finaltext2.png');
+
 
     //Assests sonido
     this.load.audio('closeDoor', './assets/door/close_door_1.mp3');

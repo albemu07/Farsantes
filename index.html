@@ -14,6 +14,7 @@
     
     <header>
         <nav class="navbar">
+          <h1>
           <ul>
           <li><a href="#game">Jugar</a></li>
           <li><a href="#Controls">Controles</a></li>
@@ -21,50 +22,46 @@
           <li><a href="#Team">Equipo</a></li>
           <li><a href="https://github.com/albemu07/albemu07.github.io" target="blank">Github</a></li>
         </ul>
+      </h1>
         </nav>
     </header>
     
-    <section id="game">
+    <div id="game" class="fullWindow">
       <div id="GameContainer"></div>
-    </section>
-      <section id="Controls">
-        <div id= "TitleName">Controles</div>
-        <div id ="Content">
-          <img src ="webpage/controles.PNG" >
-          <h3> Si eres un gamer, intentas jugar sola controlando los 2 jugadores, si estás enamorado, juegas este juego con tu amante, si eres...
+    </div>
+    
 
-          </h3>
+      <div id="Controls" class="fullWindow">        
+        <h2><div id= "TitleName" class="titleDiv">Controles</div></h2>
+        <div id="controlsDiv" class="contentDiv">
+          <img src ="webpage/controles.PNG">
         </div>
-      </section>
+      </div>
 
-      <section id="History">
-        <div id = "TitleName"> Historia </div>
-        <div id = "Content">
-          <img src = "webpage/marquesaRosalinda.jpg">
-          <h3>“<strong>Escape from Marquis’ Manor</strong>” se basa en la obra de teatro “<strong>Marquesa Rosalinda</strong>”
-             de Ramón María del Valle-Inclán.<br> La marquesa tiene una aventura con el arlequín de 
-             un grupo de farsantes que se hospeda en las tierras de su marido. <br>Celoso, el marqués 
-             planea contratar unos matones para deshacerse de él. <br>La marquesa y el arlequín 
-             colaborarán para escapar de sus tierras antes de que esto ocurra. <strong>¿Conseguirán escapar?</strong></h3>
+      <div id="History" class="fullWindow">
+      <h2><div id = "TitleName" class="titleDiv"> Historia </div></h2>
+
+        <div class="contentDiv">
+          <div id="historyLeft">
+            <img src = "webpage/marquesaRosalinda.jpg">
+          </div>
+          <div id="historyRight">
+
+          <h3>“<strong>Escape from Marquis’ Manor</strong>” se basa en la obra de teatro “<strong>La Marquesa Rosalinda</strong>”
+             de <strong>Ramón María del Valle-Inclán</strong><br> La Marquesa es infeliz en su matrimonio con el avaro Marqués, y se enamora de Arlequín, un bufón que se hospeda en sus tierras.
+             <br>Celoso, el marqués conspira para acabar con él. 
+             <br>En <strong>Escape From Marqui's Manor</strong> Marquesa y Arlequín colaborarán para escapar de las tierras del marqués antes de que lleve a cabo sus planes.
+             <br><strong>¿Lo Conseguirán?</strong></h3>
+            </div>
         </div>
-      </section>
-      <section id="Team">
-      <table id="Teammates">
-        <tr>
-          <td><img src="webpage/foto.png"></td>
-          <td valign="top"><h1>Alberto Muñoz Fernández</h1> <h2>"The Opposite of Microsoft Office is Macrohard Onfire"</h2></td>
-          <td><img src="webpage/foto.png"></td>
-          <td valign="top"><h1>Liyuan Li</h1> <h2>"The Opposite of Microsoft Office is Macrohard Onfire"</h2></td>
-        </tr>
-        <tr>
-          <td><img src="webpage/foto.png"></td>
-          <td valign="top"><h1>Óscar García Castro</h1> <h2>"The Opposite of Microsoft Office is Macrohard Onfire"</h2></td>
-          <td><img src="webpage/javier2.png"></td>
-           <td valign="top"><h1>Javier Lagares</h1> <h2>"The Opposite of Microsoft Office is Macrohard Onfire"</h2></td>
-        </tr>
-      </table>
-    </section>
 
+
+      <div id="Team" class="fullWindow">
+        <h2><div id = "TitleName" class="titleDiv"> Equipo </div></h2>
+        <div class="contentDiv" id="teammatesDiv">
+          <img src="webpage/equipo.png">     
+       </div>
+    </div>
 
     <script type="module">
        import Boot from './scripts/bootScene.js'
@@ -74,6 +71,7 @@
        import Game from './game.js'
        import TextScene from './scripts/textScene.js'
        import TextScene1 from './scripts/textScene1.js'
+       import FinalScene from './scripts/finalScene.js'
 
        import Zone1 from './scripts/zone1.js'
        import Zone2 from './scripts/zone2.js'
@@ -91,7 +89,7 @@
           mode: Phaser.Scale.FIT,
           autoCenter: Phaser.Scale.CENTER_BOTH,
         },
-        scene: [Boot,Menu,Settings,PauseMenu,TextScene1,Zone1,Zone2],
+        scene: [Boot,Menu,Settings,PauseMenu,FinalScene,TextScene1,Zone1,Zone2],
         physics: {
           default: "arcade",
           arcade: { gravity: { y:0 }, debug: false },

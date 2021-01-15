@@ -12,7 +12,7 @@ export default class Countess extends Player {
         left: Phaser.Input.Keyboard.KeyCodes.A,
         right: Phaser.Input.Keyboard.KeyCodes.D,
         grab: Phaser.Input.Keyboard.KeyCodes.C,
-        stun: Phaser.Input.Keyboard.KeyCodes.V
+        stun: Phaser.Input.Keyboard.KeyCodes.C,
       });
     }
 

@@ -25,6 +25,7 @@ export default class Game extends Phaser.Scene {
   init(data){
     this.effectSound=data.effSound;
     this.musicSound=data.mSound;
+    this.score=data.score;
   }
   
   onWake(sys, data){
@@ -41,11 +42,10 @@ export default class Game extends Phaser.Scene {
   }
 
   passScene(){
-    this.scene.start(this.nextZone,{effSound:this.effectSound, mSound:this.musicSound});
+    this.scene.start(this.nextZone,{effSound:this.effectSound, mSound:this.musicSound, score: this.score});
   }
 
   create() {
-
     this.win = false;
 
     this.levelFinished = this.sound.add('levelPassed');
@@ -152,6 +152,11 @@ export default class Game extends Phaser.Scene {
     this.playerBuffoon=new Buffoon(this,this.buffoonX,this.buffoonY,'RunBuffoon');
     this.playerCountess=new Countess(this,this.countessX,this.countessY,'RunCountess');
 
+    
+    //Marcador de puntuación
+    this.scoreDisplay=this.add.text(10,10,'Puntuación: '+this.score,{fontSize: '20px', fill:'#000'})
+    this.scoreDisplay.setText('Puntuación'+this.score);
+
     //COLISIONES
     //Jugadores con los muros
     this.physics.add.collider(this.playerBuffoon, this.walls);
@@ -210,6 +215,7 @@ export default class Game extends Phaser.Scene {
       this.physics.add.overlap(this.playerBuffoon, this.ringsGroup.getChildren()[i], (o1, o2) => {this.takeRing(o1,o2); });
     }
 
+    //Jugadores con los guardias y monjas
     for(var i=0;i<this.guardsGroup.getChildren().length;i++){
       this.physics.add.overlap(this.playerBuffoon,this.guardsGroup.getChildren()[i],(o1,o2)=>{this.arlVig(o1,o2);});
       this.physics.add.overlap(this.playerCountess,this.guardsGroup.getChildren()[i],(o1,o2)=>{this.marGuardia(o1,o2);});
@@ -218,33 +224,35 @@ export default class Game extends Phaser.Scene {
       this.physics.add.overlap(this.playerBuffoon,this.monksGroup.getChildren()[i],(o1,o2)=>{this.arlVig(o1,o2);});
       this.physics.add.overlap(this.playerCountess,this.monksGroup.getChildren()[i],(o1,o2)=>{this.marMonje(o1,o2)});
     }
-    
-    this.score = 0;     
     //SetCollisionBetween
     this.walls.setCollisionBetween(46, 999);
     this.mud.setCollisionBetween(46,999);
 
     //Texto encima del trigger
-    //this.endTriggerText=this.add.text(this.endTrigger.x,this.endTrigger.y,'POR AQUÍ');
     this.endTriggerText=this.add.image(this.endTrigger.x+20,this.endTrigger.y-10,'endTriggerText').setScale(0.25)
 
     //Gamepad
-    this.gamepad;
-    this.gamepad2;
-    if (!this.gamepad){
-      this.input.gamepad.once('down', function (pad) {
-        this.gamepad = pad;
-    }, this);
-    }
-    else {
-      this.input.gamepad.once('down', function (pad) {
-        this.gamepad2 = pad;
-    }, this);
-    }
+    this.gamepad1=false;
+    this.gamepad2=false;
 
     //Tecla de menú de pausa
-    this.input.keyboard.on('keydown_ESC', ()=> {this.scene.launch('pauseMenu',{zone: this.zone, effSound:this.effectSound, mSound:this.musicSound}); 
-    this.scene.sleep()},this);
+    this.input.keyboard.on('keydown_ESC',()=>{this.scene.launch('pauseMenu',{zone: this.zone}); this.scene.sleep()},this);
+    this.input.gamepad.on('down', (pad, button, value) =>{
+        if(button.index===9){
+          this.scene.launch('pauseMenu',{zone: this.zone}); this.scene.sleep()
+        }           
+  });
+
+    this.input.gamepad.on('down',(pad)=>{
+      if(!this.gamepad1){
+        this.gamepad1=pad
+        this.playerBuffoon.setGamePad(this.gamepad1)
+      }
+      else if(pad !=this.gamepad1){
+        this.gamepad2=pad
+        this.playerCountess.setGamePad(this.gamepad2)
+      }
+    })
   }
 
   preUpdate(time,delta){
@@ -252,13 +260,8 @@ export default class Game extends Phaser.Scene {
   }
 
   update(time,delta){
+
     //Comprobación del overlapping entre trigger y jugadores
-    if (this.gamepad){
-      this.playerBuffoon.setGamePad(this.gamepad);
-    }
-    if (this.gamepad2){
-      this.playerCountess.setGamePad(this.gamepad2);
-    }
     this.checkPressureplate();
     this.checkEndOverlap();
     this.checkBoxes();
@@ -269,6 +272,7 @@ export default class Game extends Phaser.Scene {
     if (this.physics.overlap(o1,o2.ring)){
       console.log("anillo cogido");
       this.score += o2.taken();
+      this.scoreDisplay.setText('Puntuación'+this.score);
       o2.destroy();
 
     }

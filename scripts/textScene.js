@@ -1,10 +1,16 @@
 export default class TextScene extends Phaser.Scene{
     constructor(textScene,nextZone,text1,text2){
         super({key: textScene})
-        this.nextZone=nextZone
-        this.text1=text1
-        this.text2=text2
+        this.nextZone=nextZone;
+        this.text1=text1;
+        this.text2=text2;
+        this.score;
     }
+
+    init(data){
+        this.score= data.score
+    }
+
     create(){
 
         //Fondo
