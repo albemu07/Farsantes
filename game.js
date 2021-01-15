@@ -27,12 +27,20 @@ export default class Game extends Phaser.Scene {
 
   create() {
 
+    this.win = false;
+
+    this.levelFinished = this.sound.add('levelPassed');
+      this.levelFinished.once('stop', function (music) {
+        console.log('a')
+        this.scene.start(this.nextZone);
+      });
+      
     //mapa
     this.map = this.make.tilemap({
       key: this.tileMap
     });
 
-    const tileset = this.map.addTilesetImage('spriteSetBien', 'map');
+    const tileset = this.map.addTilesetImage('spriteSetBien', 'map3');
 
     //Crear capa de suelo
     this.ground = this.map.createStaticLayer('ground', tileset);
@@ -86,7 +94,7 @@ export default class Game extends Phaser.Scene {
     this.ringsLayer=this.map.getObjectLayer('rings')['objects'];           //Creación de capa de coleccionables
     this.ringsGroup=this.physics.add.staticGroup();                       //Creación del grupo de coleccionables
     this.ringsLayer.forEach(object =>{                                    
-      this.ringsGroup.add(new Ring (this,object.x,object.y,'ringRC','ringR',object.value,0));  //Por cada objeto dentro de la capa se crea un anillo en el grupo.
+      this.ringsGroup.add(new Ring (this,object.x,object.y,object.type,object.rotation));  //Por cada objeto dentro de la capa se crea un anillo en el grupo.
     })
 
     //Crear capa de puntos de ruta
@@ -104,7 +112,7 @@ export default class Game extends Phaser.Scene {
           ruta.push(new Array(punto.x,punto.y))
         }
       })                             
-      this.guardsGroup.add(new Guardia(this,true,ruta,guardia.properties[0].value,'guardiaF'));  //Por cada objeto dentro de la capa se crea un guardia en el grupo.
+      this.guardsGroup.add(new Guardia(this,true,ruta,guardia.properties[0].value,'runguard','GuardAnim'));  //Por cada objeto dentro de la capa se crea un guardia en el grupo.
     })
  
     //Crear capa de monjas
@@ -119,7 +127,7 @@ export default class Game extends Phaser.Scene {
           ruta.push(new Array(punto.x,punto.y))
         }
       })                                 
-      this.monksGroup.add(new Monje(this,false,ruta,monk.properties[0].value,'monjeF'));  //Por cada objeto dentro de la capa se crea una monja en el grupo.
+      this.monksGroup.add(new Monje(this,false,ruta,monk.properties[0].value,'runmonk','MonkAnim'));  //Por cada objeto dentro de la capa se crea una monja en el grupo.
     })
 
     //Creación de los jugadores
@@ -175,7 +183,7 @@ export default class Game extends Phaser.Scene {
         this.physics.add.collider(caja,this.plateDoorsGroup.getChildren()[j])
       }
       for(var j=0;j<this.leverDoorsGroup.getChildren().length;j++){
-        this.physics.add.collider(caja,this.leversDoorsGroup.getChildren()[j])
+        this.physics.add.collider(caja,this.leverDoorsGroup.getChildren()[j])
       }           
     }
 
@@ -188,17 +196,12 @@ export default class Game extends Phaser.Scene {
       this.physics.add.overlap(this.playerBuffoon,this.guardsGroup.getChildren()[i],(o1,o2)=>{this.arlVig(o1,o2);});
       this.physics.add.overlap(this.playerCountess,this.guardsGroup.getChildren()[i],(o1,o2)=>{this.marGuardia(o1,o2);});
     }
-    for(var i=0;i<this.ringsGroup.getChildren().length;i++){
-      this.physics.add.overlap(this.playerBuffoon,this.guardsGroup.getChildren()[i],(o1,o2)=>{this.arlVig(o1,o2);});
+    for(var i=0;i<this.monksGroup.getChildren().length;i++){
+      this.physics.add.overlap(this.playerBuffoon,this.monksGroup.getChildren()[i],(o1,o2)=>{this.arlVig(o1,o2);});
       this.physics.add.overlap(this.playerCountess,this.monksGroup.getChildren()[i],(o1,o2)=>{this.marMonje(o1,o2)});
     }
     
 
-    //Jugadores con los guardias
-    // this.physics.add.overlap(this.playerBuffoon,this.guardsGroup,(o1,o2)=>{this.arlVig(o1,o2);});
-    // this.physics.add.overlap(this.playerBuffoon,this.monksGroup,(o1,o2)=>{this.arlVig(o1,o2);});
-    // this.physics.add.overlap(this.playerCountess,this.guardsGroup,(o1,o2)=>{this.marGuardia(o1,o2);});
-    // this.physics.add.overlap(this.playerCountess,this.monksGroup,(o1,o2)=>{this.marMonje(o1,o2)});
 
     this.score = 0;     
     //SetCollisionBetween
@@ -296,14 +299,16 @@ export default class Game extends Phaser.Scene {
     }
   }
 
+
+
   checkEndOverlap(){
     //Si ambos jugadores entran en el trigger, se pasa de escena
       if(this.physics.overlap(this.playerBuffoon, this.endTrigger) && this.physics.overlap(this.playerCountess, this.endTrigger)){
-        console.log('Siguiente escena');
-          this.levelFinished = this.sound.add('levelPassed')     
+        console.log('Siguiente escena');  
+        if(!this.win) {
           this.levelFinished.play();
-          this.scene.start(this.nextZone);
-
+          this.win = true;
+        }
       }
    //Si solo uno de ellos entra, "llama" al otro haciendo visible un texto
       else if(this.physics.overlap(this.playerBuffoon, this.endTrigger) || this.physics.overlap(this.playerCountess, this.endTrigger)){

@@ -1,9 +1,8 @@
 import Objecto from './objeto.js';
-import Vision from './vision.js';
 
 export default class Enemigo extends Phaser.GameObjects.Container
 {
-    constructor(scene,x,y,type,route,circle, sprite)
+    constructor(scene,x,y,type,route,circle, sprite,anim)
     {
         super(scene,x,y);
         scene.add.existing(this);
@@ -13,9 +12,10 @@ export default class Enemigo extends Phaser.GameObjects.Container
         this.tipo =type;
         this.route = route;
         this.circle = circle;
-        this.setScale(0.4);
-        this.vision = new Vision (scene,0,0,'vista');
-        this.object = new Objecto(scene,30,30,sprite,100,100,1,false);
+        this.animation=anim;
+        this.vision = new Objecto (scene,0,0,'vista',32,32,1,false);
+        this.vision.alpha =0.5;
+        this.object = new Objecto(scene,0,0,sprite,64,64,1,false);
         this.add(this.object);
         this.add(this.vision);
         this.after =1;
@@ -80,7 +80,7 @@ export default class Enemigo extends Phaser.GameObjects.Container
 
     checkHorizontal()
     {
-        if(this.pos1X === this.pos2X)
+        if(Math.abs(this.pos1X-this.pos2X ) < Math.abs(this.pos1Y-this.pos2Y))
             this.horizontal =false;
         else 
             this.horizontal =true;
@@ -89,7 +89,7 @@ export default class Enemigo extends Phaser.GameObjects.Container
         {
             this.vision.setAngle(-90);
 
-            this.body.setSize(90,60);
+            this.body.setSize(64,42);
 
             if (this.pos1X>this.pos2X)
             {
@@ -100,7 +100,7 @@ export default class Enemigo extends Phaser.GameObjects.Container
         }
         else{
             this.vision.setAngle(0);
-            this.body.setSize(60,90);
+            this.body.setSize(42,64);
             if (this.pos1Y>this.pos2Y)
             {
                 this.backAnim();
@@ -153,66 +153,39 @@ export default class Enemigo extends Phaser.GameObjects.Container
     }
     leftAnim()
     {
-        if (this.tipo)
-        {
-            this.object.setTexture('guardiaL');
-        }
-        else 
-        {
-            this.object.setTexture('monjeL');
-        }
+        
+        this.object.angle = 270;
         this.vision.flipY= false;
-        this.vision.x = 30;
-        this.vision.y=30;
-        this.object.x =60;
-        this.object.y=30;
+        this.vision.x =16;
+        this.vision.y=21;
+        this.object.x=48;
+        this.object.y=12;
     }
     rightAnim()
     {
-        if (this.tipo)
-        {
-           this.object.setTexture('guardiaR');
-        }
-        else 
-        {
-            this.object.setTexture('monjeR');
-        }
+        this.object.angle = 90;
         this.vision.flipY= true;
-        this.vision.x = 60;
-        this.vision.y=30;
-        this.object.x =30;
+        this.vision.x =48;
+        this.vision.y=21;
+        this.object.x =16;
         this.object.y=30;
     }
     frontAnim()
     {
-        if (this.tipo)
-        {
-            this.object.setTexture('guardiaF');
-        }
-        else 
-        {
-            this.object.setTexture('monjeF');
-        }
+        this.object.angle = 180;
         this.vision.flipY= true;
-        this.vision.y =60; 
-        this.vision.x=30;
-        this.object.y =30;  
-        this.object.x=30; 
+        this.vision.y =48; 
+        this.vision.x=21;
+        this.object.y =16;  
+        this.object.x=12; 
     }
     backAnim()
     {
-        if (this.tipo)
-        {
-            this.object.setTexture('guardiaB');
-        }
-        else 
-        {
-            this.object.setTexture('monjeB');
-        }
+        this.object.angle = 0;
         this.vision.flipY= false;
-        this.vision.y = 30;  
-        this.vision.x=30;
-        this.object.y= 60;  
+        this.vision.y = 16;  
+        this.vision.x=21;
+        this.object.y= 48;  
         this.object.x=30;
     }
 

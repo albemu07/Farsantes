@@ -14,16 +14,17 @@ export default class Boot extends Phaser.Scene{
     this.load.spritesheet('RunCountess','./assets/countess/markesa.png',{frameWidth:32,frameHeight:32});
 
     //Guardia
-    this.load.image('guardiaL','./assets/guard/guardiaLeft.png');
-    this.load.image('guardiaR','./assets/guard/guardiaRight.png');
-    this.load.image('guardiaF','./assets/guard/guardiaFront.png');
-    this.load.image('guardiaB','./assets/guard/guardiaBack.png');
-
+    // this.load.image('guardiaL','./assets/guard/guardiaLeft.png');
+    // this.load.image('guardiaR','./assets/guard/guardiaRight.png');
+    // this.load.image('guardiaF','./assets/guard/guardiaFront.png');
+    // this.load.image('guardiaB','./assets/guard/guardiaBack.png');
+    this.load.spritesheet('runguard','./assets/guard/guard.png',{frameWidth:32,frameHeight:32});
     //Monja
-    this.load.image('monjeL','./assets/nun/monjeLeft.png');
-    this.load.image('monjeR','./assets/nun/monjeRight.png');
-    this.load.image('monjeF','./assets/nun/monjeFront.png');
-    this.load.image('monjeB','./assets/nun/monjeBack.png');
+    // this.load.image('monjeL','./assets/nun/monjeLeft.png');
+    // this.load.image('monjeR','./assets/nun/monjeRight.png');
+    // this.load.image('monjeF','./assets/nun/monjeFront.png');
+    // this.load.image('monjeB','./assets/nun/monjeBack.png');
+    this.load.spritesheet('runmonk','./assets/nun/monk.png',{frameWidth:32,frameHeight:32});
 
     this.load.image('vista','./assets/spriteSheet/deteccion.png');
 
@@ -67,6 +68,7 @@ export default class Boot extends Phaser.Scene{
     this.load.tilemapTiledJSON('tilemap2', './assets/tile/zone2.json');
     this.load.tilemapTiledJSON('tilemap3', './assets/tile/zone3.json');
     this.load.tilemapTiledJSON('tilemap4', './assets/tile/pruebaGuardia.json');
+    this.load.tilemapTiledJSON('tilemap31', './assets/tile/zone31.json');
 
     //Tilesets
     this.load.image('map', './assets/tile/spriteSet.png');
@@ -146,6 +148,18 @@ export default class Boot extends Phaser.Scene{
       repeat: -1
     });
 
+    this.anims.create({
+      key:'GuardAnim',
+      frames: this.anims.generateFrameNumbers('runguard'),
+      frameRate:3,
+      repeat: -1
+    })
+    this.anims.create({
+      key:'MonkAnim',
+      frames: this.anims.generateFrameNumbers('runmonk'),
+      frameRate:3,
+      repeat: -1
+    })
     //Palanca
     this.anims.create({
       key:'DesactivateLever1',
