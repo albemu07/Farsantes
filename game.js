@@ -40,7 +40,7 @@ export default class Game extends Phaser.Scene {
       key: this.tileMap
     });
 
-    const tileset = this.map.addTilesetImage('spriteSetBien', 'map3');
+    const tileset = this.map.addTilesetImage('spriteSetBien', 'map1');
 
     //Crear capa de suelo
     this.ground = this.map.createStaticLayer('ground', tileset);

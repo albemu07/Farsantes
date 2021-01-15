@@ -64,14 +64,14 @@ export default class Boot extends Phaser.Scene{
 
     //Niveles
     this.load.tilemapTiledJSON('tilemap', './assets/tile/nivelPrueba.json');
-    this.load.tilemapTiledJSON('tilemap1', './assets/tile/zone1.json');
-    this.load.tilemapTiledJSON('tilemap2', './assets/tile/zone2.json');
-    this.load.tilemapTiledJSON('tilemap3', './assets/tile/zone3.json');
+    this.load.tilemapTiledJSON('tilemap11', './assets/tile/zone1.json');
+    this.load.tilemapTiledJSON('tilemap12', './assets/tile/zone2.json');
+    this.load.tilemapTiledJSON('tilemap13', './assets/tile/zone3.json');
     this.load.tilemapTiledJSON('tilemap4', './assets/tile/pruebaGuardia.json');
     this.load.tilemapTiledJSON('tilemap31', './assets/tile/zone31.json');
 
     //Tilesets
-    this.load.image('map', './assets/tile/spriteSet.png');
+    this.load.image('map1', './assets/tile/spriteSet.png');
     this.load.image('map2', './assets/tile/spriteSetNight.png');
     this.load.image('map3', './assets/tile/spriteSetConvento.png');
 
