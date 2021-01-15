@@ -44,9 +44,10 @@ export default class Player extends Objeto {
         return true
       }
       else if(this.leverGrabbed && (this.pad && !this.pad.B || !this.pad) && !this.cursors.grab.isDown){
-        this.leverGrabbed=false
+        this.leverGrabbed=false;
         return false;
       }
+      return false;
      }
 
     grabDown(){
