@@ -79,6 +79,9 @@
        import Zone4 from './scripts/zone4.js'
        import Zone5 from './scripts/zone5.js'
        import Zone6 from './scripts/zone6.js'
+       import Zone7 from './scripts/zone7.js'
+       import Zone8 from './scripts/zone8.js'
+       import Zone9 from './scripts/zone9.js'
 
       var config = {
         type: Phaser.AUTO,
@@ -93,7 +96,7 @@
           mode: Phaser.Scale.FIT,
           autoCenter: Phaser.Scale.CENTER_BOTH,
         },
-        scene: [Boot,Menu,Settings,PauseMenu,FinalScene,TextScene1,Zone1,Zone2,Zone3,Zone4,Zone5,Zone6],
+        scene: [Boot,Menu,Settings,PauseMenu,FinalScene,TextScene1,Zone1,Zone2,Zone3,Zone4,Zone5,Zone6, Zone7, Zone8, Zone9],
         physics: {
           default: "arcade",
           arcade: { gravity: { y:0 }, debug: false },
