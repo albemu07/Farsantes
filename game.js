@@ -92,7 +92,7 @@ export default class Game extends Phaser.Scene {
     this.leverDoorsLayer=this.map.getObjectLayer('leverDoors')['objects'] //Creación de capa de puertas asociadas a palancas
     this.leverDoorsGroup=this.physics.add.staticGroup();                  //Creación del grupo de puertas asociadas a palancas
     this.leverDoorsLayer.forEach(object =>{                              
-       this.leverDoorsGroup.add(new Door(this,object.x,object.y,object.rotation,true, this.level))    //Por cada objeto dentro de la capa se crea una puerta en el grupo.
+       this.leverDoorsGroup.add(new Door(this,object.x,object.y,object.rotation,false, this.level))    //Por cada objeto dentro de la capa se crea una puerta en el grupo.
     })
     //Crear capa de palancas
     this.leversLayer=this.map.getObjectLayer('levers')['objects']         //Creación de capa de palancas
@@ -153,9 +153,9 @@ export default class Game extends Phaser.Scene {
     this.playerCountess=new Countess(this,this.countessX,this.countessY,'RunCountess');
 
     
-    //Marcador de puntuación
-    this.scoreDisplay=this.add.text(10,10,'Puntuación: '+this.score,{fontSize: '20px', fill:'#000'})
-    this.scoreDisplay.setText('Puntuación'+this.score);
+    // //Marcador de puntuación
+    // this.scoreDisplay=this.add.text(10,10,'Puntuación: '+this.score,{fontSize: '20px', fill:'#000'})
+    // this.scoreDisplay.setText('Puntuación'+this.score);
 
     //COLISIONES
     //Jugadores con los muros

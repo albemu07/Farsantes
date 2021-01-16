@@ -3,8 +3,7 @@
     {
      "export":
         {
-         "format":"json",
-         "target":"zone3.json"
+         "format":"json"
         }
     },
  "height":21,
@@ -114,8 +113,8 @@
                  "type":"3",
                  "visible":true,
                  "width":0,
-                 "x":30.6667,
-                 "y":64
+                 "x":-8.33,
+                 "y":33
                 }, 
                 {
                  "height":0,
@@ -125,8 +124,8 @@
                  "type":"2",
                  "visible":true,
                  "width":0,
-                 "x":800,
-                 "y":94.6667
+                 "x":773,
+                 "y":69.67
                 }, 
                 {
                  "height":0,
@@ -136,8 +135,8 @@
                  "type":"1",
                  "visible":true,
                  "width":0,
-                 "x":720,
-                 "y":528
+                 "x":690,
+                 "y":491
                 }],
          "opacity":1,
          "properties":[
@@ -316,17 +315,6 @@
                  "width":0,
                  "x":718.667,
                  "y":146.667
-                }, 
-                {
-                 "height":0,
-                 "id":38,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":1.33333,
-                 "x":117.333,
-                 "y":-90.6667
                 }],
          "opacity":1,
          "type":"objectgroup",
