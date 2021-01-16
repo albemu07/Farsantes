@@ -274,7 +274,7 @@ export default class Game extends Phaser.Scene {
     if (this.physics.overlap(o1,o2.ring)){
       console.log("anillo cogido");
       this.score += o2.taken();
-      this.scoreDisplay.setText('Puntuación'+this.score);
+      // this.scoreDisplay.setText('Puntuación'+this.score);
       o2.destroy();
 
     }
