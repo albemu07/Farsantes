@@ -177,24 +177,7 @@
          "draworder":"topdown",
          "id":8,
          "name":"monks",
-         "objects":[
-                {
-                 "height":0,
-                 "id":43,
-                 "name":"3",
-                 "properties":[
-                        {
-                         "name":"circle",
-                         "type":"bool",
-                         "value":true
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":353.333,
-                 "y":126.667
-                }],
+         "objects":[],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -239,6 +222,23 @@
                  "width":0,
                  "x":790.667,
                  "y":188
+                }, 
+                {
+                 "height":0,
+                 "id":54,
+                 "name":"3",
+                 "properties":[
+                        {
+                         "name":"circle",
+                         "type":"bool",
+                         "value":false
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":370.937098844673,
+                 "y":-177.458279845956
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -347,7 +347,7 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":202.666666666667,
+                 "x":202.667,
                  "y":298
                 }, 
                 {
@@ -358,7 +358,7 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":202.666666666667,
+                 "x":202.667,
                  "y":70
                 }, 
                 {
@@ -369,7 +369,7 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":48.6666666666667,
+                 "x":48.6667,
                  "y":70
                 }, 
                 {
@@ -381,7 +381,7 @@
                  "visible":true,
                  "width":0,
                  "x":772,
-                 "y":166.666666666667
+                 "y":166.667
                 }, 
                 {
                  "height":0,
@@ -392,7 +392,7 @@
                  "visible":true,
                  "width":0,
                  "x":772,
-                 "y":82.6666666666667
+                 "y":82.6667
                 }, 
                 {
                  "height":0,
@@ -403,7 +403,7 @@
                  "visible":true,
                  "width":0,
                  "x":654,
-                 "y":82.6666666666667
+                 "y":82.6667
                 }, 
                 {
                  "height":0,
@@ -414,7 +414,7 @@
                  "visible":true,
                  "width":0,
                  "x":658,
-                 "y":166.666666666667
+                 "y":166.667
                 }, 
                 {
                  "height":0,
@@ -456,10 +456,10 @@
          "y":0
         }],
  "nextlayerid":16,
- "nextobjectid":54,
+ "nextobjectid":55,
  "orientation":"orthogonal",
  "renderorder":"right-up",
- "tiledversion":"2020.11.25",
+ "tiledversion":"1.4.3",
  "tileheight":32,
  "tilesets":[
         {
@@ -471,7 +471,7 @@
          "margin":0,
          "name":"spriteSetBien",
          "spacing":0,
-         "tilecount":126,
+         "tilecount":0,
          "tileheight":32,
          "tilewidth":32
         }],

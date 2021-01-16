@@ -92,7 +92,7 @@ export default class Player extends Objeto {
       }
       
       this.body.velocity.normalize().scale(this.speed);
-      if(this.body.velocity.x!==0 || this.body.velocity.y!==0)this.angle=(Math.atan2(this.getVelocityX(), -this.getVelocityY())*180)/Math.PI;     
+      if(this.body.velocity.x!==0 || this.body.velocity.y!==0)this.angle = (this.body.velocity.angle()*180/Math.PI) +90;     
       if(this.body.velocity.x===0 && this.body.velocity.y===0){
         this.anims.play(this.animIdle,true);
         if (this.sound){

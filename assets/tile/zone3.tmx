@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="2020.11.25" orientation="orthogonal" renderorder="right-up" width="28" height="21" tilewidth="32" tileheight="32" infinite="0" nextlayerid="16" nextobjectid="54">
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-up" width="28" height="21" tilewidth="32" tileheight="32" infinite="0" nextlayerid="16" nextobjectid="55">
  <editorsettings>
   <export target="zone3.json" format="json"/>
  </editorsettings>
- <tileset firstgid="1" name="spriteSetBien" tilewidth="32" tileheight="32" tilecount="126" columns="9">
+ <tileset firstgid="1" name="spriteSetBien" tilewidth="32" tileheight="32" tilecount="0" columns="9">
   <image source="spriteSet.png" width="288" height="448"/>
  </tileset>
  <layer id="1" name="ground" width="28" height="21" locked="1" opacity="0.97">
@@ -97,13 +97,7 @@
  </objectgroup>
  <objectgroup id="6" name="plateDoors"/>
  <objectgroup id="7" name="boxes"/>
- <objectgroup id="8" name="monks">
-  <object id="43" name="3" x="353.333" y="126.667">
-   <properties>
-    <property name="circle" type="bool" value="true"/>
-   </properties>
-  </object>
- </objectgroup>
+ <objectgroup id="8" name="monks"/>
  <objectgroup id="9" name="guards">
   <object id="39" name="1" x="62.6667" y="93.3333">
    <properties>
@@ -113,6 +107,11 @@
   <object id="40" name="2" x="790.667" y="188">
    <properties>
     <property name="circle" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="54" name="3" x="370.937" y="-177.458">
+   <properties>
+    <property name="circle" type="bool" value="false"/>
    </properties>
   </object>
  </objectgroup>
