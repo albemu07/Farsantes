@@ -4,7 +4,7 @@ import Lever from './scripts/lever.js';
 import Ring from './scripts/ring.js';
 import Caja from './scripts/caja.js';
 import Door from './scripts/door.js';
-import PressurePlate from './scripts/pressurePlate.js'
+import PressurePlate from './scripts/pressure_plate.js'
 import Guardia from './scripts/guardia.js';
 import Monje from './scripts/monje.js';
 

@@ -26,6 +26,7 @@ export default class Menu extends Phaser.Scene{
         }
         this.music = this.sound.add("music", config);
         this.music.play();
+
         //Fondo
         this.add.image(0,0,'menuBackground').setOrigin(0,0);
 
