@@ -191,7 +191,7 @@ export default class Game extends Phaser.Scene {
       //Muros
       this.physics.add.collider(this.walls,caja)
       //Bufon
-      this.physics.add.collider(this.playerBuffoon,caja.box)
+      this.physics.add.collider(this.playerBuffoon,caja.box);
       this.physics.add.overlap(this.playerBuffoon, caja.object, (o1, o2) => {
         this.moveBox(o1,caja);    
        });
@@ -313,7 +313,7 @@ export default class Game extends Phaser.Scene {
 
   moveBox(player,box){
     if (player.grabDown()){
-      player.speedChange(box.moveAlong(player))
+      player.speedChange(box.moveAlong(player));
     }
     else {
       player.speedChange(box.stopMove());

@@ -4,7 +4,7 @@ export default class Player extends Objeto {
       super(scene, x, y, sprite, colliderX, colliderY, scale, false);
       this.speedPlayer=100;     
       this.speedCaja=50;
-      this.speed= this.speedPlayer
+      this.speed= this.speedPlayer;
       this.animIdle = animIdle;
       this.animRun = animRun;
       this.colliderX = colliderX;
@@ -73,11 +73,9 @@ export default class Player extends Objeto {
       super.preUpdate(time,delta);
       if(this.cursors.up.isDown || (this.pad && (this.pad.up || this.pad.leftStick.y < -0.2))){
         this.body.setVelocityY(-this.speed);
-        this.angle=0
       }
       else if(this.cursors.down.isDown || (this.pad && (this.pad.down || this.pad.leftStick.y > 0.2))){
         this.body.setVelocityY(this.speed);
-        this.angle=180
       }
       else{
         this.body.setVelocityY(0)
@@ -85,18 +83,16 @@ export default class Player extends Objeto {
 
       if(this.cursors.left.isDown || (this.pad && (this.pad.left || this.pad.leftStick.x < -0.2))){
         this.body.setVelocityX(-this.speed);
-        this.angle=270
       }
       else if(this.cursors.right.isDown || (this.pad && (this.pad.right || this.pad.leftStick.x > 0.2))){
         this.body.setVelocityX(this.speed);
-        this.angle=90
       }
       else{
         this.body.setVelocityX(0)
       }
-
-      this.body.velocity.normalize().scale(this.speedPlayer)
- 
+      
+      this.body.velocity.normalize().scale(this.speed);
+      if(this.body.velocity.x!==0 || this.body.velocity.y!==0)this.angle=(Math.atan2(this.getVelocityX(), -this.getVelocityY())*180)/Math.PI;     
       if(this.body.velocity.x===0 && this.body.velocity.y===0){
         this.anims.play(this.animIdle,true);
         if (this.sound){
