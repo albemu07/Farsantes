@@ -260,7 +260,9 @@ export default class Game extends Phaser.Scene {
   }
 
   update(time,delta){
-
+    if (this.playerBuffoon.rDown()){
+      this.scene.restart();
+    }
     //Comprobación del overlapping entre trigger y jugadores
     this.checkPressureplate();
     this.checkEndOverlap();
@@ -297,8 +299,7 @@ export default class Game extends Phaser.Scene {
     if (this.physics.overlap(o1,o2.vision))
     {
       console.log("Encontrado a la Marquesa");
-      this.playerCountess.respawn();
-      this.playerBuffoon.respawn();
+      this.scene.restart();
     }
 
   }
@@ -306,8 +307,7 @@ export default class Game extends Phaser.Scene {
   {
     if (this.physics.overlap(o1,o2.vision)){
     console.log("Encontrado a Arlequin");
-    this.playerCountess.respawn();
-    this.playerBuffoon.respawn();
+    this.scene.restart();
     }
   }
 

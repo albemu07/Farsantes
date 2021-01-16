@@ -14,6 +14,7 @@ export default class Player extends Objeto {
       this.leverGrabbed = false;
       this.sound = false;
       this.steps = scene.sound.add("footstep");
+      this.s = scene;
     }
 
     getVelocityY(){
@@ -36,6 +37,13 @@ export default class Player extends Objeto {
 
     changeVolume(vol){
       this.steps.setVolume(vol);
+    }
+
+    rDown(){
+      if (this.cursors.ret.isDown){
+        return true;
+      }
+      return false;
     }
     
     grabLever(){

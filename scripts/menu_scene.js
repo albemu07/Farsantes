@@ -25,7 +25,7 @@ export default class Menu extends Phaser.Scene{
             delay:0
         }
         this.music = this.sound.add("music", config);
-        this.music.play();
+ 
 
         //Fondo
         this.add.image(0,0,'menuBackground').setOrigin(0,0);
@@ -48,7 +48,8 @@ export default class Menu extends Phaser.Scene{
         //Funciones al pulsar
         this.play.on('pointerdown', ()=>{           
             // this.music.setLoop(true);
-            this.scene.start('Zone3', {effSound:this.effectsSound, mSound:this.musicSound, score: 0}), this.scene.stop()});
+            this.music.play();
+            this.scene.start('Zone1', {effSound:this.effectsSound, mSound:this.musicSound, score: 0}), this.scene.stop()});
         this.settings.on('pointerdown', ()=>{this.scene.launch('Settings',{pause: false, effSound:this.effectsSound, mSound:this.musicSound})});
         
     }

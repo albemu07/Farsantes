@@ -13,12 +13,9 @@ export default class Countess extends Player {
         right: Phaser.Input.Keyboard.KeyCodes.D,
         grab: Phaser.Input.Keyboard.KeyCodes.C,
         stun: Phaser.Input.Keyboard.KeyCodes.C,
+        ret: Phaser.Input.Keyboard.KeyCodes.R,
       });
     }
 
-    respawn()
-    {
-       this.x = this.xIni;
-       this.y = this.yIni;
-    }
+
   }

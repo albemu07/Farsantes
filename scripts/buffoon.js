@@ -10,12 +10,9 @@ export default class Buffoon extends Player {
         left: Phaser.Input.Keyboard.KeyCodes.LEFT,
         right: Phaser.Input.Keyboard.KeyCodes.RIGHT,
         grab: Phaser.Input.Keyboard.KeyCodes.ENTER,
+        ret: Phaser.Input.Keyboard.KeyCodes.R,
       });
     }
 
-    respawn()
-    {
-       this.x = this.xIni;
-       this.y = this.yIni;
-    }
+
 }
