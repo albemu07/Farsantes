@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="2020.11.25" orientation="orthogonal" renderorder="right-down" width="28" height="21" tilewidth="32" tileheight="32" infinite="0" nextlayerid="14" nextobjectid="68">
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="28" height="21" tilewidth="32" tileheight="32" infinite="0" nextlayerid="14" nextobjectid="68">
  <editorsettings>
-  <export target="zone23.json" format="json"/>
+  <export format="json"/>
  </editorsettings>
- <tileset firstgid="1" name="spriteSetBien" tilewidth="32" tileheight="32" tilecount="126" columns="9">
+ <tileset firstgid="1" name="spriteSetBien" tilewidth="32" tileheight="32" tilecount="0" columns="9">
   <image source="spriteSetNight.png" width="288" height="448"/>
  </tileset>
  <layer id="2" name="ground" width="28" height="21">
@@ -158,9 +158,9 @@
  </objectgroup>
  <objectgroup id="11" name="plateDoors">
   <object id="8" name="0" x="848" y="114.667"/>
-  <object id="15" name="1" x="818" y="530" rotation="90"/>
-  <object id="19" name="2" x="209" y="400" rotation="90"/>
-  <object id="25" name="3" x="465" y="271" rotation="90"/>
+  <object id="15" name="1" x="818" y="529" rotation="90"/>
+  <object id="19" name="2" x="208" y="400" rotation="90"/>
+  <object id="25" name="3" x="464" y="272" rotation="90"/>
  </objectgroup>
  <objectgroup id="12" name="boxes">
   <object id="10" x="715.333" y="108.667"/>

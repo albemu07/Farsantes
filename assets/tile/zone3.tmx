@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-up" width="28" height="21" tilewidth="32" tileheight="32" infinite="0" nextlayerid="16" nextobjectid="55">
  <editorsettings>
-  <export target="zone3.json" format="json"/>
+  <export format="json"/>
  </editorsettings>
  <tileset firstgid="1" name="spriteSetBien" tilewidth="32" tileheight="32" tilecount="0" columns="9">
   <image source="spriteSet.png" width="288" height="448"/>
@@ -83,7 +83,7 @@
  </layer>
  <objectgroup id="4" name="leverDoors">
   <object id="7" name="0" x="302.667" y="112" rotation="-90"/>
-  <object id="13" name="1" x="302.666" y="556" rotation="-90"/>
+  <object id="13" name="1" x="302.666" y="560" rotation="-90"/>
   <object id="15" name="2" x="495.167" y="370.667"/>
   <object id="24" name="3" x="846.667" y="592"/>
  </objectgroup>

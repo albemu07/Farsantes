@@ -219,8 +219,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":560,
-                 "y":335
+                 "x":561,
+                 "y":336
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -253,7 +253,7 @@
                  "visible":true,
                  "width":0,
                  "x":177,
-                 "y":335
+                 "y":336
                 }, 
                 {
                  "height":0,
@@ -275,7 +275,7 @@
                  "visible":true,
                  "width":0,
                  "x":401,
-                 "y":527
+                 "y":528
                 }, 
                 {
                  "height":0,
@@ -286,7 +286,7 @@
                  "visible":true,
                  "width":0,
                  "x":401,
-                 "y":142
+                 "y":144
                 }, 
                 {
                  "height":0,
@@ -297,7 +297,7 @@
                  "visible":true,
                  "width":0,
                  "x":689,
-                 "y":335
+                 "y":336
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -321,7 +321,7 @@
          "margin":0,
          "name":"spriteSetBien",
          "spacing":0,
-         "tilecount":117,
+         "tilecount":0,
          "tileheight":32,
          "tilewidth":32
         }],

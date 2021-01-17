@@ -3,7 +3,7 @@
  <editorsettings>
   <export target="zone1.json" format="json"/>
  </editorsettings>
- <tileset firstgid="1" name="spriteSetBien" tilewidth="32" tileheight="32" tilecount="117" columns="9">
+ <tileset firstgid="1" name="spriteSetBien" tilewidth="32" tileheight="32" tilecount="0" columns="9">
   <image source="spriteSetBien.png" width="288" height="416"/>
  </tileset>
  <layer id="1" name="ground" width="28" height="21">
@@ -39,14 +39,14 @@
  <objectgroup id="12" name="monks"/>
  <objectgroup id="10" name="boxes"/>
  <objectgroup id="6" name="plateDoors">
-  <object id="48" name="0" x="560" y="335" rotation="90"/>
+  <object id="48" name="0" x="561" y="336" rotation="90"/>
  </objectgroup>
  <objectgroup id="15" name="rings"/>
  <objectgroup id="7" name="leverDoors">
-  <object id="30" name="0" x="177" y="335" rotation="90"/>
+  <object id="30" name="0" x="177" y="336" rotation="90"/>
   <object id="40" name="1" x="273" y="144" rotation="90"/>
-  <object id="44" name="2" x="401" y="527" rotation="90"/>
-  <object id="45" name="3" x="401" y="142" rotation="90"/>
-  <object id="46" name="4" x="689" y="335" rotation="90"/>
+  <object id="44" name="2" x="401" y="528" rotation="90"/>
+  <object id="45" name="3" x="401" y="144" rotation="90"/>
+  <object id="46" name="4" x="689" y="336" rotation="90"/>
  </objectgroup>
 </map>

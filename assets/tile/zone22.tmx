@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="2020.11.25" orientation="orthogonal" renderorder="right-down" width="28" height="21" tilewidth="32" tileheight="32" infinite="0" nextlayerid="14" nextobjectid="58">
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="28" height="21" tilewidth="32" tileheight="32" infinite="0" nextlayerid="14" nextobjectid="58">
  <editorsettings>
-  <export target="zone21.json" format="json"/>
+  <export format="json"/>
  </editorsettings>
- <tileset firstgid="1" name="spriteSetBien" tilewidth="32" tileheight="32" tilecount="126" columns="9">
+ <tileset firstgid="1" name="spriteSetBien" tilewidth="32" tileheight="32" tilecount="0" columns="9">
   <image source="spriteSetNight.png" width="288" height="448"/>
  </tileset>
  <layer id="3" name="ground" width="28" height="21">
@@ -127,15 +127,15 @@
   <object id="35" name="1" x="144.667" y="479.333"/>
  </objectgroup>
  <objectgroup id="9" name="leverDoors">
-  <object id="16" name="0" x="784.667" y="529.333"/>
+  <object id="16" name="0" x="782.67" y="528.33"/>
   <object id="34" name="1" x="750.333" y="625.333" rotation="-90"/>
  </objectgroup>
  <objectgroup id="10" name="plateDoors">
-  <object id="5" name="0" x="561.333" y="176.667" rotation="-90"/>
-  <object id="9" name="1" x="304" y="146"/>
-  <object id="12" name="2" x="816" y="270"/>
-  <object id="15" name="3" x="783.333" y="398"/>
-  <object id="39" name="4" x="208.667" y="466" rotation="-90"/>
+  <object id="5" name="0" x="560.33" y="175.67" rotation="-90"/>
+  <object id="9" name="1" x="304" y="144"/>
+  <object id="12" name="2" x="816" y="271"/>
+  <object id="15" name="3" x="783.333" y="399"/>
+  <object id="39" name="4" x="207.67" y="464" rotation="-90"/>
  </objectgroup>
  <objectgroup id="11" name="routePoints">
   <object id="22" name="0" x="801.333" y="40.3333"/>
