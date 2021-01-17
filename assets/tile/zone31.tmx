@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="28" height="21" tilewidth="32" tileheight="32" infinite="0" nextlayerid="14" nextobjectid="48">
- <tileset firstgid="1" name="spriteSetBien" tilewidth="32" tileheight="32" tilecount="81" columns="9">
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="28" height="21" tilewidth="32" tileheight="32" infinite="0" nextlayerid="14" nextobjectid="58">
+ <editorsettings>
+  <export target="."/>
+ </editorsettings>
+ <tileset firstgid="1" name="spriteSetBien" tilewidth="32" tileheight="32" tilecount="0" columns="9">
   <image source="spriteSetConvento.png" trans="ff00ff" width="288" height="288"/>
  </tileset>
  <layer id="1" name="ground" width="28" height="21">
@@ -79,52 +82,77 @@
 </data>
  </layer>
  <objectgroup id="13" name="rings">
-  <object id="3" x="688.667" y="337.333"/>
-  <object id="4" x="560" y="79.3333"/>
+  <object id="3" type="1" x="640.667" y="288"/>
+  <object id="4" type="3" x="513.333" y="30"/>
  </objectgroup>
  <objectgroup id="11" name="endTrigger">
   <object id="7" x="34.6667" y="482.667" width="92" height="124"/>
  </objectgroup>
  <objectgroup id="12" name="routePoints">
-  <object id="35" name="2" x="400.667" y="240.667"/>
-  <object id="36" name="4" x="224" y="576.667"/>
-  <object id="38" name="3" x="433.333" y="592.667"/>
-  <object id="39" name="5" x="544.667" y="224.667"/>
-  <object id="40" name="5" x="832" y="448.667"/>
-  <object id="41" name="5" x="544.667" y="448"/>
-  <object id="42" name="1" x="832" y="448.667"/>
-  <object id="44" name="1" x="544.667" y="224.667"/>
-  <object id="45" name="1" x="831.333" y="223.333"/>
+  <object id="35" name="1" x="400.667" y="240.667"/>
+  <object id="36" name="3" x="224" y="576.667"/>
+  <object id="38" name="2" x="433.333" y="592.667"/>
+  <object id="39" name="4" x="544" y="221"/>
+  <object id="41" name="4" x="544" y="448"/>
+  <object id="40" name="4" x="832" y="448"/>
+  <object id="54" name="4" x="830" y="222"/>
+  <object id="42" name="0" x="832" y="448"/>
+  <object id="45" name="0" x="831" y="223"/>
+  <object id="44" name="0" x="544" y="224"/>
+  <object id="55" name="0" x="544" y="449"/>
+  <object id="51" name="1" x="78.6667" y="240"/>
+  <object id="52" name="2" x="432" y="366.667"/>
+  <object id="53" name="3" x="222.667" y="352"/>
  </objectgroup>
  <objectgroup id="4" name="plateDoors">
-  <object id="9" name="4" x="624.667" y="562"/>
-  <object id="10" name="3" x="112.667" y="432"/>
-  <object id="15" name="2" x="816.667" y="496.667"/>
-  <object id="18" name="1" x="559.333" y="176"/>
+  <object id="9" name="3" x="623.67" y="560" rotation="90"/>
+  <object id="10" name="2" x="111.67" y="432"/>
+  <object id="15" name="1" x="815.67" y="495.67"/>
+  <object id="18" name="0" x="560.33" y="176"/>
  </objectgroup>
  <objectgroup id="5" name="leverDoors">
-  <object id="11" name="2" x="688" y="496"/>
-  <object id="16" name="1" x="752" y="111.333"/>
+  <object id="11" name="1" x="688" y="496"/>
+  <object id="16" name="0" x="752" y="112.33" rotation="90"/>
  </objectgroup>
  <objectgroup id="6" name="plates">
-  <object id="22" name="4" x="256.667" y="96"/>
-  <object id="23" name="3" x="64.6667" y="64"/>
-  <object id="24" name="2" x="400.667" y="560"/>
-  <object id="25" name="1" x="544" y="576"/>
+  <object id="22" name="3" x="256.667" y="96"/>
+  <object id="23" name="2" x="64.6667" y="64"/>
+  <object id="24" name="1" x="400.667" y="560"/>
+  <object id="25" name="0" x="544" y="576"/>
  </objectgroup>
  <objectgroup id="7" name="levers">
-  <object id="26" name="2" x="95.3333" y="350.667"/>
-  <object id="27" name="1" x="816" y="592"/>
+  <object id="26" name="1" x="95.3333" y="350.667"/>
+  <object id="27" name="0" x="816" y="592"/>
  </objectgroup>
  <objectgroup id="8" name="boxes">
   <object id="28" x="400" y="46.6667"/>
  </objectgroup>
  <objectgroup id="9" name="guards"/>
  <objectgroup id="10" name="monks">
-  <object id="29" name="5" x="832" y="224"/>
-  <object id="30" name="4" x="224" y="352.667"/>
-  <object id="31" name="3" x="432.33" y="367.67"/>
-  <object id="33" name="2" x="79.3333" y="240.667"/>
-  <object id="34" name="1" x="544.667" y="448"/>
+  <object id="29" name="4" x="832" y="224">
+   <properties>
+    <property name="circle" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="30" name="3" x="224" y="352.667">
+   <properties>
+    <property name="circle" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="31" name="2" x="432.33" y="367.67">
+   <properties>
+    <property name="circle" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="33" name="1" x="79.3333" y="240.667">
+   <properties>
+    <property name="circle" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="34" name="0" x="544.667" y="448">
+   <properties>
+    <property name="circle" type="bool" value="true"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

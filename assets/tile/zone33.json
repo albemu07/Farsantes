@@ -1,4 +1,11 @@
 { "compressionlevel":-1,
+ "editorsettings":
+    {
+     "export":
+        {
+         "target":"."
+        }
+    },
  "height":21,
  "infinite":false,
  "layers":[
@@ -282,7 +289,7 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":721.333,
+                 "x":720.33,
                  "y":240
                 }, 
                 {
@@ -606,7 +613,7 @@
          "margin":0,
          "name":"spriteSetBien",
          "spacing":0,
-         "tilecount":81,
+         "tilecount":0,
          "tileheight":32,
          "tilewidth":32,
          "transparentcolor":"#ff00ff"

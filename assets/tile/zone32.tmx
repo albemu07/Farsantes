@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="28" height="21" tilewidth="32" tileheight="32" infinite="0" nextlayerid="15" nextobjectid="43">
- <tileset firstgid="1" name="spriteSetBien" tilewidth="32" tileheight="32" tilecount="81" columns="9">
+ <editorsettings>
+  <export target="."/>
+ </editorsettings>
+ <tileset firstgid="1" name="spriteSetBien" tilewidth="32" tileheight="32" tilecount="0" columns="9">
   <image source="spriteSetConvento.png" trans="ff00ff" width="288" height="288"/>
  </tileset>
  <layer id="3" name="ground" width="28" height="21">
@@ -95,16 +98,16 @@
   <object id="22" name="0" x="176" y="196"/>
  </objectgroup>
  <objectgroup id="11" name="plateDoors">
-  <object id="23" name="2" x="304" y="241"/>
-  <object id="24" name="3" x="209" y="561"/>
-  <object id="32" name="1" x="209" y="623"/>
-  <object id="33" name="0" x="817" y="497"/>
+  <object id="23" name="2" x="304" y="240"/>
+  <object id="24" name="3" x="208" y="560"/>
+  <object id="32" name="1" x="208" y="624"/>
+  <object id="33" name="0" x="816" y="496"/>
  </objectgroup>
  <objectgroup id="10" name="leverDoors">
-  <object id="34" name="3" x="689" y="337"/>
-  <object id="35" name="2" x="81" y="240"/>
-  <object id="36" name="0" x="817" y="175"/>
-  <object id="37" name="1" x="561" y="176"/>
+  <object id="34" name="3" x="688" y="336"/>
+  <object id="35" name="2" x="80" y="240"/>
+  <object id="36" name="0" x="816" y="176"/>
+  <object id="37" name="1" x="560" y="176"/>
  </objectgroup>
  <objectgroup id="9" name="plates">
   <object id="8" name="3" x="432" y="432"/>
