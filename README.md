@@ -23,7 +23,7 @@ https://www.pivotaltracker.com/n/projects/2470813
 
 Equipo: _Los Farsantes_
 
-Versión 1.0 - 16 de octubre de 2020
+Versión 2.0 - 17 de enero de 2021
 
 | **Resumen** |
 | --- |
@@ -34,11 +34,11 @@ Versión 1.0 - 16 de octubre de 2020
 
 ## **Descripción**
 
-&quot;Escape from Marquis&#39; Manor&quot; se basa en la obra de teatro &quot;La Marquesa Rosalinda&quot; de Ramón María del Valle-Inclán. La marquesa tiene una aventura con Arlequín de un grupo de farsantes que se hospeda en las tierras de su marido. Celoso, el marqués planea contratar unos matones para deshacerse de él.Marquesa y Arlequín colaborarán para escapar de sus tierras antes de que esto ocurra. ¿Lo conseguirán?
+&quot;Escape from Marquis&#39; Manor&quot; se basa en la obra de teatro &quot;La Marquesa Rosalinda&quot; de Ramón María del Valle-Inclán. La marquesa tiene una aventura con el Arlequín de un grupo de farsantes que se hospeda en las tierras de su marido. Celoso, el marqués planea contratar unos matones para deshacerse de él. Marquesa y Arlequín deberán colaborar para escapar de sus tierras antes de que esto ocurra. ¿Lo conseguirán?
 
 #### **Aspectos generales**
 
-Los jugadores controlan a Arlequín y a la Marquesa, intentando escapar de las laberínticas tierras del marqués y sus vigilantes. En ellas tendrán que interactuar con diferentes mecanismos y objetos para abrirse paso y llegar hasta el final. Los niveles se desarrollarán por los distintos parajes de la obra compuestos por puzzles que desafiarán a los jugadores y les obligarán a cooperar para avanzar. La recolección de ciertos objetos especiales otorgará un bonus en la puntuación que obtenga el jugador.
+Los jugadores controlan al Arlequín y a la Marquesa, intentando escapar de las laberínticas tierras del marqués y sus vigilantes. En ellas tendrán que interactuar con diferentes mecanismos y objetos para abrirse paso y llegar hasta el final. Los niveles se desarrollarán por los distintos parajes de la obra compuestos por puzzles que desafiarán a los jugadores y les obligarán a cooperar para avanzar. La recolección de ciertos objetos especiales otorgará un bonus en la puntuación que obtenga el jugador.
 
 #### **Relato breve y parcial de una partida típica**
 
@@ -48,26 +48,30 @@ Además, habrá zonas opcionales que los jugadores pueden evitar que contendrán
 
 ## **Menús y modos de juego**
 
-**Opciones del menú de inicio:**
+**Menú de inicio:**
 
 -Jugar (comienza la partida)
 
 -Opciones (Abre el menú de opciones)
 
--Salir (Salir del juego)
+**Menú de pausa:**
+
+-Opciones
+
+-Atrás
 
 **Menú de opciones:**
 
--Sonido
+-Subir/Bajar volumen de la música
 
--Créditos
+-Subir/Bajar volumen de los efectos
 
 -Atrás
 
 ## **Interfaz y control**
 
-- **Marquesa:** Movimiento WASD o Gamepad 1, tecla Espacio para interactuar con objetos y distraer enemigos (sólo la marquesa).
-- **Arlequín:** Movimiento con flechas de dirección o Gamepad 2, tecla Intro para interactuar con objetos y distraer enemigos (sólo la marquesa).
+- **Marquesa:** Movimiento WASD/Gamepad 2, tecla 'c'/boton B para interactuar con objetos y distraer enemigos.
+- **Arlequín:** Movimiento con flechas de dirección/Gamepad 1, tecla Intro/boton B para interactuar con objetos.
 
 ## **Jugabilidad**
 
@@ -77,19 +81,19 @@ Además, habrá zonas opcionales que los jugadores pueden evitar que contendrán
 
 - **Movimiento:** Ambos personajes se podrán mover por el mapa de forma en 8 direcciones con sus respectivos controles.
 
-- **Activar mecanismos:** Ambos personajes podrán encontrar elementos que activarán o desactivarán mecanismos del nivel para poder avanzar, como palancas que abren puertas, trampillas, etc.
+- **Activar mecanismos:** Ambos personajes podrán encontrar elementos que activarán o desactivarán mecanismos del nivel para poder avanzar, como palancas que abren puertas, placas de presión, etc.
 
-- **Empujar obstáculos:** Ambos jugadores pueden mover ciertos objetos posicionados en el mapa.
+- **Empujar obstáculos:** Ambos jugadores pueden mover cajas por el mapa.
 
 - **Distraer:** La marquesa podrá distraer a los enemigos (guardias únicamente) posicionados en el mapa pulsando la tecla de acción cerca de estos, para que momentáneamente cambie su rango de visión.
 
-- **Recolección de objetos:** El arlequín podrá recoger objetos coleccionables al entrar en contacto físico con ellos, y éstos sumarán puntuación
+- **Recolección de objetos:** El arlequín podrá recoger objetos coleccionables al entrar en contacto físico con ellos, y éstos sumarán puntuación.
 
 **ENEMIGOS**
 
-- **Vigía:** Los enemigos vigilan una zona del mapa (área de visión) si ven a arlequín pierdes (se reiniciará el nivel). Hay dos tipos, guardias y monjas, los guardias pueden ser distraídos por la marquesa y las monjas no pueden ser distraídas-
+- **Vigía:** Los enemigos vigilan una zona del mapa (área de visión) si ven a arlequín pierdes (se reiniciará el nivel). Hay dos tipos, guardias y monjas.
 
-- **Movimiento:** Algunos de ellos seguirán una ruta predefinida, cambiando su área de visión a medida que se mueven. (Si la implementación es muy compleja consideraremos implementar únicamente enemigos estáticos)
+- **Movimiento:** Seguirán una ruta predefinida, cambiando su área de visión a medida que se mueven. Pueden seguir rutas circulares o ir de un punto a otro.
 
 #### **Dinámica**
 
@@ -103,7 +107,7 @@ Se perderá en caso de que los enemigos vean al personaje que están buscando (l
 
 Los jugadores deberán ir decidiendo cómo avanzarán a través del nivel de manera cooperativa, ya que habrá zonas del mapa que restrinjan el movimiento de uno de los personajes, obligándoles a cooperar para buscar un camino alternativo o una manera de superar dichos obstáculos.
 
-La mayoría de obstáculos deberán ser superados haciendo de cajas, plataformas y palancas que permitan acceder a nuevas zonas.
+La mayoría de obstáculos deberán ser superados haciendo uso de cajas, plataformas y palancas que permitan acceder a nuevas zonas.
 
 #### **Estética**
 
@@ -111,25 +115,25 @@ Los niveles se basarán en 3 distintos escenarios de la obra; aunque el contexto
 
 **Los jardines (de día)**
 
-Un jardín bien cuidado con elementos que denotan la riqueza de las tierras, como rosas y alguna que otra fuente entre otros.
+Un jardín bien cuidado(simetría) con elementos que denotan la riqueza de las tierras, como rosas.
 
 **Los jardines (de noche)**
 
-El mismo jardín del caso anterior, sin embargo, se usará una paleta de colores más fría, para destacar la noche con elementos como farolas, farolillos u otras fuentes de iluminación.
+El mismo jardín del caso anterior, sin embargo, se usará una paleta de colores más fría, para destacar la noche, además de desorden como metáfora del sentimiento de los protagonistas.
 
 **El monasterio**
 
-El monasterio tendrá un ambiente frío, y tendrá elementos típicos del interior de una iglesia simple, con un suelo de baldosas con bancos, velas, etc. Para reflejar el encierro de la marquesa también se verán barrotes en ventanas y puertas bloqueadas.
+El monasterio tendrá un ambiente frío, y tendrá elementos típicos del interior de una iglesia simple, con un suelo de baldosas. Para reflejar el encierro de la marquesa también se verán barrotes en ventanas y puertas bloqueadas.
 
 ## **Contenido**
 
 #### **Historia**
 
-Arlequín, que viaja en un grupo de farsantes para en las tierras de un marqués, el cual les ofrece alojamiento temporal a cambio de que hagan interpretaciones en sus tierras.
+Arlequín, que viaja en un grupo de farsantes llega a las tierras de un marqués, el cual les ofrece alojamiento temporal a cambio de que hagan interpretaciones en sus tierras.
 
 La marquesa, llamada Rosalinda, y Arlequín se enamoran en su primer encuentro.
 
-El marqués se entera de su relación, lo que le provoca un ataque de celos y decide deshacerse de él. Cuando ambos protagonistas se enteran, deciden escapar de sus tierras antes de que este lleve a cabo su plan.
+El marqués se entera de su relación, lo cual provoca un ataque de celos y decide deshacerse de él. Cuando ambos protagonistas se enteran, deciden escapar de sus tierras antes de que este lleve a cabo su plan.
 
 Arlequín es encarcelado, ya que una dama le acusa de haberle robado sus anillos y la Marquesa es encerrada en un convento. Sin embargo, Arlequín se las apaña para escapar de la cárcel y trata de rescatar a la marquesa.
 
@@ -139,7 +143,7 @@ Arlequín es encarcelado, ya que una dama le acusa de haberle robado sus anillos
 
 **Arlequín:** Arlequín se unió a un grupo de farsantes en busca de un futuro mejor. Desde su encuentro con la Marquesa, tiene como objetivo cumplir su historia de amor huyendo con ella de las tierras del marqués. Lleva un traje de bufón típico de la época.
 
-**Marquesa:** Lleva gran parte de su vida casada con el marqués, sin embargo, no es feliz y lleva tiempo esperando a algo que le devuelva emoción a su vida, y esto ocurre con la aparición de Arlequín, de quien se enamora y con el que decide escapar a pesar de los problemas que pueda traerle.
+**Marquesa:** Lleva gran parte de su vida casada con el marqués, sin embargo, no es feliz y lleva tiempo esperando algo que le traiga emoción a su monótona vida, y esto ocurre con la aparición de Arlequín, de quién se enamora y con el que decide escapar a pesar de los problemas que pueda acarrearle.
 
 **ENEMIGOS:**
 
@@ -152,12 +156,12 @@ Arlequín es encarcelado, ya que una dama le acusa de haberle robado sus anillos
 **OBJETOS DE TERRENO**
 
 - Terreno con piedras/Suelos derruidos: Terreno especial que la marquesa no podrá atravesar.
-- Cajas: elementos que podrás desplazar para tu conveniencia sobre el terreno.
+- Cajas: elementos que podrás desplazar para tu conveniencia sobre el terreno y pueden activar las plataformas de presión.
 
 **ACCIONABLES**
 
-- Palancas: Elementos que podrán ser activados y generarán algún cambio en el entorno del nivel (puertas, puentes, trampillas, etc.)
-- Plataformas: Elementos que se activarán al ser pisados, y se desactivarán en cuanto dejen de serlos. Estos generarán cambios en el nivel, como las palancas.
+- Palancas: Elementos que podrán ser activados y abrirán puertas.
+- Plataformas de presión: Elementos que se activarán al ser pisados, y se desactivarán en cuanto dejen de serlo. Estos generarán cambios en el nivel, como las palancas.
 
 **COLECCIONABLES**
 
