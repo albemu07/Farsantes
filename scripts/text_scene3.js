@@ -1,6 +1,6 @@
 import TextScene from './text_scene.js'
-export default class TextScene1 extends TextScene {
+export default class TextScene3 extends TextScene {
   constructor() {
-    super('textScene1','Zone1','text11','text12');
+    super('textScene3','Zone4','text31','text32');
   }    
 }
