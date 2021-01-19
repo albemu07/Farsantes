@@ -94,7 +94,13 @@ export default class Boot extends Phaser.Scene{
     //Assets de las escenas de texto
     this.load.image('textBackground','./assets/menu/text_background.png');
     this.load.image('text11','./assets/menu/text1.png');
-    this.load.image('text12','./assets/menu/text2.png');
+    this.load.image('text12','./assets/menu/text3.png');
+    this.load.image('text21','./assets/menu/text4.png');
+    this.load.image('text22','./assets/menu/text5.png');
+    this.load.image('text31','./assets/menu/text6.png');
+    this.load.image('text32','./assets/menu/text7.png');
+    this.load.image('text41','./assets/menu/text8.png');
+    this.load.image('text42','./assets/menu/text9.png');
     this.load.image('continueButton','./assets/menu/continue_button.png');
     this.load.image('finalText1','./assets/menu/final_text1.png');
     this.load.image('finalText2','./assets/menu/final_text2.png');
