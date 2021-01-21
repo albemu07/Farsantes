@@ -17,7 +17,7 @@ export default class Menu extends Phaser.Scene{
         this.events.on('wake', this.onWake, this);
         const config = {
             mute:false,
-            volume: 0.3*(this.musicSound/100),
+            volume: 0.1*(this.musicSound/100),
             rate: 1,
             detune: 0,
             seek: 0,
