@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="28" height="21" tilewidth="32" tileheight="32" infinite="0" nextlayerid="14" nextobjectid="68">
  <editorsettings>
-  <export format="json"/>
+  <export target="." format="json"/>
  </editorsettings>
- <tileset firstgid="1" name="spriteSetBien" tilewidth="32" tileheight="32" tilecount="0" columns="9">
-  <image source="spriteSetNight.png" width="288" height="448"/>
+ <tileset firstgid="1" name="spriteSetBien" tilewidth="32" tileheight="32" tilecount="126" columns="9">
+  <image source="sprite_set_night.png" width="288" height="448"/>
  </tileset>
  <layer id="2" name="ground" width="28" height="21">
   <data encoding="csv">
@@ -85,10 +85,10 @@
   <object id="67" x="22" y="592" width="66" height="63"/>
  </objectgroup>
  <objectgroup id="4" name="rings">
-  <object id="1" type="3" x="313.957" y="78.6667" rotation="-90"/>
-  <object id="21" type="2" x="259.957" y="199.078"/>
-  <object id="28" type="1" x="644.333" y="193.04"/>
-  <object id="29" type="2" x="207.627" y="492" rotation="-90"/>
+  <object id="1" type="3" x="336" y="127" rotation="-90"/>
+  <object id="21" type="2" x="271" y="208"/>
+  <object id="28" type="1" x="656" y="208"/>
+  <object id="29" type="2" x="174" y="529" rotation="-90"/>
  </objectgroup>
  <objectgroup id="5" name="guards">
   <object id="31" name="0" x="138" y="205">

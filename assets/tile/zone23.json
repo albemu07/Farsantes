@@ -3,7 +3,8 @@
     {
      "export":
         {
-         "format":"json"
+         "format":"json",
+         "target":"."
         }
     },
  "height":21,
@@ -80,8 +81,8 @@
                  "type":"3",
                  "visible":true,
                  "width":0,
-                 "x":313.957,
-                 "y":78.6667
+                 "x":336,
+                 "y":127
                 }, 
                 {
                  "height":0,
@@ -91,8 +92,8 @@
                  "type":"2",
                  "visible":true,
                  "width":0,
-                 "x":259.957,
-                 "y":199.078
+                 "x":271,
+                 "y":208
                 }, 
                 {
                  "height":0,
@@ -102,8 +103,8 @@
                  "type":"1",
                  "visible":true,
                  "width":0,
-                 "x":644.333,
-                 "y":193.04
+                 "x":656,
+                 "y":208
                 }, 
                 {
                  "height":0,
@@ -113,8 +114,8 @@
                  "type":"2",
                  "visible":true,
                  "width":0,
-                 "x":207.627,
-                 "y":492
+                 "x":174,
+                 "y":529
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -663,13 +664,13 @@
         {
          "columns":9,
          "firstgid":1,
-         "image":"spriteSetNight.png",
+         "image":"sprite_set_night.png",
          "imageheight":448,
          "imagewidth":288,
          "margin":0,
          "name":"spriteSetBien",
          "spacing":0,
-         "tilecount":0,
+         "tilecount":126,
          "tileheight":32,
          "tilewidth":32
         }],

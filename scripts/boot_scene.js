@@ -2,7 +2,7 @@ export default class Boot extends Phaser.Scene{
   constructor(){
       super({key: 'Boot'})
       this.effectSound=100;
-      this.musicSound=100;
+      this.musicSound=50;
   }
 
   preload(){

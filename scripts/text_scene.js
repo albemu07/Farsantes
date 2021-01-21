@@ -9,6 +9,8 @@ export default class TextScene extends Phaser.Scene{
 
     init(data){
         this.score= data.score
+        this.effectSound=data.effSound
+        this.musicSound=data.mSound
     }
 
     create(){
@@ -84,7 +86,7 @@ export default class TextScene extends Phaser.Scene{
             duration:1000,
             completeDelay:100,
             onComplete:()=>{
-                this.scene.start(this.nextZone)
+                this.scene.start(this.nextZone,{effSound:this.effectSound, mSound:this.musicSound, score: this.score})
             }
         })
     }

@@ -19,8 +19,16 @@ export default class Settings extends Phaser.Scene{
         this.musicUp=this.add.image(600, 390, 'plusButton').setScale(1.2);
         this.musicDown=this.add.image(290, 390, 'minusButton').setScale(1.2);
         this.back=this.add.image(443,520,'backButton').setScale(1.2);
-        this.effectsText=this.add.text(380, 240, this.effectSound).setScale(5);
-        this.musicText=this.add.text(380, 370, this.musicSound).setScale(5);
+        this.effectsText=this.add.text(443, 250, this.effectSound,{
+            fontFamily:'liliput',
+            fontSize:'16px',
+            color:'#000000',
+        }).setScale(5).setOrigin(0.5);
+        this.musicText=this.add.text(443, 370, this.musicSound,{
+            fontFamily:'liliput',
+            fontSize:'16px',
+            color:'#000000',
+        }).setScale(5).setOrigin(0.5);
 
         //Interacciones
         this.back.setInteractive();
@@ -53,23 +61,23 @@ export default class Settings extends Phaser.Scene{
     }
 
     upVolume(){
-        if(this.effectSound<100) this.effectSound++;
+        if(this.effectSound<100) this.effectSound=this.effectSound+5;
         this.effectsText.setText(this.effectSound);        
     }
 
     downVolume(){
-        if(this.effectSound>0) this.effectSound--;
+        if(this.effectSound>0) this.effectSound=this.effectSound-5;
         this.effectsText.setText(this.effectSound);
     }
 
     upMusic(){
-        if(this.musicSound<100) this.musicSound++;
+        if(this.musicSound<100) this.musicSound=this.musicSound+5;
         this.musicText.setText(this.musicSound);
         this.scene.get("Menu").changeVolume(this.musicSound/100);
     }
 
     downMusic(){
-        if(this.musicSound>0) this.musicSound--;
+        if(this.musicSound>0) this.musicSound=this.musicSound-5;
         this.musicText.setText(this.musicSound);
         this.scene.get("Menu").changeVolume(this.musicSound/100);
     }

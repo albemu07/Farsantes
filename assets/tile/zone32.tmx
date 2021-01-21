@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="28" height="21" tilewidth="32" tileheight="32" infinite="0" nextlayerid="15" nextobjectid="43">
  <editorsettings>
-  <export target="."/>
+  <export target="zone32.json" format="json"/>
  </editorsettings>
- <tileset firstgid="1" name="spriteSetBien" tilewidth="32" tileheight="32" tilecount="0" columns="9">
-  <image source="spriteSetConvento.png" trans="ff00ff" width="288" height="288"/>
+ <tileset firstgid="1" name="spriteSetBien" tilewidth="32" tileheight="32" tilecount="81" columns="9">
+  <image source="sprite_set_convento.png" trans="ff00ff" width="288" height="288"/>
  </tileset>
  <layer id="3" name="ground" width="28" height="21">
   <data encoding="csv">
@@ -82,11 +82,11 @@
 </data>
  </layer>
  <objectgroup id="14" name="rings">
-  <object id="1" name="3" x="559.233" y="78.68"/>
-  <object id="2" name="2" x="815.851" y="81.1009"/>
+  <object id="1" type="3" x="559.233" y="78.68"/>
+  <object id="2" type="2" x="815.851" y="81.1009"/>
  </objectgroup>
  <objectgroup id="13" name="endTrigger">
-  <object id="31" x="162" y="636" width="92" height="32"/>
+  <object id="31" x="162" y="648" width="92" height="20"/>
  </objectgroup>
  <objectgroup id="12" name="routePoints">
   <object id="15" name="2" x="431" y="256"/>
@@ -98,28 +98,28 @@
   <object id="22" name="0" x="176" y="196"/>
  </objectgroup>
  <objectgroup id="11" name="plateDoors">
-  <object id="23" name="2" x="304" y="240"/>
-  <object id="24" name="3" x="208" y="560"/>
-  <object id="32" name="1" x="208" y="624"/>
   <object id="33" name="0" x="816" y="496"/>
+  <object id="32" name="1" x="208" y="624"/>
+  <object id="24" name="3" x="208" y="560"/>
+  <object id="23" name="2" x="304" y="240"/>
  </objectgroup>
  <objectgroup id="10" name="leverDoors">
-  <object id="34" name="3" x="688" y="336"/>
-  <object id="35" name="2" x="80" y="240"/>
   <object id="36" name="0" x="816" y="176"/>
   <object id="37" name="1" x="560" y="176"/>
+  <object id="35" name="2" x="80" y="240"/>
+  <object id="34" name="3" x="688" y="336"/>
  </objectgroup>
  <objectgroup id="9" name="plates">
-  <object id="8" name="3" x="432" y="432"/>
-  <object id="9" name="2" x="688" y="433"/>
-  <object id="10" name="1" x="80" y="80"/>
   <object id="11" name="0" x="208" y="304"/>
+  <object id="10" name="1" x="80" y="80"/>
+  <object id="9" name="2" x="688" y="433"/>
+  <object id="8" name="3" x="432" y="432"/>
  </objectgroup>
  <objectgroup id="8" name="levers">
-  <object id="4" name="3" x="432" y="79"/>
-  <object id="5" name="2" x="689" y="79"/>
-  <object id="6" name="1" x="306" y="79"/>
   <object id="26" name="0" x="242" y="592"/>
+  <object id="6" name="1" x="306" y="79"/>
+  <object id="5" name="2" x="689" y="79"/>
+  <object id="4" name="3" x="432" y="79"/>
  </objectgroup>
  <objectgroup id="7" name="boxes">
   <object id="38" x="81" y="592"/>

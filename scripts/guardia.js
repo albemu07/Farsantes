@@ -9,14 +9,10 @@ export default class Guardia extends Enemigo
         this.distraida =false;
         this.stunTime =0;
 
-        this.expresion = ['Hola Marquesa', 'Has visto a un farsante', 'arrestar a Arlequín', 
-        'Es demasiado astuto', 'Mañana descaso', 'Hace mucho frío', 'Tengo que vigilar'];
+        this.expresion = ['Saludos, señora Marquesa', 'Ando buscando a un malandrín','¡Ven aquí, bellaco pisaverde!','Habrase visto semejante liante','No es más que un gaznápiro','Ese zascandil no merece su atención','Muéstrate, gazmuño cagalindes'];
         this.conv =this.expresion[ Math.floor(Math.random() * 7)];
         this.textConv = this.scene.add.text(this.x,this.object.displayHeight,this.conv);
         this.textConv.visible=false;
-    
-
-
     }
 
 
@@ -64,12 +60,12 @@ export default class Guardia extends Enemigo
         {
             this.conv =this.expresion[ Math.floor(Math.random() * 7)];
             this.textConv= this.scene.add.text(this.x,this.y,this.conv,{
-                fontFamily: 'Arial',
-                fontSize: '10px',
-                stroke: '#000000',
-                strokeThickness: 3,
-                color: '#00B1FF',
-                backgroundColor: '#FFFFFF',
+                fontFamily: 'liliput',
+                fontSize: '18px',
+                stroke: '#9a561c',
+                strokeThickness: 1.5,
+                color: '#000000',
+                backgroundColor: '#d0a874',
             });
             console.log(this.conv );
             if (this.horizontal)

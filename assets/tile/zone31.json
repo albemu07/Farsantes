@@ -3,7 +3,8 @@
     {
      "export":
         {
-         "target":"."
+         "format":"json",
+         "target":"zone31.json"
         }
     },
  "height":21,
@@ -58,8 +59,8 @@
                  "type":"1",
                  "visible":true,
                  "width":0,
-                 "x":640.666666666667,
-                 "y":288
+                 "x":688,
+                 "y":335
                 }, 
                 {
                  "height":0,
@@ -69,8 +70,8 @@
                  "type":"3",
                  "visible":true,
                  "width":0,
-                 "x":513.333333333333,
-                 "y":30
+                 "x":561,
+                 "y":80
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -84,15 +85,15 @@
          "name":"endTrigger",
          "objects":[
                 {
-                 "height":124,
+                 "height":89,
                  "id":7,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":92,
-                 "x":34.6666666666667,
-                 "y":482.666666666667
+                 "width":95,
+                 "x":2,
+                 "y":499
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -113,8 +114,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":400.666666666667,
-                 "y":240.666666666667
+                 "x":400.667,
+                 "y":240.667
                 }, 
                 {
                  "height":0,
@@ -125,7 +126,7 @@
                  "visible":true,
                  "width":0,
                  "x":224,
-                 "y":576.666666666667
+                 "y":576.667
                 }, 
                 {
                  "height":0,
@@ -135,8 +136,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":433.333333333333,
-                 "y":592.666666666667
+                 "x":433.333,
+                 "y":592.667
                 }, 
                 {
                  "height":0,
@@ -234,7 +235,7 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":78.6666666666667,
+                 "x":78.6667,
                  "y":240
                 }, 
                 {
@@ -246,7 +247,7 @@
                  "visible":true,
                  "width":0,
                  "x":432,
-                 "y":366.666666666667
+                 "y":366.667
                 }, 
                 {
                  "height":0,
@@ -256,7 +257,7 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":222.666666666667,
+                 "x":222.667,
                  "y":352
                 }],
          "opacity":1,
@@ -273,7 +274,7 @@
                 {
                  "height":0,
                  "id":9,
-                 "name":"3",
+                 "name":"0",
                  "rotation":90,
                  "type":"",
                  "visible":true,
@@ -284,7 +285,7 @@
                 {
                  "height":0,
                  "id":10,
-                 "name":"2",
+                 "name":"1",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -295,7 +296,7 @@
                 {
                  "height":0,
                  "id":15,
-                 "name":"1",
+                 "name":"2",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -306,7 +307,7 @@
                 {
                  "height":0,
                  "id":18,
-                 "name":"0",
+                 "name":"3",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -328,7 +329,7 @@
                 {
                  "height":0,
                  "id":11,
-                 "name":"1",
+                 "name":"0",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -339,7 +340,7 @@
                 {
                  "height":0,
                  "id":16,
-                 "name":"0",
+                 "name":"1",
                  "rotation":90,
                  "type":"",
                  "visible":true,
@@ -361,40 +362,40 @@
                 {
                  "height":0,
                  "id":22,
-                 "name":"3",
+                 "name":"0",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":256.666666666667,
+                 "x":256.667,
                  "y":96
                 }, 
                 {
                  "height":0,
                  "id":23,
-                 "name":"2",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":64.6666666666667,
-                 "y":64
-                }, 
-                {
-                 "height":0,
-                 "id":24,
                  "name":"1",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":400.666666666667,
+                 "x":64.6667,
+                 "y":64
+                }, 
+                {
+                 "height":0,
+                 "id":24,
+                 "name":"2",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":400.667,
                  "y":560
                 }, 
                 {
                  "height":0,
                  "id":25,
-                 "name":"0",
+                 "name":"3",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -416,18 +417,18 @@
                 {
                  "height":0,
                  "id":26,
-                 "name":"1",
+                 "name":"0",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":95.3333333333333,
-                 "y":350.666666666667
+                 "x":95.3333,
+                 "y":350.667
                 }, 
                 {
                  "height":0,
                  "id":27,
-                 "name":"0",
+                 "name":"1",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -455,7 +456,7 @@
                  "visible":true,
                  "width":0,
                  "x":400,
-                 "y":46.6666666666667
+                 "y":46.6667
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -511,7 +512,7 @@
                  "visible":true,
                  "width":0,
                  "x":224,
-                 "y":352.666666666667
+                 "y":352.667
                 }, 
                 {
                  "height":0,
@@ -544,8 +545,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":79.3333333333333,
-                 "y":240.666666666667
+                 "x":79.3333,
+                 "y":240.667
                 }, 
                 {
                  "height":0,
@@ -561,7 +562,7 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":544.666666666667,
+                 "x":544.667,
                  "y":448
                 }],
          "opacity":1,
@@ -580,13 +581,13 @@
         {
          "columns":9,
          "firstgid":1,
-         "image":"spriteSetConvento.png",
+         "image":"sprite_set_convento.png",
          "imageheight":288,
          "imagewidth":288,
          "margin":0,
          "name":"spriteSetBien",
          "spacing":0,
-         "tilecount":0,
+         "tilecount":81,
          "tileheight":32,
          "tilewidth":32,
          "transparentcolor":"#ff00ff"

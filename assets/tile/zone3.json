@@ -3,7 +3,8 @@
     {
      "export":
         {
-         "format":"json"
+         "format":"json",
+         "target":"."
         }
     },
  "height":21,
@@ -464,13 +465,13 @@
         {
          "columns":9,
          "firstgid":1,
-         "image":"spriteSet.png",
+         "image":"sprite_set.png",
          "imageheight":448,
          "imagewidth":288,
          "margin":0,
          "name":"spriteSetBien",
          "spacing":0,
-         "tilecount":0,
+         "tilecount":126,
          "tileheight":32,
          "tilewidth":32
         }],

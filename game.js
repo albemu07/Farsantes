@@ -31,14 +31,7 @@ export default class Game extends Phaser.Scene {
   onWake(sys, data){
     this.effectSound=data.effSound;
     this.musicSound=data.mSound;
-    for(var i=0;i<this.plateDoorsGroup.getChildren().length;i++){
-      this.plateDoorsGroup.getChildren()[i].changeVolume(this.effectSound/100);
-    }
-    for(var i=0;i<this.leverDoorsGroup.getChildren().length;i++){
-      this.leverDoorsGroup.getChildren()[i].changeVolume(this.effectSound/100);
-    }
-    this.playerBuffoon.changeVolume(this.effectSound/100);
-    this.playerCountess.changeVolume(this.effectSound/100);
+    this.setInitialVolume(this.effectSound/100)
   }
 
   passScene(){
@@ -68,7 +61,7 @@ export default class Game extends Phaser.Scene {
     this.walls = this.map.createStaticLayer('walls', tileset);
     
     //Crear trigger de siguiente zona
-    this.triggerLayer=this.map.getObjectLayer('endTrigger')['objects']
+    this.triggerLayer=this.map.getObjectLayer('endTrigger').objects
     this.triggerLayer.forEach(object =>{
       this.endTrigger=this.add.zone(object.x,object.y).setOrigin(0,0)
       this.endTrigger.setSize(object.width,object.height)  
@@ -76,50 +69,40 @@ export default class Game extends Phaser.Scene {
     this.physics.world.enable(this.endTrigger)
 
     //Crear capa de puertas de placas
-    this.plateDoorsLayer=this.map.getObjectLayer('plateDoors')['objects'] //Creación de capa de puertas asociadas a placas
+    this.plateDoorsLayer=this.map.getObjectLayer('plateDoors').objects //Creación de capa de puertas asociadas a placas
     this.plateDoorsGroup=this.physics.add.staticGroup();                  //Creación del grupo de puertas asociadas a placas
-    this.plateDoorsLayer.forEach(object =>{                               
-      this.plateDoorsGroup.add(new Door(this,object.x,object.y,object.rotation,false, this.level))    //Por cada objeto dentro de la capa se crea una puerta en el grupo.
-    })
     //Crear capa de placas
-    this.platesLayer=this.map.getObjectLayer('plates')['objects']         //Creación de capa de placas
+    this.platesLayer=this.map.getObjectLayer('plates').objects        //Creación de capa de placas
     this.platesGroup=this.physics.add.staticGroup();                      //Creación del grupo de placas
-    this.platesLayer.forEach(object =>{                                   //Por cada objeto dentro de la capa se crea una placa en el grupo. La puerta asociada es la puerta del grupo anterior con el mismo nombre.
-      this.platesGroup.add(new PressurePlate(this,object.x,object.y,this.plateDoorsGroup.getChildren()[object.name],false, this.level))
-    })
+    this.createMechanism(this.plateDoorsLayer,this.plateDoorsGroup,PressurePlate,this.platesLayer,this.platesGroup)
 
     //Crear capa de puertas de palancas
-    this.leverDoorsLayer=this.map.getObjectLayer('leverDoors')['objects'] //Creación de capa de puertas asociadas a palancas
+    this.leverDoorsLayer=this.map.getObjectLayer('leverDoors').objects //Creación de capa de puertas asociadas a palancas
     this.leverDoorsGroup=this.physics.add.staticGroup();                  //Creación del grupo de puertas asociadas a palancas
-    this.leverDoorsLayer.forEach(object =>{                              
-       this.leverDoorsGroup.add(new Door(this,object.x,object.y,object.rotation,false, this.level))    //Por cada objeto dentro de la capa se crea una puerta en el grupo.
-    })
     //Crear capa de palancas
-    this.leversLayer=this.map.getObjectLayer('levers')['objects']         //Creación de capa de palancas
+    this.leversLayer=this.map.getObjectLayer('levers').objects        //Creación de capa de palancas
     this.leversGroup=this.physics.add.staticGroup();                      //Creación del grupo de palancas
-    this.leversLayer.forEach(object =>{                                   //Por cada objeto dentro de la capa se crea una palcan en el grupo. La puerta asociada es la puerta del grupo anterior con el mismo nombre.
-       this.leversGroup.add(new Lever(this,object.x,object.y,this.leverDoorsGroup.getChildren()[object.name],false, this.level))
-    })
+    this.createMechanism(this.leverDoorsLayer,this.leverDoorsGroup,Lever,this.leversLayer,this.leversGroup)
 
     //Crear capa de cajas
-    this.boxesLayer=this.map.getObjectLayer('boxes')['objects'];           //Creación de capa de cajas
+    this.boxesLayer=this.map.getObjectLayer('boxes').objects;           //Creación de capa de cajas
     this.boxesGroup=this.physics.add.group();                             //Creación del grupo de cajas
     this.boxesLayer.forEach(object =>{                                    
       this.boxesGroup.add(new Caja(this,object.x,object.y,'BoxSprite', this.level));  //Por cada objeto dentro de la capa se crea una caja en el grupo.
     })
 
     //Crear capa de coleccionables
-    this.ringsLayer=this.map.getObjectLayer('rings')['objects'];           //Creación de capa de coleccionables
+    this.ringsLayer=this.map.getObjectLayer('rings').objects;           //Creación de capa de coleccionables
     this.ringsGroup=this.physics.add.staticGroup();                       //Creación del grupo de coleccionables
     this.ringsLayer.forEach(object =>{                                    
       this.ringsGroup.add(new Ring (this,object.x,object.y,object.type,object.rotation));  //Por cada objeto dentro de la capa se crea un anillo en el grupo.
     })
 
     //Crear capa de puntos de ruta
-    this.routeLayer=this.map.getObjectLayer('routePoints')['objects']
+    this.routeLayer=this.map.getObjectLayer('routePoints').objects
 
     //Crear capa de guardias
-    this.guardsLayer=this.map.getObjectLayer('guards')['objects']         //Creación de capa de guardias
+    this.guardsLayer=this.map.getObjectLayer('guards').objects        //Creación de capa de guardias
     this.guardsGroup=this.physics.add.group();                            //Creación del grupo de guardias
     this.guardsLayer.forEach(object =>{
       let guardia =object                                                 //Guarda el objeto guardia en una variable temporal
@@ -134,7 +117,7 @@ export default class Game extends Phaser.Scene {
     })
  
     //Crear capa de monjas
-    this.monksLayer=this.map.getObjectLayer('monks')['objects']           //Creación de capa de monjas
+    this.monksLayer=this.map.getObjectLayer('monks').objects          //Creación de capa de monjas
     this.monksGroup=this.physics.add.group();                             //Creación del grupo de monjas
     this.monksLayer.forEach(object =>{                            
       let monk=object                                                     //Guarda el objeto Monja en una variable temporal
@@ -152,11 +135,6 @@ export default class Game extends Phaser.Scene {
     this.playerBuffoon=new Buffoon(this,this.buffoonX,this.buffoonY,'RunBuffoon');
     this.playerCountess=new Countess(this,this.countessX,this.countessY,'RunCountess');
 
-    
-    // //Marcador de puntuación
-    // this.scoreDisplay=this.add.text(10,10,'Puntuación: '+this.score,{fontSize: '20px', fill:'#000'})
-    // this.scoreDisplay.setText('Puntuación'+this.score);
-
     //COLISIONES
     //Jugadores con los muros
     this.physics.add.collider(this.playerBuffoon, this.walls);
@@ -165,25 +143,20 @@ export default class Game extends Phaser.Scene {
     //Marquesa con el barro
     this.physics.add.collider(this.playerCountess, this.mud);
 
+    
     //Jugadores con las puertas (de placas y palancas)
-    for(var i=0;i<this.plateDoorsGroup.getChildren().length;i++){
-        this.physics.add.collider(this.playerBuffoon,this.plateDoorsGroup.getChildren()[i])
-        this.physics.add.collider(this.playerCountess,this.plateDoorsGroup.getChildren()[i])
-    }
-    for(var i=0;i<this.leverDoorsGroup.getChildren().length;i++){
-      this.physics.add.collider(this.playerBuffoon,this.leverDoorsGroup.getChildren()[i])
-      this.physics.add.collider(this.playerCountess,this.leverDoorsGroup.getChildren()[i])
-    }
+    this.createCollider(this.plateDoorsGroup,false)
+    this.createCollider(this.leverDoorsGroup,false)
 
     //Jugadores con las palancas
-    for(var i=0;i<this.leversGroup.getChildren().length;i++){
-      this.physics.add.overlap(this.playerBuffoon, this.leversGroup.getChildren()[i], (o1, o2) => {
-        if (o1.grabLever()) 
-          o2.interaction();});
-      this.physics.add.overlap(this.playerCountess, this.leversGroup.getChildren()[i], (o1, o2) => {
-        if (o1.grabLever()) 
-          o2.interaction();});
-    }
+    this.createCollider(this.leversGroup,true,(o1,o2)=>{if(o1.grabLever()) o2.interaction()},(o1,o2)=>{if(o1.grabLever())o2.interaction()})
+
+    //Jugadores con guardias y monjes
+    this.createCollider(this.guardsGroup,true,(o1,o2)=>{this.arlVig(o1,o2);},(o1,o2)=>{this.marGuardia(o1,o2);})
+    this.createCollider(this.monksGroup,true,(o1,o2)=>{this.arlVig(o1,o2);},(o1,o2)=>{this.marMonje(o1,o2);})
+
+    //Jugadores con coleccionables
+    this.createCollider(this.ringsGroup,true,(o1,o2)=>{this.takeRing(o1,o2);},undefined)
 
     //Cajas con jugadores, muros y puertas
     for(var i=0;i<this.boxesGroup.getChildren().length;i++){
@@ -210,20 +183,6 @@ export default class Game extends Phaser.Scene {
       }           
     }
 
-    //Jugadores con coleccionables
-    for(var i=0;i<this.ringsGroup.getChildren().length;i++){
-      this.physics.add.overlap(this.playerBuffoon, this.ringsGroup.getChildren()[i], (o1, o2) => {this.takeRing(o1,o2); });
-    }
-
-    //Jugadores con los guardias y monjas
-    for(var i=0;i<this.guardsGroup.getChildren().length;i++){
-      this.physics.add.overlap(this.playerBuffoon,this.guardsGroup.getChildren()[i],(o1,o2)=>{this.arlVig(o1,o2);});
-      this.physics.add.overlap(this.playerCountess,this.guardsGroup.getChildren()[i],(o1,o2)=>{this.marGuardia(o1,o2);});
-    }
-    for(var i=0;i<this.monksGroup.getChildren().length;i++){
-      this.physics.add.overlap(this.playerBuffoon,this.monksGroup.getChildren()[i],(o1,o2)=>{this.arlVig(o1,o2);});
-      this.physics.add.overlap(this.playerCountess,this.monksGroup.getChildren()[i],(o1,o2)=>{this.marMonje(o1,o2)});
-    }
     //SetCollisionBetween
     this.walls.setCollisionBetween(46, 999);
     this.mud.setCollisionBetween(46,999);
@@ -240,7 +199,7 @@ export default class Game extends Phaser.Scene {
     this.input.gamepad.on('down', (pad, button, value) =>{
         if(button.index===9){
           this.scene.launch('pauseMenu',{zone: this.zone, effSound:this.effectSound, mSound: this.musicSound}); this.scene.sleep()
-        }           
+        }
   });
 
     this.input.gamepad.on('down',(pad)=>{
@@ -252,7 +211,9 @@ export default class Game extends Phaser.Scene {
         this.gamepad2=pad
         this.playerCountess.setGamePad(this.gamepad2)
       }
-    })
+    })            
+    //Configurar volumen
+    this.setInitialVolume(this.effectSound/100);
   }
 
   preUpdate(time,delta){
@@ -274,7 +235,6 @@ export default class Game extends Phaser.Scene {
     if (this.physics.overlap(o1,o2.ring)){
       console.log("anillo cogido");
       this.score += o2.taken();
-      // this.scoreDisplay.setText('Puntuación'+this.score);
       o2.destroy();
 
     }
@@ -369,4 +329,39 @@ export default class Game extends Phaser.Scene {
 
     }
   }
+
+  createCollider(group,overlap,callbackBuffon,callBackCountess){
+    group.getChildren().forEach(thing=>{
+      if(overlap){
+        this.physics.add.overlap(this.playerBuffoon,thing,callbackBuffon)
+        this.physics.add.overlap(this.playerCountess,thing,callBackCountess)
+      }
+      else{
+        this.physics.add.collider(this.playerBuffoon,thing,callbackBuffon)
+        this.physics.add.collider(this.playerCountess,thing,callBackCountess)
+      }
+    })   
+  }
+
+  createMechanism(doorLayer,doorGroup,objectType,mechLayer,mechGroup){
+    doorLayer.forEach(door=>{
+      doorGroup.add(new Door(this,door.x,door.y,door.rotation,false,this.level))
+    })
+    mechLayer.forEach(mechanism=>{
+      mechGroup.add(new objectType(this,mechanism.x,mechanism.y,doorGroup.getChildren()[mechanism.name],false,this.level))
+    })
+  }
+
+  setInitialVolume(vol){
+    for(var i=0;i<this.plateDoorsGroup.getChildren().length;i++){
+      this.plateDoorsGroup.getChildren()[i].changeVolume(vol);
+    }
+    for(var i=0;i<this.leverDoorsGroup.getChildren().length;i++){
+      this.leverDoorsGroup.getChildren()[i].changeVolume(vol);
+    }
+    this.playerBuffoon.changeVolume(vol);
+    this.playerCountess.changeVolume(vol);
+  }
 }
+
+

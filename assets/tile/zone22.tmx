@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="28" height="21" tilewidth="32" tileheight="32" infinite="0" nextlayerid="14" nextobjectid="58">
  <editorsettings>
-  <export format="json"/>
+  <export target="." format="json"/>
  </editorsettings>
- <tileset firstgid="1" name="spriteSetBien" tilewidth="32" tileheight="32" tilecount="0" columns="9">
-  <image source="spriteSetNight.png" width="288" height="448"/>
+ <tileset firstgid="1" name="spriteSetBien" tilewidth="32" tileheight="32" tilecount="126" columns="9">
+  <image source="sprite_set_night.png" width="288" height="448"/>
  </tileset>
  <layer id="3" name="ground" width="28" height="21">
   <data encoding="csv">
@@ -82,10 +82,10 @@
 </data>
  </layer>
  <objectgroup id="2" name="rings">
-  <object id="3" type="2" x="644.667" y="98.3337" rotation="-90"/>
-  <object id="7" type="4" x="18.6667" y="18" rotation="-90"/>
-  <object id="18" type="1" x="804.666" y="409.666" rotation="90"/>
-  <object id="37" type="2" x="528" y="321.667"/>
+  <object id="3" type="2" x="690" y="143" rotation="-90"/>
+  <object id="7" type="4" x="80" y="49" rotation="-90"/>
+  <object id="18" type="1" x="848" y="463" rotation="90"/>
+  <object id="37" type="2" x="575" y="335"/>
  </objectgroup>
  <objectgroup id="5" name="monks"/>
  <objectgroup id="6" name="guards">
