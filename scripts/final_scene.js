@@ -49,7 +49,7 @@ init(data){
             alpha:1,
             duration:1000,
             completeDelay:500,
-            //Poco después de completar el fade in del texto 2 se crea un botón para pasar a la siguiente zona
+            //Poco después de completar el fade in del texto 2 se muestra la puntuación
             onComplete:()=>{
             }
         })
@@ -58,10 +58,6 @@ init(data){
             targets: this.scoreText,
             alpha:1,
             duration:1000,
-            completeDelay:2000,
-            //Poco después de completar el fade in del texto 2 se crea un botón para pasar a la siguiente zona
-            onComplete:()=>{
-            }
         })
 
         timeline.play();

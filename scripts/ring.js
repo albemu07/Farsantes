@@ -45,7 +45,6 @@ export default class Ring extends Phaser.GameObjects.Container {
         this.ring.setTexture(this.sprite2);
     }
     taken(){
-        //animación
         this.took.play();
         return this.value;
         

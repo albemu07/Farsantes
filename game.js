@@ -222,7 +222,7 @@ export default class Game extends Phaser.Scene {
 
   update(time,delta){
     if (this.playerBuffoon.rDown()){
-      this.scene.restart();
+      this.scene.restart({effSound:this.effectSound,mSound:this.musicSound});
     }
     //Comprobación del overlapping entre trigger y jugadores
     this.checkPressureplate();
@@ -233,7 +233,6 @@ export default class Game extends Phaser.Scene {
   takeRing(o1,o2)
   {
     if (this.physics.overlap(o1,o2.ring)){
-      console.log("anillo cogido");
       this.score += o2.taken();
       o2.destroy();
 
@@ -248,7 +247,6 @@ export default class Game extends Phaser.Scene {
   {
     if (o1.stunDown())
     {
-      console.log("Distrayendo guardia");
       o2.distraida =true;
       o2.setText();
     }
@@ -258,16 +256,14 @@ export default class Game extends Phaser.Scene {
   {
     if (this.physics.overlap(o1,o2.vision))
     {
-      console.log("Encontrado a la Marquesa");
-      this.scene.restart();
+      this.scene.restart({effSound:this.effectSound,mSound:this.musicSound});
     }
 
   }
   arlVig(o1,o2)
   {
     if (this.physics.overlap(o1,o2.vision)){
-    console.log("Encontrado a Arlequin");
-    this.scene.restart();
+    this.scene.restart({effSound:this.effectSound,mSound:this.musicSound});
     }
   }
 
@@ -284,8 +280,7 @@ export default class Game extends Phaser.Scene {
 
   checkEndOverlap(){
     //Si ambos jugadores entran en el trigger, se pasa de escena
-      if(this.physics.overlap(this.playerBuffoon, this.endTrigger) && this.physics.overlap(this.playerCountess, this.endTrigger)){
-        console.log('Siguiente escena');  
+      if(this.physics.overlap(this.playerBuffoon, this.endTrigger) && this.physics.overlap(this.playerCountess, this.endTrigger)){ 
         if(!this.win) {
           this.scene.pause();
           this.playerBuffoon.stopSound();
@@ -296,7 +291,6 @@ export default class Game extends Phaser.Scene {
       }
    //Si solo uno de ellos entra, "llama" al otro haciendo visible un texto
       else if(this.physics.overlap(this.playerBuffoon, this.endTrigger) || this.physics.overlap(this.playerCountess, this.endTrigger)){
-         console.log('Un jugador colisionando');
          this.endTriggerText.visible=true;
       }
    //Si no hay ninguno dentro, simplemente el texto se oculta

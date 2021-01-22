@@ -43,7 +43,6 @@ export default class Guardia extends Enemigo
             this.stunTime ++;
             
             this.textConv.visible=true;
-            //console.log("tiempo distraido: "+this.stunTime);
             if (this.stunTime >500)
             {
                 this.stunTime =0;
