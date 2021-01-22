@@ -123,7 +123,6 @@
   <object id="12" name="1" x="494.667" y="272"/>
   <object id="14" name="2" x="109.333" y="560"/>
   <object id="25" name="3" x="718.667" y="146.667"/>
-  <object id="38" x="117.333" y="-90.6667" width="1.33333"/>
  </objectgroup>
  <objectgroup id="15" name="routePoints">
   <object id="46" name="1" x="202.667" y="298"/>

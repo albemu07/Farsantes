@@ -104,6 +104,8 @@ export default class Boot extends Phaser.Scene{
     this.load.image('continueButton','./assets/menu/continue_button.png');
     this.load.image('finalText1','./assets/menu/final_text1.png');
     this.load.image('finalText2','./assets/menu/final_text2.png');
+    this.load.image('controlsText1','./assets/menu/controls_text1.png')
+    this.load.image('controlsText2','./assets/menu/controls_text2.png')
 
 
     //Assests sonido

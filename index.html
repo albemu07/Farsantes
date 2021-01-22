@@ -80,6 +80,7 @@
        import Game from './game.js'
        import TextScene from './scripts/text_scene.js'
        import TextScene1 from './scripts/text_scene1.js'
+       import ControlsScene from './scripts/controls_scene.js'
        import TextScene2 from './scripts/text_scene2.js'
        import TextScene3 from './scripts/text_scene3.js'
        import TextScene4 from './scripts/text_scene4.js'
@@ -108,7 +109,7 @@
           mode: Phaser.Scale.FIT,
           autoCenter: Phaser.Scale.CENTER_BOTH,
         },
-        scene: [Boot,Menu,Settings,PauseMenu,FinalScene,TextScene1, TextScene2, TextScene3, TextScene4, Zone1,Zone2,Zone3,Zone4,Zone5,Zone6, Zone7, Zone8, Zone9],
+        scene: [Boot,Menu,Settings,PauseMenu,FinalScene,TextScene1,ControlsScene, TextScene2, TextScene3, TextScene4, Zone1,Zone2,Zone3,Zone4,Zone5,Zone6, Zone7, Zone8, Zone9],
         physics: {
           default: "arcade",
           arcade: { gravity: { y:0 }, debug: false },

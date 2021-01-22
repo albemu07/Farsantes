@@ -4,7 +4,7 @@
      "export":
         {
          "format":"json",
-         "target":"."
+         "target":"zone3.json"
         }
     },
  "height":21,
@@ -316,17 +316,6 @@
                  "width":0,
                  "x":718.667,
                  "y":146.667
-                }, 
-                {
-                 "height":0,
-                 "id":38,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":1.33333,
-                 "x":117.333,
-                 "y":-90.6667
                 }],
          "opacity":1,
          "type":"objectgroup",

@@ -124,7 +124,7 @@
  </objectgroup>
  <objectgroup id="6" name="monks"/>
  <objectgroup id="7" name="routePoints">
-  <object id="38" name="5" x="88.3333" y="101.667"/>
+  <object id="38" name="5" x="304" y="102"/>
   <object id="39" name="5" x="715.333" y="101.667"/>
   <object id="41" name="0" x="121.333" y="176.667"/>
   <object id="42" name="0" x="123.333" y="426.667"/>
