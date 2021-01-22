@@ -48,7 +48,7 @@ export default class Menu extends Phaser.Scene{
         //Funciones al pulsar
         this.play.on('pointerdown', ()=>{           
             this.music.play();
-            this.scene.start('controlsScene', {effSound:this.effectsSound, mSound:this.musicSound, score: 0}), this.scene.stop()});
+            this.scene.start('Zone8', {effSound:this.effectsSound, mSound:this.musicSound, score: 0}), this.scene.stop()});
         this.settings.on('pointerdown', ()=>{this.scene.launch('Settings',{pause: false, effSound:this.effectsSound, mSound:this.musicSound})});
         
     }

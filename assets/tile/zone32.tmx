@@ -92,10 +92,10 @@
   <object id="15" name="2" x="431" y="256"/>
   <object id="16" name="2" x="816" y="256"/>
   <object id="17" name="2" x="816" y="448"/>
-  <object id="18" name="1" x="177" y="449"/>
-  <object id="20" name="1" x="321" y="448"/>
-  <object id="21" name="0" x="176" y="63"/>
-  <object id="22" name="0" x="176" y="196"/>
+  <object id="18" name="1" x="174" y="448"/>
+  <object id="20" name="1" x="295" y="449"/>
+  <object id="21" name="0" x="177" y="38"/>
+  <object id="22" name="0" x="176" y="158"/>
  </objectgroup>
  <objectgroup id="11" name="plateDoors">
   <object id="33" name="0" x="816" y="496"/>
