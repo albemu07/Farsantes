@@ -114,6 +114,9 @@ nav a:hover::before{
 #controlsDiv{
   text-align: center;
 }
+#tutorialDiv{
+  text-align: center;
+}
 
 #teammatesDiv{
   display: flex;
@@ -154,14 +157,21 @@ nav a:hover::before{
   background-size: cover;
 }
 
-#History{
+#Tutorial{
   background-image: url(./webpage/background2.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+
+#History{
+  background-image: url(./webpage/background1.png);
   background-repeat: no-repeat;
   background-size: cover;
 }
 
 #Team{
-  background-image: url(./webpage/background1.png);
+  background-image: url(./webpage/background2.png);
   background-repeat: no-repeat;
   background-size: cover;
 }
