@@ -168,8 +168,8 @@ Arlequín es encarcelado, ya que una dama le acusa de haberle robado sus anillos
 - Anillos: Elementos secretos repartidos por los niveles que arlequín podrá ir recogiendo y que darán un bonus de puntuación al usuario.
 
 ## Diagrama UML
-![UML](Webpage/uml.png)
+![UML](Webpage/diagrama_uml.png)
 
 ## Captura del juego
-![Captura](Webpage/captura.png)
+![Captura](Webpage/captura_del_juego.png)
 
