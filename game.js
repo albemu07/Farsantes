@@ -281,10 +281,10 @@ export default class Game extends Phaser.Scene {
   checkEndOverlap(){
     //Si ambos jugadores entran en el trigger, se pasa de escena
       if(this.physics.overlap(this.playerBuffoon, this.endTrigger) && this.physics.overlap(this.playerCountess, this.endTrigger)){ 
-        if(!this.win) {
-          this.scene.pause();
+        if(!this.win) {          
           this.playerBuffoon.stopSound();
           this.playerCountess.stopSound();
+          this.scene.pause();
           this.levelFinished.play();
           this.win = true;
         }
