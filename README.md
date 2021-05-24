@@ -173,3 +173,25 @@ Arlequín es encarcelado, ya que una dama le acusa de haberle robado sus anillos
 ## Captura del juego
 ![Captura](./webpage/captura_del_juego.png)
 
+## Conclusiones QA
+
+**Feeling jugador**
+
+**Loot**
+
+**Armas**
+
+**Looteo y zonas**
+
+**Crafteo**
+
+**Estados de daño **
+
+**Dificultad para pasarte el juego**
+
+**Estética**
+
+
+
+
+
